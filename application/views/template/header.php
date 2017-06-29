@@ -69,6 +69,7 @@ $check_class = $this->router->fetch_class();
 		<?php
 	}else{
 		?>
+		
 <body>
 <div class="all-wrapper menu-side with-side-panel">
 	<div class="layout-w">
