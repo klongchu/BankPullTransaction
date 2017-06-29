@@ -149,12 +149,16 @@
                   <li><a href="icon_fonts_light_admin.html">Light Admin</a></li>
                 </ul>
               </li>
+              <li>
+                <a href="<?=base_url('login/logout');?>">
+                  <div class="icon-w">
+                    <div class="os-icon os-icon-signs-11"></div>
+                  </div>
+                  <span>Logout</span>
+                </a>
+              </li>
             </ul>
-            <div class="mobile-menu-magic">
-              <h4>Light Admin</h4>
-              <p>Clean Bootstrap 4 Template</p>
-              <div class="btn-w"><a class="btn btn-white btn-rounded" href="https://themeforest.net/item/light-admin-clean-bootstrap-dashboard-html-template/19760124?ref=Osetin" target="_blank">Purchase Now</a></div>
-            </div>
+
           </div>
         </div>
         <div class="desktop-menu menu-side-w menu-activated-on-click">
@@ -181,7 +185,7 @@
                     <li><a href="users_profile_big.html"><i class="os-icon os-icon-user-male-circle2"></i><span>Profile Details</span></a></li>
                     <li><a href="users_profile_small.html"><i class="os-icon os-icon-coins-4"></i><span>Billing Details</span></a></li>
                     <li><a href="#"><i class="os-icon os-icon-others-43"></i><span>Notifications</span></a></li>
-                    <li><a href="#"><i class="os-icon os-icon-signs-11"></i><span>Logout</span></a></li>
+                    <li><a href="<?=base_url('login/logout');?>"><i class="os-icon os-icon-signs-11"></i><span>Logout</span></a></li>
                   </ul>
                 </div>
               </div>
@@ -317,11 +321,14 @@
                   <li><a href="icon_fonts_light_admin.html">Light Admin</a></li>
                 </ul>
               </li>
+              <li>
+                <a href="<?=base_url('login/logout');?>">
+                  <div class="icon-w">
+                    <div class="os-icon os-icon-signs-11"></div>
+                  </div>
+                  <span>Logout</span>
+                </a>
+              </li>
             </ul>
-            <div class="side-menu-magic">
-              <h4>Light Admin</h4>
-              <p>Clean Bootstrap 4 Template</p>
-              <div class="btn-w"><a class="btn btn-white btn-rounded" href="https://themeforest.net/item/light-admin-clean-bootstrap-dashboard-html-template/19760124?ref=Osetin" target="_blank">Purchase Now</a></div>
-            </div>
           </div>
         </div>

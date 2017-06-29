@@ -89,5 +89,6 @@ define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 ///////////////////  
 //MySQL table
 define("TB_member","tbl_member");
+define("TB_webconfig","tbl_webconfig");
 
 
