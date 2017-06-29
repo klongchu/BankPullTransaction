@@ -10,7 +10,22 @@
                 <div class="col-sm-12">
                   <div class="element-wrapper">
 
-                    <h6 class="element-header">Balance Dashboard</h6>
+                    <div class="users-list-w element-header">
+									   <a href="<?=base_url('bank/name/'.$result->id);?>" style="text-decoration: none;">
+									   <div class="user-w with-status status-green">
+									      <div class="user-avatar-w">
+									         <div class="user-avatar"><?=img('uploads/bank/'.$result->s_icon.'','50');?></div>
+									      </div>
+									      <div class="user-name">
+									         <h6 class="user-title"><?=$result->s_name;?> Dashboard</h6>
+									         <div class="user-role"><?=$result->s_fname_en;?></div>
+									      </div>
+									      <div class="user-action">
+									         <div class="os-icon os-icon-coins4"></div>
+									      </div>
+									   	</div>
+									   	</a>
+										</div>
                     <div class="element-content">
                       <div class="row">
                         <div class="col-sm-4">

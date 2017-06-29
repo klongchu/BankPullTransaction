@@ -13,8 +13,8 @@ class Bank extends CI_Controller {
   	$s_seclect = array('*'); 
     $s_conditions['where'] = array('id'=>$id); 
     $s_order_by = array('id'=>'desc'); 
-  	$data['results'] = $this->Main_model->row_data("tbl_bank",$s_seclect,$s_conditions,$s_order_by);
-   $data['title'] = $data['results']->s_name;
+  	$data['result'] = $this->Main_model->row_data("tbl_bank",$s_seclect,$s_conditions,$s_order_by);
+   $data['title'] = $data['result']->s_name;
     $this->load->view('template/header',$data);
     $this->load->view('bank/index');
     $this->load->view('template/footer');
