@@ -4,7 +4,7 @@
   <?php
   $query = $this->db->get(TB_webconfig);
   $data = $query->row();
-  $cache_version = "1.0";
+  $cache_version = "1.0.1";
   $newdata = array();
   $newdata[wc_webconfig] = 'webconfig';
   $newdata[wc_site_name] = $data->s_site_name;

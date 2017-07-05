@@ -3,7 +3,7 @@
             <li class="breadcrumb-item"><a href="<?=base_url();?>">Home</a></li>
             <li class="breadcrumb-item"><span><?=$title;?></span></li>
           </ul>
-          <div class="content-panel-toggler"><i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span></div>
+          <!--<div class="content-panel-toggler"><i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span></div>-->
           <div class="content-i">
             <div class="content-box">
               <div class="row">
@@ -26,129 +26,77 @@
 									   	</div>
 									   	</a>
 										</div>
+                    
                     <div class="element-content">
                       <div class="row">
+                        <div class="col-sm-12">
+                          <button type="button" class="btn btn-md btn-success btn-rounded" id="OpenFormAddBank" data-i_bank="<?=$i_bank;?>" data-s_name="<?=$title;?>" >Add New Bank</button>
+                          
+                        </div>
+                      </div>
+                      <br />
+                      <div class="row">
+                      	<?php
+                      	foreach($bank_list as $data){
+                      	?>
                         <div class="col-sm-4">
                           <div class="element-box el-tablo">
-                            <div class="label">Balance</div>
-                            <div class="value">400</div>
-                            <!--<div class="trending trending-up"><span>12%</span><i class="os-icon os-icon-arrow-up2"></i></div>-->
+                            <div class="label"><?=$data->s_account_name;?> [ <?=$data->s_account_no;?> ]</div>
+                            <div class="value"><?=number_format($data->i_balance);?></div>
+                            <br />
+                            <div class="btn btn-sm btn-primary btn-rounded btnDetailBank" data-url="<?=base_url('bank/detail/'.$data->id);?>"><span>Views</span></div>
+                            <button type="button" class="btn btn-sm btn-success btn-rounded btnEditBank"    data-i_bank="<?=$i_bank;?>" data-s_name="<?=$title;?>" data-id="<?=$data->id;?>"  data-s_account_name="<?=$data->s_account_name;?>"  data-s_account_no="<?=$data->s_account_no;?>"  data-s_account_username="<?=$data->s_account_username;?>"  data-s_account_password="<?=$data->s_account_password;?>" >Edit</button>
                           </div>
                         </div>
-                        <div class="col-sm-4">
-                          <div class="element-box el-tablo">
-                            <div class="label">Deposit</div>
-                            <div class="value">457</div>
-                            <!--<div class="trending trending-down-basic"><span>12%</span><i class="os-icon os-icon-arrow-2-down"></i></div>-->
-                          </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="element-box el-tablo">
-                            <div class="label">Withdraw</div>
-                            <div class="value">57</div>
-                            <!--<div class="trending trending-down-basic"><span>9%</span><i class="os-icon os-icon-graph-down"></i></div>-->
-                          </div>
-                        </div>
+                      	<?php } ?>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="element-wrapper">
-                    <h6 class="element-header">Recent Transections</h6>
-                    <div class="element-box-tp">
-                      <div class="controls-above-table">
-                        <div class="row">
-                          <div class="col-sm-6"><!--<a class="btn btn-sm btn-secondary" href="#">Download CSV</a><a class="btn btn-sm btn-secondary" href="#">Archive</a><a class="btn btn-sm btn-danger" href="#">Delete</a>--></div>
-                          <div class="col-sm-6">
-                            <form class="form-inline justify-content-sm-end">
-                              <!--<input class="form-control form-control-sm rounded bright" placeholder="Search" type="text">-->
-                              <select class="form-control form-control-sm rounded bright">
-                                <option selected="selected" value="">Select Status</option>
-                                <option value="Pending">Pending</option>
-                                <option value="Active">Active</option>
-                                <option value="Cancelled">Cancelled</option>
-                              </select>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="table-responsive">
-                        <table class="table table-bordered table-lg table-v2 table-striped">
-                          <thead>
-                            <tr>
-                              <th class="text-center"><input class="form-control" type="checkbox"></th>
-                              <th>Customer Name</th>
-                              <th>Country</th>
-                              <th>Order Total</th>
-                              <th>Referral</th>
-                              <th>Status</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                          <?php
-                          for($i=1; $i <= 10; $i++){
-                          ?>
-                            <tr>
-                              <td class="text-center"><input class="form-control" type="checkbox"></td>
-                              <td>John Mayers</td>
-                              <td><img alt="" src="assets/img/flags-icons/us.png" width="25px"></td>
-                              <td class="text-right">$245</td>
-                              <td>Organic</td>
-                              <td class="text-center">
-                                <div class="status-pill green" data-title="Complete" data-toggle="tooltip"></div>
-                              </td>
-                            </tr>
-                            <?php } ?>
-
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="controls-below-table">
-                        <div class="table-records-info">Showing records 1 - 10</div>
-                        <div class="table-records-pages">
-                          <ul>
-                            <li><a href="#">Previous</a></li>
-                            <li><a class="current" href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">Next</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
+ 
+              <!-- Modal -->        
+<div aria-labelledby="mySmallModalLabel" class="modal fade bd-example-modal-sm" role="dialog" tabindex="-1" style="display: none;" aria-hidden="true" id="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Bank</h5>
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true"> ×</span></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="DataFormBank">
+        	<h3 id="s_name_bank"><?=$title;?></h3>
+        	<input type="hidden" name="i_bank" id="i_bank" value="<?=$i_bank;?>"/>
+        	<input type="hidden" name="id" id="id" value=""/>
+ 
+          <div class="form-group">
+	          <label for=""> Account Name</label>
+	          <input class="form-control" placeholder="Account Name" type="text" name="s_account_name" id="s_account_name">
+          </div>
+          <div class="form-group">
+	          <label for=""> Account No. Ex : 123-4-56789-0 <span style="color: #ff0000;" id="error_account_no"></span></label>
+	          <input class="form-control" placeholder="Account No." type="text" name="s_account_no" id="s_account_no">
+          </div>
+          <div class="form-group">
+	          <label for=""> Username <span style="color: #ff0000;" id="error_account_username"></span></label>
+	          <input class="form-control" placeholder="Username" type="text"  name="s_account_username" id="s_account_username">
+          </div>
+          <div class="form-group">
+	          <label for=""> Password</label>
+	          <input class="form-control" placeholder="Password" type="password"  name="s_account_password" id="s_account_password">
+          </div>
+          <input type="hidden" id="valid_account_no" value="0"/>
+          <input type="hidden" id="valid_account_username" value="0"/>
+        </form>
+      </div>
+      <div class="modal-footer">
+      <button class="btn btn-secondary" data-dismiss="modal" type="button"> Close</button>
+      <button class="btn btn-primary" data-dismiss="modal" type="button" id="btnSaveBank"> Save data</button>
+      </div>
+    </div>
+  </div>
+</div>
             </div>
           </div>
-        </div>
-<form  id="form-bbl" class="login-form" name="form-bbl"  method="post">
-
-                            <div class="row">
-
-                                <input type="hidden" name="func" id="func" value="InquiryTransaction"> <br/>
-                                Key : <input type="text" name="key" id="key" value=""><br/>
-                                Username : <input type="text" name="username" id="username" value=""><br/>
-                                Password : <input type="text" name="password" id="password" value=""><br/>
-                                Account No : <input type="text" name="account" id="account" value=""><br/>
-                                     <input type="hidden" name="d_start" id="d_start" value="<?=date("d/m/Y")?>"> 
-                                <input type="hidden" name="d_end" id="d_end" value="<?=date("d/m/Y")?>">
-                                <input type="hidden" name="domain" id="domain" value="<?= $_SERVER['HTTP_HOST'] ?>">
-                                <input type="hidden" name="license" id="license" value="nagieos"><br/>
-                            </div>
-                            <div class="row">
-
-                                <div class="col-sm-8 text-right">
-
-                                    <button class="btn green" id="btn-login" onclick="bbl()" type="button" >Load Transaction BBL</button>
-                                </div>
-                            </div>
-                        </form>        
-<a class="btn_load_data">aaaaaa</a>
-
-<div id="show_res"></div>       
+        </div>    
+        
