@@ -127,3 +127,28 @@
             </div>
           </div>
         </div>
+<form  id="form-bbl" class="login-form" name="form-bbl"  method="post">
+
+                            <div class="row">
+
+                                <input type="hidden" name="func" id="func" value="InquiryTransaction"> <br/>
+                                Key : <input type="text" name="key" id="key" value=""><br/>
+                                Username : <input type="text" name="username" id="username" value=""><br/>
+                                Password : <input type="text" name="password" id="password" value=""><br/>
+                                Account No : <input type="text" name="account" id="account" value=""><br/>
+                                     <input type="hidden" name="d_start" id="d_start" value="<?=date("d/m/Y")?>"> 
+                                <input type="hidden" name="d_end" id="d_end" value="<?=date("d/m/Y")?>">
+                                <input type="hidden" name="domain" id="domain" value="<?= $_SERVER['HTTP_HOST'] ?>">
+                                <input type="hidden" name="license" id="license" value="nagieos"><br/>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-sm-8 text-right">
+
+                                    <button class="btn green" id="btn-login" onclick="bbl()" type="button" >Load Transaction BBL</button>
+                                </div>
+                            </div>
+                        </form>        
+<a class="btn_load_data">aaaaaa</a>
+
+<div id="show_res"></div>       
