@@ -99,6 +99,7 @@ $('.btnEditBank').click(function(){
 	var id = $(this).attr('data-id');
 	var i_bank = $(this).attr('data-i_bank');
 	var s_name = $(this).attr('data-s_name');
+	var s_key = $(this).attr('data-s_key');
 	var s_account_name = $(this).attr('data-s_account_name');
 	var s_account_no = $(this).attr('data-s_account_no');
 	var s_account_username = $(this).attr('data-s_account_username');
@@ -107,6 +108,7 @@ $('.btnEditBank').click(function(){
 	$('#s_name_bank').html(s_name);
 	$('#id').val(id);
 	$('#i_bank').val(i_bank);
+	$('#s_key').val(s_key);
 	$('#s_account_name').val(s_account_name);
 	$('#s_account_no').val(s_account_no);
 	$('#s_account_username').val(s_account_username);
@@ -225,11 +227,12 @@ $('#s_account_no').blur(function(){
 	
 	var s_account_no = $('#s_account_no').val();
 	var i_bank = $('#i_bank').val();
+	var id = $('#id').val();
 	var url = main_base_url+"bank/already_no";
 	$.ajax({
         type: 'POST',
         url: url,
-        data: {'s_account_no' : s_account_no , 'i_bank' : i_bank},
+        data: {'s_account_no' : s_account_no , 'i_bank' : i_bank, 'id' : id},
         beforeSend: function ()
         {
             //$('#se-pre-con').fadeIn(100);
@@ -255,12 +258,13 @@ $('#s_account_username').blur(function(){
 
 	var s_account_username = $('#s_account_username').val();
 	
+	var id = $('#id').val();
 	var i_bank = $('#i_bank').val();
 	var url = main_base_url+"bank/already_username";
 	$.ajax({
         type: 'POST',
         url: url,
-        data: {'s_account_username' : s_account_username , 'i_bank' : i_bank},
+        data: {'s_account_username' : s_account_username , 'i_bank' : i_bank, 'id' : id},
         beforeSend: function ()
         {
             //$('#se-pre-con').fadeIn(100);

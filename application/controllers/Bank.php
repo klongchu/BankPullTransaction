@@ -65,6 +65,13 @@ class Bank extends CI_Controller {
     $s_order_by = array('id'=>'desc'); 
   	$data['data'] = $this->Main_model->row_data("tbl_bank_list",$s_seclect,$s_conditions,$s_order_by);
    	$data['result'] = $data['data']->id;
+   	
+   	if($this->input->post('id') == $data['data']->id){
+			$data['result'] = 0;
+		}else{
+			$data['result'] = $data['data']->id;
+		}
+   	
     $this->load->view('bank/result',$data);
   }
   /////////////////// check  already_no
@@ -75,7 +82,11 @@ class Bank extends CI_Controller {
     $s_conditions['where'] = array('i_bank'=>$i_bank,"s_account_no"=>$s_account_no); 
     $s_order_by = array('id'=>'desc'); 
   	$data['data'] = $this->Main_model->row_data("tbl_bank_list",$s_seclect,$s_conditions,$s_order_by);
-   	$data['result'] = $data['data']->id;
+   	if($this->input->post('id') == $data['data']->id){
+			$data['result'] = 0;
+		}else{
+			$data['result'] = $data['data']->id;
+		}
     $this->load->view('bank/result',$data);
   }
   /////////////////// Postdata

@@ -1,3 +1,13 @@
+<?php
+function random_string($length = 5) {
+	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$randomString = '';
+	for ($i = 0; $i < $length; $i++) {
+		$randomString .= $characters[rand(0, strlen($characters) - 1)];
+	}
+	return $randomString;
+}
+?>
 <div class="content-w">
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?=base_url();?>">Home</a></li>
@@ -45,7 +55,7 @@
                             <div class="value"><?=number_format($data->i_balance);?></div>
                             <br />
                             <div class="btn btn-sm btn-primary btn-rounded btnDetailBank" data-url="<?=base_url('bank/detail/'.$data->id);?>"><span>Views</span></div>
-                            <button type="button" class="btn btn-sm btn-success btn-rounded btnEditBank"    data-i_bank="<?=$i_bank;?>" data-s_name="<?=$title;?>" data-id="<?=$data->id;?>"  data-s_account_name="<?=$data->s_account_name;?>"  data-s_account_no="<?=$data->s_account_no;?>"  data-s_account_username="<?=$data->s_account_username;?>"  data-s_account_password="<?=$data->s_account_password;?>" >Edit</button>
+                            <button type="button" class="btn btn-sm btn-success btn-rounded btnEditBank"    data-i_bank="<?=$i_bank;?>" data-s_name="<?=$title;?>" data-id="<?=$data->id;?>" data-s_key="<?=$data->s_key;?>"  data-s_account_name="<?=$data->s_account_name;?>"  data-s_account_no="<?=$data->s_account_no;?>"  data-s_account_username="<?=$data->s_account_username;?>"  data-s_account_password="<?=$data->s_account_password;?>" >Edit</button>
                           </div>
                         </div>
                       	<?php } ?>
@@ -69,6 +79,13 @@
         	<input type="hidden" name="i_bank" id="i_bank" value="<?=$i_bank;?>"/>
         	<input type="hidden" name="id" id="id" value=""/>
  
+          <div class="form-group">
+          	<?php
+          	$random_key = random_string(12);
+          	?>
+	          <label for=""> Key : System Random</label>
+	          <input class="form-control" placeholder="Key" type="text" name="s_key" id="s_key" value="<?=$random_key;?>" readonly="readonly">
+          </div>
           <div class="form-group">
 	          <label for=""> Account Name</label>
 	          <input class="form-control" placeholder="Account Name" type="text" name="s_account_name" id="s_account_name">
