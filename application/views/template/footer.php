@@ -10,7 +10,7 @@
 <script> var main_base_url = "<?=base_url();?>";</script>
     <!-- /.container -->
 <?php
-$cache_version = '1.0.1';
+$cache_version = '1.0.2';
 ?>
 <!-- jQuery -->
 <script src="<?php echo base_url(); ?>bower_components/jquery/dist/jquery.min.js"></script>

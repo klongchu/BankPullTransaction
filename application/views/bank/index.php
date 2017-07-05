@@ -51,8 +51,8 @@ function random_string($length = 5) {
                       	?>
                         <div class="col-sm-4">
                           <div class="element-box el-tablo">
-                            <div class="label"><?=$data->s_account_name;?> [ <?=$data->s_account_no;?> ]</div>
-                            <div class="value"><?=number_format($data->i_balance);?></div>
+                            <div class="label">อัพเดตล่าสุด <?=$data->d_lastpull;?></div>
+                            <div class="value"><?=$data->s_account_name;?> <br /> <?=$data->s_account_no;?>  </div>
                             <br />
                             <div class="btn btn-sm btn-primary btn-rounded btnDetailBank" data-url="<?=base_url('bank/detail/'.$data->id);?>"><span>Views</span></div>
                             <button type="button" class="btn btn-sm btn-success btn-rounded btnEditBank"    data-i_bank="<?=$i_bank;?>" data-s_name="<?=$title;?>" data-id="<?=$data->id;?>" data-s_key="<?=$data->s_key;?>"  data-s_account_name="<?=$data->s_account_name;?>"  data-s_account_no="<?=$data->s_account_no;?>"  data-s_account_username="<?=$data->s_account_username;?>"  data-s_account_password="<?=$data->s_account_password;?>" >Edit</button>

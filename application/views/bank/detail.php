@@ -74,12 +74,12 @@
                           <thead>
                             <tr>
                               <th class="text-center">#</th>
-                              <th>Date</th>
-                              <th>Info</th>
-                              <th>Out</th>
-                              <th>In</th>
-                              <th>Total</th>
-                              <th>Channel</th>
+                              <th>วันที่</th>
+                              <th>รายการ</th>
+                              <th>ถอน</th>
+                              <th>ฝาก</th>
+                              <th>คงเหลือ</th>
+                              <th>ช่องทาง</th>
                             </tr>
                           </thead>
                           <tbody>
