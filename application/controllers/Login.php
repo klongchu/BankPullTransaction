@@ -28,7 +28,11 @@ class Login extends CI_Controller {
 			if($this->Login_model->record_count($this->input->post('s_username'), $this->input->post('s_password')) == 1)
 			{
 				$result = $this->Login_model->fetch_user_login($this->input->post('s_username'), $this->input->post('s_password'));
-				$this->session->set_userdata(array('member_id'    => $result->id,'s_username'    => $result->s_username,'s_display_name'=> $result->s_display_name));
+				$session_arr['member_id'] = $result->id;
+				$session_arr['s_username'] = $result->s_username;
+				$session_arr['s_display_name'] = $result->s_display_name;
+				$session_arr['i_level'] = $result->i_level;
+				$this->session->set_userdata($session_arr);
 				
 				
 				//////////////// Update Total
@@ -47,7 +51,7 @@ class Login extends CI_Controller {
 
 	public function logout()
 	{
-		$this->session->unset_userdata(array('member_id','s_username','s_display_name'));
+		$this->session->unset_userdata(array('member_id','s_username','s_display_name','i_level'));
 		redirect('login', 'refresh');
 	}
   

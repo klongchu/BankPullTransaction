@@ -3,6 +3,14 @@ $profile_img = "assets/img/avatar1.jpg";
 $sys_logo = "assets/img/logo.png";
 $each_bank = $this->Main_model->fetch_list_bank();
 ?>
+<?php
+$member_id = $this->session->userdata('member_id');
+$s_seclect = array('*'); 
+$s_conditions['where'] = array('id'=>$member_id); 
+$s_order_by = array('id'=>'desc'); 
+$member_profile = $this->Main_model->row_data("tbl_member",$s_seclect,$s_conditions,$s_order_by);
+$admin_title = ($member_profile->i_level == 1 ? "Admin":"Adminuser");
+?>
 <div class="menu-mobile menu-activated-on-click color-scheme-dark">
           <div class="mm-logo-buttons-w">
             <a class="mm-logo" href="<?=base_url('');?>"><?=img($sys_logo);?><span><?=$this->session->userdata('wc_title');?></span></a>
@@ -20,7 +28,7 @@ $each_bank = $this->Main_model->fetch_list_bank();
               <div class="avatar-w"><?=img($profile_img);?></div>
               <div class="logged-user-info-w">
                 <div class="logged-user-name"><?=$this->session->userdata('s_display_name');?></div>
-                <div class="logged-user-role">Administrator</div>
+                <div class="logged-user-role"><?php  echo $admin_title ; ?></div>
               </div>
             </div>
             <ul class="main-menu">
@@ -47,6 +55,29 @@ $each_bank = $this->Main_model->fetch_list_bank();
               
  
  
+              <?php
+              if($this->session->userdata('i_level') == 1){
+								?>
+							<li>
+                <a href="<?=base_url('member/member_list');?>">
+                  <div class="icon-w">
+                    <div class="os-icon os-icon-user-male-circle"></div>
+                  </div>
+                  <span>Member List</span>
+                </a>
+              </li>	
+								<?php
+							}
+              ?>
+ 
+              <li>
+                <a href="#" class="btnEditMember"  data-id="<?=$member_profile->id;?>"  data-i_level="<?=$member_profile->i_level;?>"  data-s_display_name="<?=$member_profile->s_display_name;?>"  data-s_nickname="<?=$member_profile->s_nickname;?>"  data-s_username="<?=$member_profile->s_username;?>"  data-s_password="<?=$member_profile->s_password;?>">
+                  <div class="icon-w">
+                    <div class="os-icon os-icon-user-male-circle2"></div>
+                  </div>
+                  <span>Profile</span>
+                </a>
+              </li>
               <li>
                 <a href="<?=base_url('login/logout');?>">
                   <div class="icon-w">
@@ -60,6 +91,7 @@ $each_bank = $this->Main_model->fetch_list_bank();
           </div>
         </div>
         <div class="desktop-menu menu-side-w menu-activated-on-click">
+
           <div class="logo-w"><a class="logo" href="<?=base_url('');?>"><?=img($sys_logo);?><span><?=$this->session->userdata('wc_title');?></span></a></div>
           <div class="menu-and-user">
             <div class="logged-user-w">
@@ -67,20 +99,27 @@ $each_bank = $this->Main_model->fetch_list_bank();
                 <div class="avatar-w"><?=img($profile_img);?></div>
                 <div class="logged-user-info-w">
                   <div class="logged-user-name"><?=$this->session->userdata('s_display_name');?></div>
-                  <div class="logged-user-role">Administrator</div>
+                  <div class="logged-user-role"><?php  echo $admin_title ; ?></div>
                 </div>
                 <div class="logged-user-menu">
                   <div class="logged-user-avatar-info">
                     <div class="avatar-w"><?=img($profile_img);?></div>
                     <div class="logged-user-info-w">
                       <div class="logged-user-name"><?=$this->session->userdata('s_display_name');?></div>
-                      <div class="logged-user-role">Administrator</div>
+                      <div class="logged-user-role">
+                      <?php  echo $admin_title ; ?>
+                      </div>
                     </div>
                   </div>
                   <div class="bg-icon"><i class="os-icon os-icon-wallet-loaded"></i></div>
                   <ul>
                     
-                    <li><a href="<?=base_url('member/profile');?>"><i class="os-icon os-icon-user-male-circle2"></i><span>Profile Details</span></a></li>
+                    <li>
+
+                    <a href="#" class="btnEditMember"  data-id="<?=$member_profile->id;?>"  data-i_level="<?=$member_profile->i_level;?>"  data-s_display_name="<?=$member_profile->s_display_name;?>"  data-s_nickname="<?=$member_profile->s_nickname;?>"  data-s_username="<?=$member_profile->s_username;?>"  data-s_password="<?=$member_profile->s_password;?>">
+                    <i class="os-icon os-icon-user-male-circle2"></i><span>Profile Details</span>
+                    </a>
+                    </li>
                     
                     <li><a href="<?=base_url('login/logout');?>"><i class="os-icon os-icon-signs-11"></i><span>Logout</span></a></li>
                   </ul>
@@ -108,6 +147,21 @@ $each_bank = $this->Main_model->fetch_list_bank();
                 </a>
               </li>
               <?php } ?>
+              <?php
+              if($this->session->userdata('i_level') == 1){
+								?>
+							<li>
+                <a href="<?=base_url('member/member_list');?>">
+                  <div class="icon-w">
+                    <div class="os-icon os-icon-user-male-circle"></div>
+                  </div>
+                  <span>Member List</span>
+                </a>
+              </li>	
+								<?php
+							}
+              ?>
+              
               <li>
                 <a href="<?=base_url('login/logout');?>">
                   <div class="icon-w">

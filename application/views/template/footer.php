@@ -4,16 +4,72 @@
       <div class="display-type"></div>
     </div>
 <div class="footer-w" align="center">
-<div class="deep-footer"> © 2017 xxxx.com All rights reserved.</div>
+<div class="deep-footer" style="font-weight: bold;
+    color: white;"> © 2017 www.nagieos.com All rights reserved.</div>
 </div>
 
-<script> var main_base_url = "<?=base_url();?>";</script>
+
     <!-- /.container -->
 <?php
-$cache_version = '1.0.2';
+$level_member = $this->session->userdata('i_level');
+if($level_member != 1){
+	$level_member_update = "display:none;";
+}
 ?>
-<!-- jQuery -->
-<script src="<?php echo base_url(); ?>bower_components/jquery/dist/jquery.min.js"></script>
+              <!-- Modal -->        
+<div aria-labelledby="mySmallModalMember" class="modal fade bd-example-modal-sm" role="dialog" tabindex="-1" style="display: none;" aria-hidden="true" id="mySmallModalMember">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal_title_member">Add New Member</h5>
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true"> ×</span></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="DataFormMember">
+ 
+ 
+        	<input type="hidden" name="id" id="id" value=""/>
+ 
+ 
+          <div class="form-group">
+	          <label for=""> Display Name</label>
+	          <input class="form-control" placeholder="Display Name" type="text" name="s_display_name" id="s_display_name">
+          </div>
+          <div class="form-group">
+	          <label for=""> Nick Name </label>
+	          <input class="form-control" placeholder="Nick Name" type="text" name="s_nickname" id="s_nickname">
+          </div>
+          <div class="form-group">
+	          <label for=""> Username <span style="color: #ff0000;" id="error_member_username"></span></label>
+	          <input class="form-control" placeholder="Username" type="text"  name="s_username" id="s_username"   value="">
+          </div>
+          <div class="form-group">
+	          <label for=""> Password</label>
+	          <input class="form-control" placeholder="Password" type="password"  name="s_password" id="s_password"   value="">
+          </div>
+          <div class="form-group" style="<?=$level_member_update;?>">
+	          <label for=""> Level</label>
+	          <select class="form-control" name="i_level" id="i_level">
+	          	<option value="1">Admin</option>
+	          	<option value="2">Adminuser</option>
+	          </select>
+          </div>
+ 
+          <input type="hidden" id="valid_member_username" value="0"/>
+          <input type="hidden" id="s_username_old" value=""/>
+        </form>
+      </div>
+      <div class="modal-footer">
+      <button class="btn btn-secondary" data-dismiss="modal" type="button" style="cursor: pointer;"> Close</button>
+      <button class="btn btn-primary" data-dismiss="modal" type="button" id="btnSaveMember" style="cursor: pointer;"> Save data</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?php
+$cache_version = '1.1.0';
+?>
+
 <!-- Plugin -->
 <script src="<?php echo base_url(); ?>bower_components/moment/moment.js"></script>
 <script src="<?php echo base_url(); ?>bower_components/chart.js/dist/Chart.min.js"></script>
@@ -42,14 +98,21 @@ $cache_version = '1.0.2';
 <script src="<?php echo base_url(); ?>assets/js/main.js?version=<?=$cache_version;?>"></script>
 <!-- Main -->
 <script src="<?php echo base_url(); ?>assets/js/bank.js?version=<?=$cache_version;?>"></script>
-<script>
-		$("#key").val("nxZvx0pbc3tb");
-$("#username").val("2i1NMrqwOwo+dIvqF9hdsssnAwdBr7f2RLEPrO93R1Q=");
-$("#password").val("P7EAl0g+LEk9gXZFjQQfb7VkYlCL0Xzs4Uaa3nqrT60=");
-$("#account").val("068-7-18915-9");	
- 
+<script src="<?php echo base_url(); ?>assets/js/member.js?version=<?=$cache_version;?>"></script>
+<script src="<?php echo base_url(); ?>assets/js/notify.js?version=<?=$cache_version;?>"></script>
+<?php
+if($bank->s_js != ''){
+	?>
+<script src="<?php echo base_url(); ?>assets/js/bank-<?=$bank->s_js;?>?version=<?=$cache_version;?>"></script>  
+	<?php
+}
+if($bank->id == 3){
+	?>
+	<script>GetCaptcha();</script>
+	<?php
+}
+?>
 
-</script>
 </body>
 
 </html>

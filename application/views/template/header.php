@@ -4,7 +4,7 @@
   <?php
   $query = $this->db->get(TB_webconfig);
   $data = $query->row();
-  $cache_version = "1.0.1";
+  $cache_version = "1.0.2";
   $newdata = array();
   $newdata[wc_webconfig] = 'webconfig';
   $newdata[wc_site_name] = $data->s_site_name;
@@ -51,12 +51,76 @@
 <!-- Custom CSS -->
 <?php echo link_tag('assets/css/main.css?version='.$cache_version); ?>
 
+<style>
+	@font-face{
+		font-family:thaisanslite_r1;src:url("<?php echo base_url(); ?>assets/fonts/thaisanslite_r1.eot?v=1.0")
+		}
+@font-face{
+	font-family:thaisanslite_r1;src:url("<?php echo base_url(); ?>assets/fonts/thaisanslite_r1.ttf?v=1.0")
+	}
+</style>
+<style>
+	body{
+		font-family:thaisanslite_r1; 
+		}
+	
+	.class_bg_color_red{
+		background-color: #ff6262;
+	}
+	.class_bg_color_green{
+		background-color: #69ff62;
+	}
+	*{
+    font-size:16px;
+    font-family:thaisanslite_r1;
+}
+ 
+	
+</style> 
+<!-- jQuery -->
+<script src="<?php echo base_url(); ?>bower_components/jquery/dist/jquery.min.js"></script>
+<script> var main_base_url = "<?=base_url();?>";</script>
 
+<?php
+
+function setCSSPageLoading() {
+        $preload_img = base_url()."assets/img/loading.gif";
+        $CSS = "";
+        $CSS .= "<style> ";
+        $CSS .= " ";
+        $CSS .= "            .no-js #loader { display: none;  } ";
+        $CSS .= "            .js #loader { display: block; position: absolute; left: 100px; top: 0; } ";
+        $CSS .= "            .se-pre-con { ";
+        $CSS .= "                width:100%; ";
+        $CSS .= "                height:100%; ";
+        $CSS .= "                position:fixed; ";
+        $CSS .= "                top:0; ";
+        $CSS .= "                left:0; ";
+        $CSS .= "                z-index:999; ";
+        $CSS .= "                background: rgba(255,255,255,.5) url(" . $preload_img . ")    no-repeat; ";
+//        $CSS .= "                background-size: 250px 150px; ";
+        $CSS .= "                background-position: center center; ";
+        $CSS .= "            } ";
+        $CSS .= "        </style> ";
+
+        return $CSS;
+    }
+    echo setCSSPageLoading();
+?>
+<script>
+	$(document).ready(function () {
+    //  GetCaptcha();
+    $('#se-pre-con').delay(350).fadeOut();
+});
+</script>
 </head>
 
  
 <!-- Loading Start -->
 
+
+		
+<body>
 <!-- ./Loading Start -->
 <?php
 $check_class = $this->router->fetch_class();
@@ -69,8 +133,8 @@ $check_class = $this->router->fetch_class();
 		<?php
 	}else{
 		?>
-		
-<body>
+ <div class='se-pre-con' id="se-pre-con" > </div>
+
 <div class="all-wrapper menu-side with-side-panel">
 	<div class="layout-w">
         <?php $this->load->view('template/menu_left'); ?>	

@@ -43,7 +43,8 @@ TABLE OF CONTENTS
  */
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 html {
-  font-family: sans-serif;
+  font-family:thaisanslite_r1;
+  src:url("../fonts/thaisanslite_r1.eot?v=1.0");
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%; }
@@ -149,7 +150,7 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: sans-serif;
+  font-family:thaisanslite_r1;
   font-size: 100%;
   line-height: 1.15;
   margin: 0; }
@@ -305,7 +306,7 @@ html {
   -webkit-tap-highlight-color: transparent; }
 
 body {
-  font-family: "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:thaisanslite_r1;
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.5;
@@ -463,28 +464,28 @@ output {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
-  font-family: "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:thaisanslite_r1;
   font-weight: 500;
   line-height: 1.1;
   color: #334152; }
 
 h1, .h1 {
-  font-size: 2.5rem; }
+  font-size: 2.75rem; }
 
 h2, .h2 {
-  font-size: 2rem; }
+  font-size: 2.25rem; }
 
 h3, .h3 {
-  font-size: 1.75rem; }
+  font-size: 2rem; }
 
 h4, .h4 {
-  font-size: 1.5rem; }
+  font-size: 1.75rem; }
 
 h5, .h5 {
-  font-size: 1.25rem; }
+  font-size: 1.50rem; }
 
 h6, .h6 {
-  font-size: 1rem; }
+  font-size: 1.5rem; }
 
 .lead {
   font-size: 1.25rem;
@@ -2155,7 +2156,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
           user-select: none;
   border: 1px solid transparent;
   padding: 0.5rem 0.9rem;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   border-radius: 0.25rem;
   transition: all 0.2s ease-in-out; }
   .btn:focus, .all-wrapper .fc-button:focus, .btn:hover, .all-wrapper .fc-button:hover {
@@ -3479,7 +3480,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:thaisanslite_r1;
   font-style: normal;
   font-weight: 400;
   letter-spacing: normal;
@@ -3561,7 +3562,7 @@ button.close {
   display: block;
   max-width: 300px;
   padding: 0px;
-  font-family: "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:thaisanslite_r1;
   font-style: normal;
   font-weight: 400;
   letter-spacing: normal;
@@ -6540,7 +6541,7 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
 
 .table tfoot th,
 .table thead th {
-  font-size: 0.63rem;
+  font-size: 0.93rem;
   text-transform: uppercase;
   border-top: none; }
 
@@ -6595,7 +6596,7 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
       -webkit-transform: translateX(5px);
               transform: translateX(5px); }
   .table .cell-image-list .cell-img-more {
-    font-size: 0.63rem;
+    font-size: 0.93rem;
     display: inline-block;
     vertical-align: middle;
     margin-left: 10px;
@@ -6662,7 +6663,7 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:thaisanslite_r1;
   font-weight: 400; }
 
 .form-control.rounded {
@@ -6684,7 +6685,7 @@ select.form-control.rounded {
   color: #e65252 !important; }
 
 .form-control {
-  font-family: "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+  font-family:thaisanslite_r1; }
   .form-control.bright {
     border-color: #334652; }
   .form-control[type="checkbox"] {
@@ -6762,7 +6763,7 @@ legend {
 
 .nav.bigger {
   font-size: 1.25rem;
-  font-family: "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:thaisanslite_r1;
   font-weight: 500; }
   .nav.bigger.nav-tabs .nav-link.active:after,
   .nav.bigger.nav-tabs .nav-item.show .nav-link:after {
@@ -6776,7 +6777,7 @@ legend {
 
 .nav.upper {
   font-size: 0.9rem;
-  font-family: "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:thaisanslite_r1;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 2px; }
@@ -6899,7 +6900,7 @@ legend {
     border-color: rgba(0, 0, 0, 0.5); }
 
 .btn, .all-wrapper .fc-button {
-  font-family: "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:thaisanslite_r1;
   font-weight: 400;
   outline: none; }
   .btn.btn-secondary:focus, .all-wrapper .btn-secondary.fc-button:focus, .btn.btn-secondary.focus, .all-wrapper .btn-secondary.focus.fc-button {
@@ -6934,7 +6935,7 @@ legend {
     display: inline-block;
     text-transform: uppercase;
     font-size: 0.585rem;
-    font-family: "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+    font-family:thaisanslite_r1; }
     .breadcrumb li a {
       color: #3E4B5B; }
     .breadcrumb li span {
@@ -6992,7 +6993,7 @@ legend {
 /* DATERANGEPICKER */
 body .daterangepicker {
   box-shadow: 3px 3px 40px rgba(0, 0, 0, 0.2);
-  font-family: "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+  font-family:thaisanslite_r1; }
   body .daterangepicker td.in-range {
     background-color: #bdd5ff; }
   body .daterangepicker td.active, body .daterangepicker td.active:hover {
@@ -7479,12 +7480,12 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:las
   display: inline-block; }
   .value-pair .label {
     color: rgba(0, 0, 0, 0.4);
-    font-size: 0.63rem;
+    font-size: 0.93rem;
     text-transform: uppercase;
     display: inline-block; }
   .value-pair .value {
     display: inline-block;
-    font-size: 0.63rem;
+    font-size: 0.93rem;
     text-transform: uppercase; }
 
 .value-pair + .value-pair {
@@ -8184,7 +8185,7 @@ strong {
       border-radius: 50px; }
   .logged-user-w .logged-user-role {
     display: block;
-    font-size: 0.63rem;
+    font-size: 0.93rem;
     text-transform: uppercase;
     color: rgba(0, 0, 0, 0.4); }
 
@@ -8271,7 +8272,7 @@ strong {
       letter-spacing: -0.5px;
       white-space: nowrap;
       overflow: hidden;
-      font-family: "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family:thaisanslite_r1;
       font-weight: 500; }
     .menu-side-compact-w .sub-menu-w .sub-menu-icon {
       position: absolute;
@@ -9267,13 +9268,13 @@ strong {
   padding-right: 5px; }
   .el-tablo .label {
     display: block;
-    font-size: 0.63rem;
+    font-size: 0.93rem;
     text-transform: uppercase;
     color: rgba(0, 0, 0, 0.4); }
   .el-tablo .value {
-    font-size: 2.43rem;
+    font-size: 1.43rem;
     font-weight: 500;
-    font-family: "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family:thaisanslite_r1;
     letter-spacing: -1px;
     line-height: 1.2;
     display: inline-block;
@@ -9337,7 +9338,7 @@ strong {
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
     text-align: center;
-    font-size: 0.63rem;
+    font-size: 0.93rem;
     text-transform: uppercase;
     z-index: 1; }
     .el-chart-w .inside-donut-chart-label strong {
@@ -9401,7 +9402,7 @@ strong {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding-top: 0.5rem;
     margin-top: 0.5rem;
-    font-size: 0.63rem;
+    font-size: 0.93rem;
     text-transform: uppercase; }
   .profile-tile .profile-tile-meta {
     -webkit-box-flex: 1;
@@ -9410,7 +9411,7 @@ strong {
     padding-left: 30px; }
     .profile-tile .profile-tile-meta ul {
       list-style: none;
-      font-size: 0.63rem;
+      font-size: 0.93rem;
       text-transform: uppercase;
       color: rgba(0, 0, 0, 0.4);
       margin: 0px;
@@ -9480,7 +9481,7 @@ strong {
   .users-list-w .user-w .user-title {
     margin-bottom: 4px; }
   .users-list-w .user-w .user-role {
-    font-size: 0.63rem;
+    font-size: 0.93rem;
     text-transform: uppercase;
     color: rgba(0, 0, 0, 0.4); }
   .users-list-w .user-w .user-action {
@@ -9549,7 +9550,7 @@ strong {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 100px;
           flex: 0 0 100px;
-  font-size: 0.63rem;
+  font-size: 0.93rem;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.4);
   text-align: right;
@@ -9596,13 +9597,13 @@ strong {
           flex: 1; }
 
 .activity-boxes-w .activity-role {
-  font-size: 0.63rem;
+  font-size: 0.93rem;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.4);
   margin-bottom: 0.2rem; }
 
 .activity-boxes-w .activity-title {
-  font-size: 0.63rem;
+  font-size: 0.93rem;
   text-transform: uppercase;
   display: block; }
 
@@ -9673,7 +9674,7 @@ strong {
  #10. Invoice
 */
 .invoice-w {
-  font-family: "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:thaisanslite_r1;
   max-width: 800px;
   position: relative;
   overflow: hidden;
@@ -10632,7 +10633,7 @@ Chat Styles
           background-color: rgba(0, 0, 0, 0.9);
           color: #fff;
           font-weight: 500;
-          font-size: 0.63rem;
+          font-size: 0.93rem;
           text-transform: uppercase;
           display: inline-block;
           padding: 2px 7px;
@@ -10862,7 +10863,7 @@ Chat Styles
       top: -10px;
       right: 0px;
       color: rgba(0, 0, 0, 0.3);
-      font-size: 0.63rem; }
+      font-size: 0.93rem; }
     .ae-list-w .ae-list .aei-content .aei-sub-title {
       color: #047bf8;
       text-transform: uppercase;
@@ -11111,7 +11112,7 @@ Chat Styles
     .aec-reply .buttons-w .btn, .aec-reply .buttons-w .all-wrapper .fc-button, .all-wrapper .aec-reply .buttons-w .fc-button {
       text-transform: uppercase;
       padding: 5px 10px;
-      font-size: 0.7rem; }
+      font-size: 0.9rem; }
       .aec-reply .buttons-w .btn .os-icon, .aec-reply .buttons-w .all-wrapper .fc-button .os-icon, .all-wrapper .aec-reply .buttons-w .fc-button .os-icon {
         margin-right: 10px; }
   .aec-reply .cke_chrome {
@@ -11182,7 +11183,7 @@ Chat Styles
         padding: 2px 7px;
         border-radius: 12px;
         color: #fff;
-        font-size: 0.63rem; }
+        font-size: 0.93rem; }
   .projects-list .project-info {
     padding: 20px 40px; }
     .projects-list .project-info .os-progress-bar {
@@ -11573,7 +11574,7 @@ Pricing Plans Styles
     font-size: 1.5rem;
     color: #047bf8;
     font-weight: 500;
-    font-family: "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family:thaisanslite_r1;
     padding-bottom: 40px;
     transition: all 0.2s ease;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
@@ -11862,7 +11863,7 @@ Pricing Plans Styles
       white-space: nowrap;
       text-transform: uppercase;
       color: rgba(0, 0, 0, 0.6);
-      font-size: 0.63rem;
+      font-size: 0.93rem;
       letter-spacing: 1px; }
       .pipeline-item .pi-foot .extra-info i {
         margin-right: 5px;

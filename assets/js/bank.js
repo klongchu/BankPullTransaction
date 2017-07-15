@@ -1,3 +1,130 @@
+$('#UpdateBankDetail_old').click(function(){
+	var url = main_base_url+"bank/updatebankdetail";
+	var Jsdata = $("#form-bank").serialize();
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: Jsdata,
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+        	console.log(1111);
+       	console.log(data);
+        	/*var res = JSON.parse(data);
+ 
+					console.log(res.total);
+					$('#div_total').html(res.total);
+					$('#d_now').html(res.d_now);
+//					console.log(res.transection);
+					var json_trans = JSON.parse(res.transection);
+					$.each(json_trans, function (i, object) {
+						console.log(object.id);
+
+          });*/
+        },
+        error: function (data) {
+					console.log("Error");
+        }
+
+    });
+});
+//Used With JS
+$('#UpdateBankDetail1111').click(function(){
+	var url = main_base_url+"bank/updatebankdetail";
+	var Jsdata = $("#form-bank").serialize();
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: Jsdata,
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+       	console.log(data);
+       	console.log('*************************')
+       	var json_res = JSON.parse(data);
+       	var d_now = json_res.d_now;
+       	var api_url = json_res.s_url;
+       	var api_data = data;
+//       	console.log(api_url);
+       	
+       	$.ajax({
+        type: 'POST',
+        url: api_url,
+        data: {
+        	'func':json_res.func,
+        	'key':json_res.key,
+        	'username':json_res.username,
+        	'password':json_res.password,
+        	'account':json_res.account,
+        	'domain':json_res.domain,
+        	'license':json_res.license,
+        	'd_start':json_res.d_start,
+        	'd_end':json_res.d_end,
+        	},
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            if (data == "") {
+                console.log("Process is Null.");
+                //$('#se-pre-con').delay(100).fadeOut();
+                return;
+            }
+//            debugger;
+            $('#tbody_trans').html("");
+            console.log(data)
+            console.log('*************************')
+
+
+                var res = tryCatch(data);
+                console.log(res.code)
+                console.log('*************************')
+                console.log(res.description)
+                console.log('*************************')
+                console.log(res.total)
+
+                $('#div_total').html(res.total[3].value);
+								$('#d_now').html(d_now);
+                console.log('*************************')
+                console.log(res.transaction)
+                var append_msg = "";
+                var i_rows = 1;
+                $.each(res.transaction, function (j, item) {
+
+                        console.log(item.datetime + " | " + item.info + " | " + item.out + " | " + item.in + " | " + item.total + " | " + item.channel);
+console.log('*************************')
+
+                    append_msg +="<tr><td>"+i_rows+"</td><td>"+item.datetime+"</td><td>"+item.info+"</td><td>"+item.out+"</td><td>"+item.in+"</td><td>"+item.total+"</td><td>"+item.channel+"</td></tr>";
+                    i_rows++;
+                    });
+
+				
+				$('#tbody_trans').append(append_msg);
+
+
+        },
+        error: function (data) {
+
+        }
+
+    });
+       	
+       	
+        },
+        error: function (data) {
+					console.log("Error");
+        }
+
+    });
+});
+
+
+
 $('.btn_load_data').click(function(){
 		var url = "https://www.nagieos.com/BBL.php";
 		var Jsdata = $("#form-bbl").serialize();
@@ -88,18 +215,60 @@ $('.btn_load_data').click(function(){
     });
 	});
 
+////////////// Delete Bank list
+
+$('.btnDeleteBank').click(function(){
+ 
+	var id = $(this).attr('data-id');
+	var url = main_base_url+"bank/delete";
+	if(confirm("Are you sure to delete !!") == true){
+		$.ajax({
+        type: 'POST',
+        url: url,
+        data: {'id':id},
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+        	location.reload();
+        },
+        error: function (data) {
+        	
+        }
+    });
+	}else{
+		return false;
+	}
+	
+	
+
+});
+
+
+
 $('#OpenFormAddBank').click(function(){
 	var i_bank = $(this).attr('data-i_bank');
 	var s_name = $(this).attr('data-s_name');
+	$('#modal_title_bank').html('Add New Bank');
+	$('#id').val('');
+	$('#s_account_name').val('');
+	$('#s_account_no').val('');
+	$('#s_account_username').val('');
+	$('#s_account_password').val('');
+	$('#valid_account_no').val(0);
+	$('#valid_account_username').val(0);
 //	console.log(main_base_url)
+	$('#div_s_account_username').show();
+	$('#div_s_account_password').show();
 	$('#mySmallModalLabel').modal('show');
 });
 /////////////////////btnEditBank
 $('.btnEditBank').click(function(){
+	$('#modal_title_bank').html('Edit New Bank');
 	var id = $(this).attr('data-id');
 	var i_bank = $(this).attr('data-i_bank');
 	var s_name = $(this).attr('data-s_name');
-	var s_key = $(this).attr('data-s_key');
 	var s_account_name = $(this).attr('data-s_account_name');
 	var s_account_no = $(this).attr('data-s_account_no');
 	var s_account_username = $(this).attr('data-s_account_username');
@@ -113,6 +282,12 @@ $('.btnEditBank').click(function(){
 	$('#s_account_no').val(s_account_no);
 	$('#s_account_username').val(s_account_username);
 	$('#s_account_password').val(s_account_password);
+	$('#valid_account_no').val(1);
+	$('#valid_account_username').val(1);
+	$('#error_account_username').html('');
+	$('#error_account_no').html('');
+	$('#div_s_account_username').hide();
+	$('#div_s_account_password').hide();
 	$('#mySmallModalLabel').modal('show');
 });
 ////////////////// btnDetailBank
@@ -156,6 +331,7 @@ if(valid_account_username < 1){
             //$('#se-pre-con').fadeIn(100);
         },
         success: function (data) {
+        	console.log(data);
         	location.reload();
         },
         error: function (data) {
@@ -285,6 +461,16 @@ $('#s_account_username').blur(function(){
     });
 	
 });
+
+function func_add_detailbank(i_bank,d_now,i_balance){
+	var url = main_base_url+"bank/add_detailbank";
+	console.log(i_bank)
+	console.log(d_now)
+	console.log(i_balance)
+	$.post(url,{'i_bank':i_bank,'d_now':d_now,'i_balance':i_balance},function(data){
+		console.log(data)
+	});
+}
 function func_add_bank(i_bank){
 	/*console.log(i_bank)*/
 }

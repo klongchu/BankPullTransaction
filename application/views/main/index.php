@@ -3,7 +3,7 @@
             <li class="breadcrumb-item"><a href="<?=base_url();?>">Home</a></li>
             <li class="breadcrumb-item"><span><?=$title;?></span></li>
           </ul>
-          <div class="content-panel-toggler"><i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span></div>
+          <!--<div class="content-panel-toggler"><i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span></div>-->
           <div class="content-i">
             <div class="content-box">
             	<?php
@@ -31,27 +31,29 @@
  
                     <div class="element-content">
                       <div class="row">
+                      <?php
+                      $i_bank = $data->id;
+  	$s_seclect = array('id'); 
+    $s_conditions['where'] = array("i_bank"=>$i_bank); 
+    $s_order_by = array('id'=>'desc'); 
+  	$bank_list_q = $this->Main_model->fetch_data("tbl_bank_list",$s_seclect,$s_conditions,$s_order_by);
+ 
+ if($bank_list_q){
+ 	foreach($bank_list_q as $bank_list){
+
+                      ?>
                         <div class="col-sm-4">
                           <div class="element-box el-tablo">
-                            <div class="label">Balance</div>
-                            <div class="value">400</div>
-                            <!--<div class="trending trending-up"><span>12%</span><i class="os-icon os-icon-arrow-up2"></i></div>-->
+                            <div class="label">อัพเดตล่าสุด <?=$bank_list->d_lastpull;?></div>
+                            <div class="value"><?=$bank_list->s_account_name;?> <br /> <?=$bank_list->s_account_no;?>  </div>
+                            <br />
+                            <button type="button" class="btn btn-sm btn-primary  btnDetailBank" data-url="<?=base_url('bank/detail/'.$bank_list->id);?>" style="cursor: pointer;">Views</button>
                           </div>
                         </div>
-                        <div class="col-sm-4">
-                          <div class="element-box el-tablo">
-                            <div class="label">Deposit</div>
-                            <div class="value">457</div>
-                            <!--<div class="trending trending-down-basic"><span>12%</span><i class="os-icon os-icon-arrow-2-down"></i></div>-->
-                          </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="element-box el-tablo">
-                            <div class="label">Withdraw</div>
-                            <div class="value">57</div>
-                            <!--<div class="trending trending-down-basic"><span>9%</span><i class="os-icon os-icon-graph-down"></i></div>-->
-                          </div>
-                        </div>
+                       <?php 		
+	}
+ }
+ ?> 
                       </div>
                     </div>
                   </div>

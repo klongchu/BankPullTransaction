@@ -3,50 +3,53 @@
 	<settings><PM_URL><![CDATA[http://localhost/WORK/w_34/BankPulltTransaction/]]></PM_URL><PM_HOME_URL><![CDATA[http://localhost/WORK/w_34/BankPulltTransaction/]]></PM_HOME_URL><PM_LIBS><![CDATA[]]></PM_LIBS><PM_FTP_CONNECTION><![CDATA[]]></PM_FTP_CONNECTION><PM_FTP_DIR><![CDATA[]]></PM_FTP_DIR><PM_FTP_UPLOAD_ON_SAVE><![CDATA[INT:0]]></PM_FTP_UPLOAD_ON_SAVE></settings><removed value=";"/><added value=""/><lastopfiles>
 	</lastopfiles>
 	<todoblock>
+		<todofile name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\bower_components\bootstrap\js\dist\modal.js">
+			<todo name="todo (fat): these should probably be refactored out of modal.js" pos="5;390"/>
+		</todofile>
 		<todofile name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\core\Loader.php">
-			<todo name="todo	Figure out a way to move this to the constructor" pos="5;148"/>
+			<todo name="todo Figure out a way to move this to the constructor" pos="5;148"/>
 		</todofile>
 		<todofile name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\core\Output.php">
-			<todo name="todo	We need to figure out how to permit headers to be cached." pos="5;200"/>
+			<todo name="todo We need to figure out how to permit headers to be cached." pos="5;200"/>
 		</todofile>
 		<todofile name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\database\DB_forge.php">
-			<todo name="todo	Remove deprecated $_after option in 3.1+" pos="5;556"/>
+			<todo name="todo Remove deprecated $_after option in 3.1+" pos="5;556"/>
 		</todofile>
 		<todofile name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\database\DB_query_builder.php">
 			<todo name="@todo error" pos="4;1932"/>
 		</todofile>
 		<todofile name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\database\drivers\mysqli\mysqli_driver.php">
-			<todo name="todo	SSL support" pos="5;104"/>
+			<todo name="todo SSL support" pos="5;104"/>
 		</todofile>
 		<todofile name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\database\drivers\pdo\subdrivers\pdo_mysql_driver.php">
-			<todo name="todo	SSL support" pos="5;121"/>
+			<todo name="todo SSL support" pos="5;121"/>
 		</todofile>
 		<todofile name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\database\drivers\sqlite3\sqlite3_driver.php">
-			<todo name="todo	Implement use of SQLite3::querySingle(), if needed" pos="5;120"/>
+			<todo name="todo Implement use of SQLite3::querySingle(), if needed" pos="5;120"/>
 		</todofile>
 		<todofile name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\database\drivers\sqlite3\sqlite3_forge.php">
-			<todo name="todo	implement drop_column(), modify_column()" pos="5;134"/>
+			<todo name="todo implement drop_column(), modify_column()" pos="5;134"/>
 		</todofile>
 		<todofile name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\database\drivers\sqlite\sqlite_forge.php">
-			<todo name="todo	implement drop_column(), modify_column()" pos="5;115"/>
+			<todo name="todo implement drop_column(), modify_column()" pos="5;115"/>
 		</todofile>
 		<todofile name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\helpers\date_helper.php">
-			<todo name="todo	Remove in version 3.1+." pos="5;134"/>
+			<todo name="todo Remove in version 3.1+." pos="5;134"/>
 		</todofile>
 		<todofile name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\helpers\file_helper.php">
-			<todo name="todo	Remove in version 3.1+." pos="5;58"/>
+			<todo name="todo Remove in version 3.1+." pos="5;58"/>
 		</todofile>
 		<todofile name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\helpers\security_helper.php">
-			<todo name="todo	Remove in version 3.1+." pos="5;89"/>
+			<todo name="todo Remove in version 3.1+." pos="5;89"/>
 		</todofile>
 		<todofile name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\helpers\string_helper.php">
-			<todo name="todo	Remove in version 3.1+." pos="5;64"/>
+			<todo name="todo Remove in version 3.1+." pos="5;64"/>
 			<todo name="todo: remove in 3.1+" pos="19;231"/>
 			<todo name="todo: remove in 3.1+" pos="20;234"/>
-			<todo name="todo	Remove in version 3.1+." pos="5;293"/>
+			<todo name="todo Remove in version 3.1+." pos="5;293"/>
 		</todofile>
 		<todofile name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\helpers\url_helper.php">
-			<todo name="todo	Remove old 'dash' and 'underscore' usage in 3.1+." pos="5;472"/>
+			<todo name="todo Remove old 'dash' and 'underscore' usage in 3.1+." pos="5;472"/>
 		</todofile>
 		<todofile name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\libraries\Xmlrpc.php">
 			<todo name="@todo - this needs to be made more general purpose" pos="6;1554"/>
@@ -256,6 +259,7 @@
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\core\Benchmark.php" crc="1429819252"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\index.html" crc="1429819252"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\system\.htaccess" crc="1429819252"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\bower_components\tether\dist\js\tether.min.js" crc="1499284056"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\bower_components\slick-carousel\slick\slick.min.js" crc="1497165487"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\bower_components\select2\dist\js\select2.full.min.js" crc="1498312846"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\bower_components\select2\dist\css\select2.min.css" crc="1492054201"/>
@@ -278,11 +282,20 @@
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\bower_components\bootstrap-daterangepicker\daterangepicker.js" crc="1498312846"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\bower_components\bootstrap-daterangepicker\daterangepicker.css" crc="1492054200"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\bower_components\bootstrap\js\dist\util.js" crc="1498312847"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\bower_components\bootstrap\js\dist\tooltip.js" crc="1499283884"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\bower_components\bootstrap\js\dist\tab.js" crc="1498312847"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\bower_components\bootstrap\js\dist\popover.js" crc="1499283899"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\bower_components\bootstrap\js\dist\modal.js" crc="1499282944"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\bower_components\bootstrap\js\dist\dropdown.js" crc="1499283866"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\bower_components\bootstrap\js\dist\collapse.js" crc="1499283848"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\bower_components\bootstrap\js\dist\carousel.js" crc="1499283833"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\bower_components\bootstrap\js\dist\button.js" crc="1499283773"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\bower_components\bootstrap\js\dist\alert.js" crc="1499283805"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\assets\js\popup_chat_trigger_demo.js" crc="1496385347"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\assets\js\main_frontf5b6.js" crc="1497165487"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\assets\js\main.js" crc="1498369778"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\assets\js\dataTables.bootstrap4.min.js" crc="1495941515"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\assets\js\bank.js" crc="1499295682"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\assets\icon_fonts_assets\weather-icons\css\weather-icons.min.css" crc="1495527194"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\assets\icon_fonts_assets\typicons\typicons.css" crc="1495527194"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\assets\icon_fonts_assets\themefy\themify-icons.css" crc="1495527194"/>
@@ -298,18 +311,21 @@
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\assets\icon_fonts_assets\dashicons\dashicons.css" crc="1495527194"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\assets\icon_fonts_assets\batch-icons\style.css" crc="1495527194"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\assets\css\front\maina570.css" crc="1497660093"/>
-		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\assets\css\main.css" crc="1497660093"/>
-		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\views\template\menu_left.php" crc="1498777193"/>
-		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\views\template\header.php" crc="1498774881"/>
-		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\views\template\footer.php" crc="1498766677"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\assets\css\main.css" crc="1499283301"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\views\template\menu_left.php" crc="1499282308"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\views\template\header.php" crc="1499293635"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\views\template\footer.php" crc="1499296209"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\views\main\index.php" crc="1498776822"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\views\main\chatbox.php" crc="1498766714"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\views\login\index.php" crc="1498768881"/>
-		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\views\bank\index.php" crc="1498777379"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\views\bank\result.php" crc="1499285905"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\views\bank\index.php" crc="1499296346"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\views\bank\detail.php" crc="1499296434"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\views\404\index.php" crc="1498766536"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\third_party\index.html" crc="1429819252"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\models\Main_model.php" crc="1498775660"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\models\Login_model.php" crc="1498768444"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\models\Bank_model.php" crc="1499296602"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\logs\index.html" crc="1429819252"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\libraries\index.html" crc="1429819252"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\libraries\Curl.php" crc="1450737814"/>
@@ -327,7 +343,7 @@
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\controllers\Main.php" crc="1498775238"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\controllers\Login.php" crc="1498768853"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\controllers\LanguageSwitcher.php" crc="1472664904"/>
-		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\controllers\Bank.php" crc="1498777338"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\controllers\Bank.php" crc="1499295757"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\config\user_agents.php" crc="1429819252"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\config\smileys.php" crc="1429819252"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\config\routes.php" crc="1498763720"/>
@@ -342,7 +358,7 @@
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\config\foreign_chars.php" crc="1429819252"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\config\email.php" crc="1498763610"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\config\doctypes.php" crc="1429819252"/>
-		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\config\database.php" crc="1498765359"/>
+		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\config\database.php" crc="1499280337"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\config\constants.php" crc="1498768436"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\config\config.php" crc="1475128758"/>
 		<file name="D:\xampp\htdocs\WORK\w_34\BankPulltTransaction\application\config\autoload.php" crc="1498774777"/>

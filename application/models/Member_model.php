@@ -1,6 +1,6 @@
 <?php
 
-class Bank_model extends CI_Model {
+class Member_model extends CI_Model {
 
  
   public function __construct() {
@@ -22,28 +22,20 @@ class Bank_model extends CI_Model {
   ///////////////////
 public function postdata($table) {
     $id = $this->input->post('id');
-    $this->i_bank = $this->input->post('i_bank');
-    $this->s_key = $this->input->post('s_key');
-    $this->s_account_name = $this->input->post('s_account_name');
-    $this->s_account_no = $this->input->post('s_account_no');
-    //$this->s_account_username = $this->input->post('s_account_username');
-    //$this->s_account_password = $this->input->post('s_account_password');
-    $this->i_posted = $this->session->userdata('member_id');
+ 
+    $this->i_level = $this->input->post('i_level');
+    $this->s_display_name = $this->input->post('s_display_name');
+    $this->s_nickname = $this->input->post('s_nickname');
+    $this->s_username = $this->input->post('s_username');
+    $this->s_password = $this->input->post('s_password');
     
+    $this->i_posted = $this->session->userdata('member_id');
     $this->d_update = date('Y-m-d H:i:s');
     
 
     
-    $table = "tbl_bank_list";
+    $table = "tbl_member";
     if($id == NULL) {
-      $string = $this->input->post('s_account_username');
-$encryptedUser = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $string, MCRYPT_MODE_CBC, md5(md5($key))));
-
-$string = $this->input->post('s_account_password');
-$encryptedPass = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $string, MCRYPT_MODE_CBC, md5(md5($key))));
-
-$this->s_encrypteduser = $encryptedUser;
-$this->s_encryptedpass = $encryptedPass;
       $this->d_create = date('Y-m-d H:i:s');
       $this->db->insert($table, $this);
       $id = $this->db->insert_id();
@@ -59,21 +51,9 @@ $this->s_encryptedpass = $encryptedPass;
 public function delete() {
 	$id = $this->input->post('id');
 		$this->db->where('id', $id);
-   $this->db->delete('tbl_bank_list'); 
+   $this->db->delete('tbl_member'); 
    return 1;
 	}
-	
-public function add_detailbank() {
-	$id = $this->input->post('i_bank');
-//	$i_balance = str_repeat('',',',$this->input->post('i_balance'));
-	$i_balance = $this->input->post('i_balance');
-	
-	$this->d_lastpull = $this->input->post('d_now');
-	$this->i_balance = $i_balance;
-	$this->db->update('tbl_bank_list', $this, array('id'=> $id));
-	return "ok";
-	}	
-	
 public function updatebankdetail() {
 $id = $this->input->post('id');
 $d_start = $this->input->post('d_start');
