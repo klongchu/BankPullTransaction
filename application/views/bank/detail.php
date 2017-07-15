@@ -4,15 +4,16 @@
             <li class="breadcrumb-item"><a href="<?=base_url('bank/name/'.$bank->id);?>"><?=$bank->s_name;?></a></li>
             <li class="breadcrumb-item"><span><?=$bank_list->s_account_name;?></span></li>
           </ul>
-          <div class="content-panel-toggler"><i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span></div>
+          <!--<div class="content-panel-toggler"><i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span></div>-->
           <div class="content-i">
             <div class="content-box">
               <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-8">
                   <div class="element-wrapper">
 
                     <div class="users-list-w element-header">
-									   <a href="<?=base_url('bank/name/'.$bank->id);?>" style="text-decoration: none;">
+									   	<div class="col-sm-12">
+									   	<a href="<?=base_url('bank/name/'.$bank->id);?>" style="text-decoration: none;">
 									   <div class="user-w with-status status-green">
 									      <div class="user-avatar-w">
 									         <div class="user-avatar"><?=img('uploads/bank/'.$bank->s_icon.'','50');?></div>
@@ -26,32 +27,57 @@
 									      </div>
 									   	</div>
 									   	</a>
+											</div>
 										</div>
                     <div class="element-content">
                       <div class="row">
-                        <div class="col-sm-12">
-                          <button type="button" class="btn btn-md btn-primary btn-rounded" id="UpdateBankDetail" data-id="<?=$bank_list->id;?>" >Update Bank Detail</button>
+                        <div class="col-sm-6">
+                          <form method="post" id="form-bank">
+                          <span style="display: none;">
+                          	<input type="date" name="d_start" id="d_start" value="<?=date("Y-m-d");?>" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"/> To 
+                          	<input type="date" name="d_end" id="d_end" value="<?=date("Y-m-d");?>" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"/>
+                          	</span>
+                          	<input type="hidden" name="id" id="i_bank" value="<?=$bank_list->id;?>"/>
                           
-                        </div>
-                      </div>
-                      <br />
-                      <div class="row">
-                        <div class="col-sm-4">
-                          <div class="element-box el-tablo">
-                            <div class="label">Balance : Lasted <?=$bank_list->d_lastpull?></div>
-                            <div class="value"><?=number_format($bank_list->i_balance);?></div>
-                            <!--<div class="trending trending-up"><span>12%</span><i class="os-icon os-icon-arrow-up2"></i></div>-->
-                          </div>
+                          <?php
+                          if($bank_list->i_bank == 3){
+														?>
+														
+														<p> Captcha : <img id="captcha" src="<?php echo base_url(); ?>assets/img/preloader.gif" width="150" height="50"/>
+                                    <button class="btn btn-sm btn-primary btn-rounded" id="btn-getCaptcha" onclick="GetCaptcha()" type="button" style="cursor: pointer;">GetCaptcha</button>
+                                </p>
+														<p><input type="text" id="imageCode" name="imageCode" value="" class="form-control" autocomplete="off" placeholder="Captcha"/>
+														</p>
+														<input type="hidden" name="folder_domain" id="folder_domain" value="nagieos">
+														<button type="button" class="btn btn-md btn-primary btn-rounded" id="UpdateBankDetail" data-id="<?=$bank_list->id;?>" style="cursor: pointer;" >ดูรายการเคลื่อนไหวล่าสุด</button> 
+														
+														
+														<?php
+													}else{
+														?>
+														<button type="button" class="btn btn-md btn-primary btn-rounded" id="UpdateBankDetail" data-id="<?=$bank_list->id;?>" style="cursor: pointer;" >ดูรายการเคลื่อนไหวล่าสุด</button>  
+														<?php
+													}
+                          ?>
+                           
+                          </form>                       
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <div class="col-sm-4">
+                          <div class="element-box el-tablo">
+                            <div class="label">Balance : Lasted <span id="d_now"><?=$bank_list->d_lastpull;?></span></div>
+                            <div class="value" id="div_total">0<!--<?=$bank_list->i_balance;?>--> THB</div>
+                            <!--<div class="trending trending-up"><span>12%</span><i class="os-icon os-icon-arrow-up2"></i></div>-->
+                          </div>
+                        </div>
               </div>
               <div class="row">
                 <div class="col-sm-12">
                   <div class="element-wrapper">
-                    <h6 class="element-header">Recent Transections</h6>
+                    <h6 class="element-header">Recent transaction</h6>
                     <div class="element-box-tp">
                       <div class="controls-above-table">
                         <div class="row" style="display: none;">
@@ -71,25 +97,18 @@
                       </div>
                       <div class="table-responsive">
                         <table class="table table-bordered table-lg table-v2 table-striped">
-                          <thead>
-                            <tr>
-                              <th class="text-center">#</th>
-                              <th>วันที่</th>
-                              <th>รายการ</th>
-                              <th>ถอน</th>
-                              <th>ฝาก</th>
-                              <th>คงเหลือ</th>
-                              <th>ช่องทาง</th>
-                            </tr>
+                          <thead  id="thead_trans">
+                            
                           </thead>
-                          <tbody>
+                          <tbody id="tbody_trans">
                           <?php
-                          foreach($transections as $data){
+                          $i_rows = 1;
+                          foreach($transaction as $data){
                           ?>
-                            <tr>
+                            <tr style="display: none">
                               <td class="text-center"><?=$i_rows?></td>
                               <td><?=$data->d_datetime;?></td>
-                              <td><?=$data->d_info;?></td>
+                              <td><?=$data->s_info;?></td>
                               <td class="text-right"><?=$data->i_out;?></td>
                               <td class="text-right"><?=$data->i_in;?></td>
                               <td class="text-right"><?=$data->i_total;?></td>
@@ -100,7 +119,7 @@
                           </tbody>
                         </table>
                       </div>
-                      <div class="controls-below-table">
+                      <div class="controls-below-table" style="display: none">
                         <div class="table-records-info">Showing records 1 - 10</div>
                         <div class="table-records-pages">
                           <ul>
@@ -121,30 +140,7 @@
             </div>
           </div>
         </div>
-<div style="display: none;">        
-<form  id="form-bbl" class="login-form" name="form-bbl"  method="post">
-
-                            <div class="row">
-
-                                <input type="hidden" name="func" id="func" value="InquiryTransaction"> <br/>
-                                Key : <input type="text" name="key" id="key" value=""><br/>
-                                Username : <input type="text" name="username" id="username" value=""><br/>
-                                Password : <input type="text" name="password" id="password" value=""><br/>
-                                Account No : <input type="text" name="account" id="account" value=""><br/>
-                                     <input type="hidden" name="d_start" id="d_start" value="<?=date("d/m/Y")?>"> 
-                                <input type="hidden" name="d_end" id="d_end" value="<?=date("d/m/Y")?>">
-                                <input type="hidden" name="domain" id="domain" value="<?= $_SERVER['HTTP_HOST'] ?>">
-                                <input type="hidden" name="license" id="license" value="nagieos"><br/>
-                            </div>
-                            <div class="row">
-
-                                <div class="col-sm-8 text-right">
-
-                                    <button class="btn green" id="btn-login" onclick="bbl()" type="button" >Load Transaction BBL</button>
-                                </div>
-                            </div>
-                        </form>        
-<a class="btn_load_data">aaaaaa</a>
-
-<div id="show_res"></div>   
-</div>    
+   
+<?php
+$cache_version = "1.0.1";
+?>
