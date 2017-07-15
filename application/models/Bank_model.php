@@ -36,6 +36,8 @@ public function postdata($table) {
     
     $table = "tbl_bank_list";
     if($id == NULL) {
+    	
+      $key = $this->input->post('s_key');
       $string = $this->input->post('s_account_username');
 $encryptedUser = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $string, MCRYPT_MODE_CBC, md5(md5($key))));
 

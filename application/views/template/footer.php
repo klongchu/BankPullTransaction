@@ -54,6 +54,11 @@ if($level_member != 1){
 	          	<option value="2">Adminuser</option>
 	          </select>
           </div>
+           <div class="form-group">
+	          <label for=""> Image</label>
+	          <img id="imagePreview" Style="margin-bottom:3px;" src="<?=base_url();?>uploads/profile/<?= ($_data[$key]['s_image'] != NULL ? $_data[$key]['s_image'] : "no-image.png") ?>" width="100"  />
+             <input type="file" id="uploadPic" name="uploadPic"  class="img" />
+          </div>
  
           <input type="hidden" id="valid_member_username" value="0"/>
           <input type="hidden" id="s_username_old" value=""/>

@@ -31,7 +31,7 @@ $level_member = $this->session->userdata('i_level');
 									   	</div>
 										</div>
                     
-                    <div class="element-content">dd
+                    <div class="element-content">
                       <?php
                       if($level_member == 1){
                       ?>
@@ -67,12 +67,12 @@ $level_member = $this->session->userdata('i_level');
                               <td class="text-center"><?=$i_rows?></td>
                               <td ><?=$data->s_nickname;?></td>
                               <td><?=$data->s_display_name;?></td>
-                              <td class="text-right"><?=$data->s_username;?></td>
-                              <td class="text-right"><?=$data->s_password;?></td>
-                              <td class="text-right"><?=$admin_title;?></td>
+                              <td class="text-center"><?=$data->s_username;?></td>
+                              <td class="text-center"><?=$data->s_password;?></td>
+                              <td class="text-center"><?=$admin_title;?></td>
                               <td>
                               	
-                              	<button type="button" class="btn btn-sm btn-success  btnEditMember"  data-id="<?=$data->id;?>"  data-i_level="<?=$data->i_level;?>"  data-s_display_name="<?=$data->s_display_name;?>"  data-s_nickname="<?=$data->s_nickname;?>"  data-s_username="<?=$data->s_username;?>"  data-s_password="<?=$data->s_password;?>"  style="cursor: pointer;" >Edit</button>
+                              	<button type="button" class="btn btn-sm btn-success  btnEditMember"  data-id="<?=$data->id;?>"  data-i_level="<?=$data->i_level;?>"  data-s_display_name="<?=$data->s_display_name;?>"  data-s_nickname="<?=$data->s_nickname;?>"  data-s_username="<?=$data->s_username;?>"  data-s_password="<?=$data->s_password;?>"  data-s_img="<?=($data->s_img != NULL ? $data->s_img : 'no-image.png');?>" style="cursor: pointer;" >Edit</button>
                             
                             <?php
                               	if($data->id != 1){

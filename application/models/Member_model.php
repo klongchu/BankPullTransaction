@@ -43,6 +43,24 @@ public function postdata($table) {
     else {
       $this->db->update($table, $this, array('id'=> $id));
     }
+    
+    
+ 
+		//////////// uploadPic
+    if($_FILES["uploadPic"]["name"]){
+	  	$url = "uploads/profile/";
+	  	
+	  	$type = explode('.', $_FILES["uploadPic"]["name"]);
+      $type = strtolower($type[count($type) - 1]);
+      
+      $name = $id.'.'.$type;
+      if(in_array($type, array("jpg", "jpeg", "gif", "png")))
+      if(is_uploaded_file($_FILES["uploadPic"]["tmp_name"]))
+      if(move_uploaded_file($_FILES["uploadPic"]["tmp_name"],$url.$name))
+      $data_img['s_img'] = $name."?v=".time();
+      $this->db->update('tbl_member', $data_img, array('id'=> $id));
+	}
+    
     return $id;
 	  
   }

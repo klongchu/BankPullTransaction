@@ -40,7 +40,7 @@ $('#UpdateBankDetail').click(function(){
         	'd_start':json_res.d_start,
         	'd_end':json_res.d_end,
         	'imageCode':imageCode,
-        	'folder_domain':folder_domain,
+        	'folder_domain':folder_domain
         	},
         beforeSend: function ()
         {

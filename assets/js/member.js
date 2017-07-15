@@ -45,7 +45,7 @@ $('#OpenFormAddMember').click(function(){
 });
 /////////////////////btnEditMember
 $('.btnEditMember').click(function(){
-	$('#modal_title_member').html('Edit New Member');
+	$('#modal_title_member').html('Edit Member');
 	$('#error_member_username').html('');
 	var id = $(this).attr('data-id');
 
@@ -54,7 +54,9 @@ $('.btnEditMember').click(function(){
 	var s_nickname = $(this).attr('data-s_nickname');
 	var s_username = $(this).attr('data-s_username');
 	var s_password = $(this).attr('data-s_password');
-//	console.log(i_Member)
+	var s_img_src = $(this).attr('data-s_img');
+	
+	console.log(id)
 	$('#id').val(id);
 	$('#i_level').val(i_level);
 	$('#s_display_name').val(s_display_name);
@@ -62,6 +64,7 @@ $('.btnEditMember').click(function(){
 	$('#s_username').val(s_username);
 	$('#s_username_old').val(s_username);
 	$('#s_password').val(s_password);
+	$('#imagePreview').attr('src',main_base_url+'uploads/profile/'+s_img_src);
 	$('#valid_member_username').val(1);
 	$('#mySmallModalMember').modal('show');
 });
@@ -74,7 +77,9 @@ if(id > 0){
 	console.log(id);
 }
 var url = main_base_url+"member/postdata";
-var Jsdata = $("#DataFormMember").serialize();
+var formData = $("#DataFormMember").serialize();
+
+var Jsdata  = new FormData($("#DataFormMember")[0]);
 
 var valid_member_username = $('#valid_member_username').val();
 
@@ -94,6 +99,9 @@ if(valid_member_username < 1){
         type: 'POST',
         url: url,
         data: Jsdata,
+        cache: false,
+                    contentType: false,
+                    processData: false,
         beforeSend: function ()
         {
             //$('#se-pre-con').fadeIn(100);
@@ -145,3 +153,20 @@ $('#s_username').blur(function(){
 	
 	
 });
+
+
+$("#uploadPic").change(function () {
+                readURL(this);
+            });
+            function readURL(input) {
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#imagePreview').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
