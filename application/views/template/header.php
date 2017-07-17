@@ -15,10 +15,13 @@
   $newdata[wc_webstats] = $data->s_webstats;
   $newdata[wc_fav] = $data->s_fav;
   $newdata[wc_skins] = $data->s_kins;
-
+  $newdata[wc_domain] = "www.expwebdesign.com";
+  $newdata[wc_folder_domain] = "expweb";
+  $newdata[wc_license] = "expwebdesign";
+$this->session->set_userdata($newdata);
   $uploads_dir = base_url('uploads/webconfig')."/";
   $link_img_top = base_url('uploads/webconfig')."/".$this->session->userdata('wc_logo');
-  $this->session->set_userdata($newdata);
+  
 
   $des_view = $data->s_description;
   $title_view = $data->s_title;
@@ -126,8 +129,8 @@ if($ls > 0){
         url: api_url,
         data: {
         	'func':'menu',
-        	'domain':'www.expwebdesign.com',
-        	'license':'expwebdesign'
+        	'domain':'<?=$this->session->userdata("wc_domain");?>',
+        	'license':'<?=$this->session->userdata("wc_license");?>'
         	},
         beforeSend: function ()
         {

@@ -9823,7 +9823,7 @@ strong {
     padding-bottom: 10px; }
   .auth-box-w .logo-w {
     text-align: center;
-    padding: 20%; }
+    padding: 5%; }
   .auth-box-w .auth-header {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding-bottom: 1rem;
@@ -9843,7 +9843,7 @@ strong {
       left: 80px; }
   .auth-box-w form {
     padding: 20px 80px;
-    padding-bottom: 60px; }
+    padding-bottom: 40px; }
     .auth-box-w form .form-check-inline {
       margin-left: 1rem; }
     .auth-box-w form .form-group {

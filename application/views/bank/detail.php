@@ -48,7 +48,7 @@
                                 </p>
 														<p><input type="text" id="imageCode" name="imageCode" value="" class="form-control" autocomplete="off" placeholder="Captcha"/>
 														</p>
-														<input type="hidden" name="folder_domain" id="folder_domain" value="expweb">
+														<input type="hidden" name="folder_domain" id="folder_domain" value="<?=$this->session->userdata('wc_folder_domain');?>">
 														<button type="button" class="btn btn-md btn-primary btn-rounded" id="UpdateBankDetail" data-id="<?=$bank_list->id;?>" style="cursor: pointer;" >ดูรายการเคลื่อนไหวล่าสุด</button> 
 														
 														

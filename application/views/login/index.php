@@ -22,10 +22,11 @@
                     </a>
                 </div>
                 <div class="form-group">
-                    <input class="form-control form-control-solid placeholder-no-fix" type="text" placeholder="captcha" id="captcha"  name="captcha" /> 
+                    <input class="form-control form-control-solid placeholder-no-fix" type="text" placeholder="captcha" id="txt_captcha"  name="captcha" />
+                    <input type="hidden" id="txt_captcha_chk" value="0"/>
                 </div>
             <div class="buttons-w">
-               <button class="btn btn-primary" style="cursor: pointer;">Log me in</button>
+               <button class="btn btn-primary" style="cursor: pointer;" disabled="disabled" id="btn_login" >Log me in</button>
                <div class="form-check-inline"><label class="form-check-label"><input class="form-check-input" type="checkbox">Remember Me</label></div>
             </div>
          </form>
@@ -55,8 +56,55 @@
 }
 captcha();
 
+function func_captcha(captcha){
+	console.log(captcha);
+	$.ajax({
+        type: 'POST',
+        url: main_base_url+'captcha/check.php',
+        data : {
+					'captcha':captcha
+				},
+        beforeSend: function ()
+        {
+//            $('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+
+            console.log(data);
+            $('#txt_captcha_chk').val(data);
+            if(data == '1'){
+							$('#btn_login').prop("disabled", false);
+						}else{
+							$('#btn_login').prop("disabled", true);
+						}
+            
+
+        },
+        error: function (data) {
+
+        }
+
+    });
+}
+
+$('#txt_captcha').keyup(function(){
+	var captcha = $('#txt_captcha').val();
+	func_captcha(captcha);
+});
+
+$('#txt_captcha').blur(function(){
+	var captcha = $('#txt_captcha').val();
+	func_captcha(captcha);
+});
+
 function check_login(){
-	return false;
+	var captcha = $('#txt_captcha_chk').val();
+	if(captcha == 0){
+		$.notify(" Captcha wrong , Please try again !!! ");
+		$('#txt_captcha').focus();
+		return false;
+	}
+	
 }
 </script>   
 </body>

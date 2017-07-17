@@ -482,6 +482,6 @@ function tryCatch(data) {
         return JSON.parse(data);
     } catch (err) {
         //$('#se-pre-con').delay(100).fadeOut();
-        alert(0000000)
+        //alert(0000000)
     }
 }
