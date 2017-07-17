@@ -93,8 +93,8 @@ $curl_post_data['account'] = $bank_detail->s_account_no;
 $curl_post_data['d_start'] = $d_start;
 $curl_post_data['d_end'] = $d_end;
 //$curl_post_data['domain'] = $_SERVER['HTTP_HOST'];
-$curl_post_data['domain'] = "www.nagieos.com";
-$curl_post_data['license'] = "nagieos";
+$curl_post_data['domain'] = "www.expwebdesign.com";
+$curl_post_data['license'] = "expwebdesign";
 $curl_post_data['d_now'] = date('Y-m-d H:i:s');
 
 //return $curl_post_data;

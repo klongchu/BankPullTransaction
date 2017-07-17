@@ -26,6 +26,7 @@ $admin_title = ($member_profile->i_level == 1 ? "Admin":"Adminuser");
             </div>
           </div>
           <div class="menu-and-user">
+            
             <div class="logged-user-w">
               <div class="avatar-w"><?=img($profile_img);?></div>
               <div class="logged-user-info-w">
@@ -96,7 +97,11 @@ $admin_title = ($member_profile->i_level == 1 ? "Admin":"Adminuser");
         </div>
         <div class="desktop-menu menu-side-w menu-activated-on-click">
 
-          <div class="logo-w"><a class="logo" href="<?=base_url('');?>"><?=img($sys_logo);?><span><?=$this->session->userdata('wc_title');?></span></a></div>
+          <div class="logo-w"><a class="logo" href="<?=base_url('');?>"><?=img($sys_logo);?><span><?=$this->session->userdata('wc_title');?></span></a>
+          <br />
+          <span id="txt" style="color:#ff0000;" class="logo-default"></span>
+          </div>
+          
           <div class="menu-and-user">
             <div class="logged-user-w">
               <div class="logged-user-i">

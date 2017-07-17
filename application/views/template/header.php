@@ -28,7 +28,7 @@
   <meta name="description" content="<?php echo $des_view; ?>">
   <meta name="keyword" content="<?php echo $des_view; ?>">
   <meta name="author" content="<?php echo $data->s_dev_by; ?>">
-  <link href="<?=$uploads_dir;?><?php echo $this->session->userdata('wc_fav'); ?>" rel="shortcut icon" type="image/x-icon" />
+  <link href="<?php echo base_url(); ?>fav.ico" rel="shortcut icon" type="image/x-icon" />
   <title><?php echo $title_view; ?></title>
   <meta itemprop="name" content="<?php echo $title_view; ?>">
   <meta itemprop="description" content="<?php echo $des_view; ?>">
@@ -170,6 +170,43 @@ console.log('**************');
 }
 
 ?>
+
+<script>
+    $(document).ready(function () {
+        function currentTime() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth();
+            var yy = today.getFullYear();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('txt').innerHTML =
+                 "วันที่ "+   dd + "/" + (mm + 1) + "/" + yy + " " + h + ":" + m + ":" + s + " น.";
+            var t = setTimeout(currentTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i
+            }
+            ;  // add zero in front of numbers < 10
+            return i;
+        }
+        currentTime();
+
+
+        var sec = 3;
+        notification();
+        setInterval(notification, 1000 * sec);
+    });
+    function reloadTime() {
+        location.reload();
+        $('#se-pre-con').delay(100).fadeOut();
+
+    }
+</script>
 
 </head>
 

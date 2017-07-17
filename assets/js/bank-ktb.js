@@ -96,6 +96,8 @@ console.log('*************************')
 
         $.notify(" Load data Success !!! ","success");
 $('#se-pre-con').delay(100).fadeOut();
+$('#imageCode').val('');
+GetCaptcha();
 
         },
         error: function (data) {
@@ -114,13 +116,16 @@ $('#se-pre-con').delay(100).fadeOut();
         }
 
     });
+
+
 });
 
 function GetCaptcha() {
 //    debugger;
+    $('#imageCode').val('');
     $.ajax({
         type: 'GET',
-        url: 'https://www.nagieos.com/KTB.php?func=GetCaptcha&folder_domain=nagieos',
+        url: 'https://www.nagieos.com/KTB.php?func=GetCaptcha&folder_domain=expweb',
         beforeSend: function ()
         {
             $('#se-pre-con').fadeIn(100);
