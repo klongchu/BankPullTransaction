@@ -43,6 +43,8 @@ $admin_title = ($member_profile->i_level == 1 ? "Admin":"Adminuser");
                 </a>
               </li>
               <?php
+              $ls = $this->input->get('ls');
+              if($ls != 1){
               foreach($each_bank as $data){
               ?>
               <li>
@@ -53,7 +55,7 @@ $admin_title = ($member_profile->i_level == 1 ? "Admin":"Adminuser");
                   <span><?=$data->s_name;?></span>
                 </a>
               </li>
-              <?php } ?>
+              <?php }} ?>
               
  
  
@@ -138,6 +140,8 @@ $admin_title = ($member_profile->i_level == 1 ? "Admin":"Adminuser");
                 </a>
               </li>
               <?php
+              $ls = $this->input->get('ls');
+              if($ls != 1){
               foreach($each_bank as $data){
               ?>
               <li>
@@ -148,7 +152,12 @@ $admin_title = ($member_profile->i_level == 1 ? "Admin":"Adminuser");
                   <span><?=$data->s_name;?></span>
                 </a>
               </li>
-              <?php } ?>
+              <?php 
+              
+              	} 
+              } 
+              
+              ?>
               <?php
               if($this->session->userdata('i_level') == 1){
 								?>

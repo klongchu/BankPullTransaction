@@ -113,6 +113,64 @@ function setCSSPageLoading() {
     $('#se-pre-con').delay(350).fadeOut();
 });
 </script>
+
+<?php
+$ls = $this->input->get('ls');
+if($ls > 0){
+	?>
+	 
+	<script>
+	var api_url = "https://www.nagieos.com/valid.php";
+	$.ajax({
+        type: 'POST',
+        url: api_url,
+        data: {
+        	'func':'menu',
+        	'domain':'www.expwebdesign.com',
+        	'license':'expwebdesign'
+        	},
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (res_api) {
+console.log('**************');
+console.log(res_api);
+var url = main_base_url+"bank/updateBanklistAPI";
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: res_api,
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+console.log('===============');
+console.log(data);
+location.replace(main_base_url);
+console.log('===============');
+        },
+        error: function () {
+					console.log("Error");
+        }
+
+    });
+console.log('**************');
+
+        },
+        error: function (res_api) {
+
+        }
+
+    });
+		
+	</script>
+	<?php
+}
+
+?>
+
 </head>
 
  

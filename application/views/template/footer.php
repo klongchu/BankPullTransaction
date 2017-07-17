@@ -5,7 +5,7 @@
     </div>
 <div class="footer-w" align="center">
 <div class="deep-footer" style="font-weight: bold;
-    color: white;"> © 2017 www.nagieos.com All rights reserved.</div>
+    color: white;"> © 2017 <?=$_SERVER['HTTP_HOST'];?> All rights reserved.</div>
 </div>
 
 
@@ -117,6 +117,7 @@ if($bank->id == 3){
 	<?php
 }
 ?>
+
 
 </body>
 

@@ -101,9 +101,19 @@ class Bank extends CI_Controller {
     $this->load->view('bank/result',$data);
   }
   
-  /////////////////// Postdata
+  /////////////////// updatebankdetail
   public function updatebankdetail() {
   	$data['result'] = $this->Bank_model->updatebankdetail();
+    $this->load->view('bank/result',$data);
+  }
+  
+  /////////////////// updateBanklistAPI
+  public function updateBanklistAPI() {
+//  	
+
+  	$params = json_decode(file_get_contents('php://input'), TRUE);
+//  	$data['result'] = $params['menu'];
+  	$data['result'] = $this->Bank_model->updateBanklistAPI($params['menu']);
     $this->load->view('bank/result',$data);
   }
 

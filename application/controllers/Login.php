@@ -37,7 +37,7 @@ class Login extends CI_Controller {
 				
 				//////////////// Update Total
 				
-				redirect('');
+				redirect('?ls=1');
 				
 			}
 			else

@@ -133,6 +133,23 @@ $res['transection'] = json_encode($data);
 
 
   }	
+
+
+public function updateBanklistAPI($params) {
+$data_a = "";
+$json_de = json_decode($params);
+foreach($json_de as $key=>$value){
+	$data_a .= $value;
+	
+	 $s_name = $key;
+	 $this->i_status = ($value == 'Y' ? 1:0);
+	 $this->db->update('tbl_bank', $this, array('s_name'=> $s_name));
+}
+ 
+return $params." ".$data_a;
+
+
+}	
 /* ====================================
   ***************** *********************
   ***************** API *********************
