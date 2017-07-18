@@ -48,6 +48,37 @@ class Login extends CI_Controller {
 		}
 
 	}
+	
+	
+	public function check_username()
+	{
+		if($this->input->server('REQUEST_METHOD') == TRUE){
+			if($this->Login_model->record_count($this->input->post('s_username')) == 1)
+			{
+				echo 1;	
+			}
+			else
+			{
+				echo 0;
+			}
+		}
+
+	}
+	
+	public function check_password()
+	{
+		if($this->input->server('REQUEST_METHOD') == TRUE){
+			if($this->Login_model->record_count($this->input->post('s_username'), $this->input->post('s_password')) == 1)
+			{
+				echo 1;	
+			}
+			else
+			{
+				echo 0;
+			}
+		}
+
+	}
 
 	public function logout()
 	{

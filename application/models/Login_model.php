@@ -15,7 +15,10 @@ class Login_model extends CI_Model
 	public function record_count($username,$password)
 	{
 		$this->db->where('s_username',$username);
-		$this->db->where('s_password',$this->salt_pass($password));
+		if(isset($password)){
+			$this->db->where('s_password',$this->salt_pass($password));
+		}
+		
 		return $this->db->count_all_results(TB_member);
 	}
 

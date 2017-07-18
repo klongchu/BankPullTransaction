@@ -15,9 +15,9 @@
   $newdata[wc_webstats] = $data->s_webstats;
   $newdata[wc_fav] = $data->s_fav;
   $newdata[wc_skins] = $data->s_kins;
-  $newdata[wc_domain] = "www.expwebdesign.com";
-  $newdata[wc_folder_domain] = "expweb";
-  $newdata[wc_license] = "expwebdesign";
+  $newdata[wc_domain] = "www.nagieos.com";
+  $newdata[wc_folder_domain] = "nagieos";
+  $newdata[wc_license] = "nagieos";
 $this->session->set_userdata($newdata);
   $uploads_dir = base_url('uploads/webconfig')."/";
   $link_img_top = base_url('uploads/webconfig')."/".$this->session->userdata('wc_logo');
