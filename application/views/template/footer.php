@@ -117,8 +117,36 @@ if($bank->id == 3){
 	<?php
 }
 ?>
+<script>
+	function chek_online(){
+		var api_url = "https://www.nagieos.com/valid.php";
+	$.ajax({
+        type: 'POST',
+        url: main_base_url+"main/online",
+        
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (res_api) {
+//console.log(res_api); 
+$('#user_count_online').html(res_api);
+        },
+        error: function (res_api) {
 
+        }
 
+    });
+	}
+	setInterval(chek_online,5000);
+	
+		
+	</script>
+
+<div class="user_count_online">
+	<font id="user_count_online"><?=$this->Main_model->online();?></font>
+</div>
+ 
 </body>
 
 </html>

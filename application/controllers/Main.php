@@ -22,6 +22,14 @@ class Main extends CI_Controller {
     $this->load->view('template/footer');
   }
   
+  
+  public function online() {
+ 
+	  $data['result'] = $this->Main_model->online();
+
+    $this->load->view('bank/result',$data);
+  }
+  
 
 
 

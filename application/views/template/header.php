@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
 <head>
   <?php
+  
   $query = $this->db->get(TB_webconfig);
   $data = $query->row();
   $cache_version = "1.0.2";

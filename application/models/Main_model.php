@@ -104,6 +104,83 @@ class Main_model extends CI_Model {
 	  return $this->fetch_data("tbl_bank",$s_seclect,$s_conditions,$s_order_by);
 	}
 	
+	public function online(){
+		
+$i_member = $this->session->userdata('member_id');
+if($i_member < 1){
+	return FALSE;
+}		
+		
+$Session_name = "default";
+$table = "tbl_useronline"; // ชื่อ Table
+
+if ($Session_name == "default") {
+session_start();
+}
+else {
+session_name("$Session_name");
+session_start("$Session_name");
+}
+
+$SID = session_id();
+$time = time();
+$dag = date("z");
+$nu = time()-10; // Keep for 5 mins
+
+
+ 
+ 
+$this->db->select("*");
+$this->db->where("SID",$SID);
+$this->db->where("i_member",$i_member);
+$query = $this->db->get($table);
+$sid_check = $query->num_rows();
+
+$data['time'] = $time;
+if ($sid_check == "0") {
+$data['i_member'] = $i_member;
+$data['SID'] = $SID;
+$data['day'] = $dag;
+$this->db->insert($table, $data);
+} else {
+$this->db->update($table, $data, array('i_member'=> $i_member ,'SID'=> $SID));
+}
+
+
+ 
+$this->db->select("*");
+$this->db->where("time > ",$nu);
+$this->db->where("day  ",$dag);
+$this->db->group_by("i_member  ");
+$query = $this->db->get($table);
+$users_online = $query->num_rows();
+
+$this->db->where('time < ',$nu);   
+$this->db->delete($table);
+
+$this->db->where('day != '.$dag);   
+$this->db->delete($table);
+
+
+return $users_online ; // echo จำนวนผู้ online ออกมาก
+
+
+ 
+
+
+
+ 
+	}
+
+public function count_online($id){
+
+$table = "tbl_useronline"; // ชื่อ Table
+$this->db->where("i_member",$id);
+$query = $this->db->get($table);
+return $sid_check = $query->num_rows();
+ 
+	}
+	
   /*
   *
   *  Function  

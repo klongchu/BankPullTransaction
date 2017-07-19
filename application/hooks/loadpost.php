@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Loadpost {
     public function __construct() {
         $this->CI = & get_instance();
+ 
     }
 
  
@@ -11,11 +12,19 @@ class Loadpost {
         if ($this->CI->session->userdata('member_id') == NULL) {
         	$class = $this->CI->router->fetch_class();
 	        if ($class !='login') {
-	            redirect('login', 'refresh');
-	            exit();
-	        }
+	            if($class !='cronjob'){
+								redirect('login', 'refresh');
+	            	exit();
+							} 
+	        }else{
+						
+					}
             
         }
+    }
+    
+    public function check_online() {
+        
     }
  
     

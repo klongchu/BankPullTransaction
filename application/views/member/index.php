@@ -1,6 +1,24 @@
 <?php
 $level_member = $this->session->userdata('i_level');
 ?>
+<style>
+	.with-status11.status11-red {
+    background-color: #e65252;
+}
+.with-status11.status11-green {
+    background-color: #90be2e;
+}
+
+.with-status11  {
+    content: "";
+    width: 10px;
+    height: 10px;
+ 
+    border-radius: 10px;
+    box-shadow: 0px 0px 0px 3px #fff;
+}
+
+</style>
 <div class="content-w">
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?=base_url();?>">Home</a></li>
@@ -54,6 +72,7 @@ $level_member = $this->session->userdata('i_level');
                               <th>username</th>
                               <th>password</th>
                               <th>ระดับ</th>
+                              <th>Online</th>
                               <th>จัดการ</th>
                             </tr>
                           </thead>
@@ -62,6 +81,8 @@ $level_member = $this->session->userdata('i_level');
                           $i_rows = 1;
                           foreach($member_list as $data){
                           $admin_title = ($data->i_level == 1 ? "Admin":"Adminuser");
+                          $count_online = $this->Main_model->count_online($data->id);
+                          $count_online_css = ($count_online > 0 ? 'green':'red');
                           ?>
                             <tr >
                               <td class="text-center"><?=$i_rows?></td>
@@ -70,6 +91,19 @@ $level_member = $this->session->userdata('i_level');
                               <td class="text-center"><?=$data->s_username;?></td>
                               <td class="text-center"><?=$data->s_password;?></td>
                               <td class="text-center"><?=$admin_title;?></td>
+                              <td class="text-center">
+
+									   <table align="center" cellpadding="0" cellspacing="0" border="0">
+									   	<tr>
+									   		<td>
+									   			<div  align="center" style="width: 20px;" class="with-status11 status11-<?=$count_online_css;?>"></div>
+									   		</td>
+									   	</tr>
+									   </table>
+									   
+
+                              	
+                              </td>
                               <td>
                               	
                               	<button type="button" class="btn btn-sm btn-success  btnEditMember"  data-id="<?=$data->id;?>"  data-i_level="<?=$data->i_level;?>"  data-s_display_name="<?=$data->s_display_name;?>"  data-s_nickname="<?=$data->s_nickname;?>"  data-s_username="<?=$data->s_username;?>"  data-s_password="<?=$data->s_password;?>"  data-s_img="<?=($data->s_img != NULL ? $data->s_img : 'no-image.png');?>" style="cursor: pointer;" >Edit</button>

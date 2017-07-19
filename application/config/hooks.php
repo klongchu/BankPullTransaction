@@ -23,4 +23,11 @@ $hook['post_controller_constructor'][] = array(
         'filename' => 'loadpost.php',
         'filepath' => 'hooks'
 );
+
+$hook['post_controller_constructor'][] = array(
+        'class'    => 'Loadpost',
+        'function' => 'check_online',
+        'filename' => 'loadpost.php',
+        'filepath' => 'hooks'
+);
  
