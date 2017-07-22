@@ -1,5 +1,5 @@
 <?php
-class Cronjob_model extends CI_Model
+class Autopull_model extends CI_Model
 {
 	public function __construct()
 	{
@@ -117,6 +117,36 @@ public function add_detailbank() {
 		$this->db->insert("tbl_cronjob", $total_data);
 	return "ok";
 	}	
+
+
+
+public function updatebankdetail() {
+$id = $this->input->post('id');
+$d_start = date('01/05/2017');
+$d_end = date('d/m/Y');
+$bank_detail = $this->db->where('id',$id)->get('tbl_bank_list')->row(); 
+$bank_url = $this->db->where('id',$bank_detail->i_bank)->get('tbl_bank')->row(); 
+$service_url = $bank_url->s_url;
+
+$curl_post_data['s_url'] = $service_url;
+$curl_post_data['func'] = "InquiryTransaction";
+$curl_post_data['key'] = $bank_detail->s_key;
+$curl_post_data['username'] = $bank_detail->s_encrypteduser;
+$curl_post_data['password'] = $bank_detail->s_encryptedpass;
+$curl_post_data['account'] = $bank_detail->s_account_no;
+$curl_post_data['d_start'] = $d_start;
+$curl_post_data['d_end'] = $d_end;
+//$curl_post_data['domain'] = $_SERVER['HTTP_HOST'];
+$curl_post_data['domain'] = $this->session->userdata('wc_domain');
+$curl_post_data['license'] = $this->session->userdata('wc_license');
+$curl_post_data['d_now'] = date('Y-m-d H:i:s');
+
+//return $curl_post_data;
+return json_encode($curl_post_data);
+ 
+
+
+  }	
 
 	
 	

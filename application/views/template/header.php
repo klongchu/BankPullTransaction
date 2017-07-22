@@ -226,7 +226,7 @@ $check_class = $this->router->fetch_class();
 ?>
 
 	<?php
-	if($check_class == 'login'){
+	if($check_class == 'login' or $check_class == 'cronjob'){
 		?>
  
 		<?php
