@@ -51,6 +51,37 @@ class Bank extends CI_Controller {
     $this->load->view('template/footer');
   }
   
+  
+  
+  /////////////////// Detail auto
+  public function detailauto($id) {
+  	$s_seclect = array('*'); 
+    $s_conditions['where'] = array('id'=>$id); 
+    $s_order_by = array('id'=>'desc'); 
+  	$data['bank_list'] = $this->Main_model->row_data("tbl_bank_list",$s_seclect,$s_conditions,$s_order_by);
+   	
+   	////////////// Bank
+   	$s_seclect = array('*'); 
+    $s_conditions['where'] = array('id'=>$data['bank_list']->i_bank); 
+    $s_order_by = array('id'=>'desc'); 
+  	$data['bank'] = $this->Main_model->row_data("tbl_bank",$s_seclect,$s_conditions,$s_order_by);
+   	
+   	$bank_name = strtolower($data['bank']->s_name);
+   	////////////// transaction
+   	$s_seclect = array('*'); 
+    $s_conditions['where'] = array('i_bank_list'=>$id); 
+    $s_order_by = array('d_datetime'=>'desc'); 
+  	$data['transaction'] = $this->Main_model->fetch_data("tbl_autopull_transaction_".$bank_name,$s_seclect,$s_conditions,$s_order_by);
+  	
+   	
+
+   	$data['bank_name'] = $bank_name;
+    
+    $this->load->view('template/header',$data);
+    $this->load->view('bank/detailauto');
+    $this->load->view('template/footer');
+  }
+  
   /////////////////// Postdata
   public function postdata() {
   	$data['result'] = $this->Bank_model->postdata();
@@ -59,6 +90,11 @@ class Bank extends CI_Controller {
   /////////////////// Delete
   public function delete() {
   	$data['result'] = $this->Bank_model->delete();
+    $this->load->view('bank/result',$data);
+  }
+  /////////////////// Status
+  public function status() {
+  	$data['result'] = $this->Bank_model->status();
     $this->load->view('bank/result',$data);
   }
 /////////////////// check  already_username

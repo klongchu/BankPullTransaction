@@ -217,6 +217,55 @@ $('.btn_load_data').click(function(){
 
 ////////////// Delete Bank list
 
+$('.btnStatusBank').click(function(){
+
+	var id = $(this).attr('data-id');
+	var url = main_base_url+"bank/status";
+	
+
+   var i_status = '0';
+   if($(this).hasClass('btn-primary')){
+      $(this).addClass('btn-warning');
+      $(this).removeClass('btn-primary');
+      $(this).html('Manual');
+      i_status = '0';
+      $('#btn_tul_'+id).attr("data-url",main_base_url+"bank/detail/"+id);
+  }else if($(this).hasClass('btn-warning')){
+      $(this).removeClass('btn-warning');
+      $(this).addClass('btn-primary');
+      $(this).html('Auto');
+      i_status = '1';
+      $('#btn_tul_'+id).attr("data-url",main_base_url+"bank/detailauto/"+id);
+  }
+ 
+
+ 
+	
+		$.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+        	'id':id,
+        	'i_status':i_status,
+        },
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+        	//location.reload();
+        	
+        	
+        },
+        error: function (data) {
+        	
+        }
+    });
+});
+
+
+////////////// Delete Bank list
+
 $('.btnDeleteBank').click(function(){
  
 	var id = $(this).attr('data-id');

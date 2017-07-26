@@ -31,6 +31,7 @@ public function postdata($table) {
     $this->i_posted = $this->session->userdata('member_id');
     
     $this->d_update = date('Y-m-d H:i:s');
+ 
     
 
     
@@ -47,6 +48,7 @@ $encryptedPass = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $s
 $this->s_encrypteduser = $encryptedUser;
 $this->s_encryptedpass = $encryptedPass;
       $this->d_create = date('Y-m-d H:i:s');
+      $this->i_status = 0;
       $this->db->insert($table, $this);
       $id = $this->db->insert_id();
     }
@@ -64,6 +66,14 @@ public function delete() {
    $this->db->delete('tbl_bank_list'); 
    return 1;
 	}
+////////////// status
+public function status() {
+	$id = $this->input->post('id');
+	$i_status = $this->input->post('i_status');
+	$this->i_status = $i_status;
+	$this->db->update('tbl_bank_list', $this, array('id'=> $id));
+	return "ok";
+	}	
 	
 public function add_detailbank() {
 	$id = $this->input->post('i_bank');

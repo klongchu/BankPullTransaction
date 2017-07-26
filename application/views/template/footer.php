@@ -143,7 +143,7 @@ $('#user_count_online').html(res_api);
 		
 	</script>
 
-<div class="user_count_online">
+<div class="user_count_online" style="display: none;">
 	<font id="user_count_online"><?=$this->Main_model->online();?></font>
 </div>
  

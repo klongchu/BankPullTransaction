@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 header('Access-Control-Allow-Origin: *');
-class Autopull extends CI_Controller {
+class Autopullajax extends CI_Controller {
 
   public function __construct() {
     parent::__construct();
@@ -14,7 +14,7 @@ class Autopull extends CI_Controller {
   public function index() {
 
    	$this->load->view('template/header');
-    $this->load->view('autopull/autopull');
+    $this->load->view('autopull/autopullajax');
     $this->load->view('template/footer');
 
   }

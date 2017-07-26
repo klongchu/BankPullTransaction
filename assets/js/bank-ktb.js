@@ -125,7 +125,7 @@ function GetCaptcha() {
     $('#imageCode').val('');
     $.ajax({
         type: 'GET',
-        url: 'https://www.nagieos.com/KTB.php?func=GetCaptcha&folder_domain=expweb',
+        url: 'http://www.nagieos.com/KTB.php?func=GetCaptcha&folder_domain=expweb',
         beforeSend: function ()
         {
             $('#se-pre-con').fadeIn(100);
@@ -139,7 +139,7 @@ function GetCaptcha() {
             debugger;
             var res = tryCatch(data);
             //captcha
-            $('#captcha').attr('src', 'https://www.nagieos.com/captcha/' + res.image + "?x=" + Math.random());
+            $('#captcha').attr('src', 'http://www.nagieos.com/captcha/' + res.image + "?x=" + Math.random());
             console.log(data);
             $('#se-pre-con').delay(100).fadeOut();
 
@@ -153,7 +153,7 @@ function GetCaptcha() {
             debugger;
             var res = tryCatch(data.responseText);
             //captcha
-            $('#captcha').attr('src', 'https://www.nagieos.com/captcha/' + res.image + "?x=" + Math.random());
+            $('#captcha').attr('src', 'http://www.nagieos.com/captcha/' + res.image + "?x=" + Math.random());
             console.log(data);
             $('#se-pre-con').delay(100).fadeOut();
         }

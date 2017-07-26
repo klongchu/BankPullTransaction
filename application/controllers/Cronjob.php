@@ -7,6 +7,7 @@ class Cronjob extends CI_Controller {
     parent::__construct();
     $this->load->model('Cronjob_model');
     $this->load->model('Bank_model');
+    $this->load->model('Autopull_model');
     $this->load->library('pagination');
   }
  
@@ -26,6 +27,72 @@ class Cronjob extends CI_Controller {
 
   }
   
+  public function ajax_run_list() {
+
+
+    $this->load->view('autopull/autopullajaxlist');
+
+
+  }
+  
+  
+  public function loadtransaction() {
+//$timestamp = strtotime('H') - 1;
+$timestamp = strtotime('-1 minutes');
+$before_1hr = date('Y-m-d H:i:s', $timestamp);
+
+$id = $this->input->post('id');
+$bank_name = $this->input->post('bank_name');
+$s_seclect = array('*'); 
+    $s_conditions['where'] = array('i_bank_list'=>$id,'d_create >='=>$before_1hr); 
+    $s_order_by = array('d_datetime'=>'desc'); 
+  	$data['transaction'] = $this->Main_model->fetch_data("tbl_autopull_transaction_".$bank_name,$s_seclect,$s_conditions,$s_order_by);
+    $this->load->view('cronjob/loadtransaction',$data);
+    $update_read['i_read'] = 1;
+    $this->db->update("tbl_autopull_transaction_".$bank_name, $update_read, array('i_bank_list'=> $id));
+
+
+  }
+  
+  
+    public function loadtransactionall() {
+//$timestamp = strtotime('H') - 1;
+$timestamp = strtotime('-1 minutes');
+$before_1hr = date('Y-m-d H:i:s', $timestamp);
+
+$id = $this->input->post('id');
+$bank_name = $this->input->post('bank_name');
+$s_seclect = array('*'); 
+    $s_conditions['where'] = array('i_bank_list'=>$id); 
+    $s_order_by = array('d_datetime'=>'desc'); 
+  	$data['transaction'] = $this->Main_model->fetch_data("tbl_autopull_transaction_".$bank_name,$s_seclect,$s_conditions,$s_order_by);
+    $this->load->view('cronjob/loadtransaction',$data);
+    $update_read['i_read'] = 1;
+    $this->db->update("tbl_autopull_transaction_".$bank_name, $update_read, array('i_bank_list'=> $id));
+
+
+  }
+  
+  
+  public function loadbalance() {
+$id = $this->input->post('id');
+$bank_name = $this->input->post('bank_name');
+ 
+$table = "tbl_autopull";
+$this->db->where('i_bank_list',$id);
+$this->db->order_by('id','desc');
+$query = $this->db->get($table);
+    if($query->num_rows() > 0) {
+      $transaction = $query->row();
+    }
+
+$data['d_now'] =  $transaction->d_create;
+$data['i_balance'] =  $transaction->i_balance." THB";;
+  
+echo json_encode($data);
+
+  }
+  
   
   /////////////////// Postdata
   public function add_detailbank() {
@@ -34,9 +101,32 @@ class Cronjob extends CI_Controller {
     $this->load->view('bank/result',$data);
   }
   
+  /**
+	* ********** Update Bank Follow Ban
+	*/
+  /////////////////// add_detailbankauto
+  public function add_detailbankauto() {
+  	$id = $this->input->post('i_bank');
+  	if($id > 0){
+	  	$data['result'] = $this->Autopull_model->add_detailbankauto();
+	    $this->load->view('bank/result',$data);
+		}else{
+			$data['result'] = "Failed";
+	    $this->load->view('bank/result',$data);
+		}
+  }
+  
+  
+  
    /////////////////// updatebankdetail
   public function updatebankdetail() {
   	$data['result'] = $this->Bank_model->updatebankdetail();
+    $this->load->view('bank/result',$data);
+  }
+  
+  /////////////////// updatebankdetail
+  public function updatebankdetailauto() {
+  	$data['result'] = $this->Autopull_model->updatebankdetailauto();
     $this->load->view('bank/result',$data);
   }
   

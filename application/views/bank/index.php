@@ -8,6 +8,12 @@ function random_string($length = 5) {
 	return $randomString;
 }
 $level_member = $this->session->userdata('i_level');
+
+ 
+
+
+ 
+
 ?>
 <div class="content-w">
           <ul class="breadcrumb">
@@ -55,15 +61,62 @@ $level_member = $this->session->userdata('i_level');
                       	foreach($bank_list as $data){
                       	?>
                         <div class="col-sm-4">
+                        
+                          <div style="    
+    position: absolute;
+    right: 22px;
+    top: 3px;">
+                            	<?php
+                      if($level_member == 1){
+                      ?>
+                      <?php
+                            $i_status_btn = ($data->i_status == 1 ? "btn-primary":"btn-warning");
+                            $i_status_txt = ($data->i_status == 1 ? "Auto":"Manual");
+                            ?>
+                            <?php
+                            if($data->i_bank != 3){
+                            ?>
+                            <button type="button" class="btn btn-sm <?=$i_status_btn;?>  btnStatusBank"   data-id="<?=$data->id;?>"  style="cursor: pointer;     "   ><?=$i_status_txt?></button>
+                            <?php } ?>
+                      <?php } ?>
+                            </div>
                           <div class="element-box el-tablo">
-                            <div class="label">อัพเดตล่าสุด <?=$data->d_lastpull;?></div>
-                            <div class="value"><?=$data->s_account_name;?> <br /> <?=$data->s_account_no;?>  </div>
+                          
+                            
+                            <div class="label">
+                            <table width="100%">
+                            	<tr>
+                            		<td>อัพเดตล่าสุด <?=$data->d_lastpull;?></td>
+                            		<td align="right">
+                            			
+                            		</td>
+                            	</tr>
+                            </table>
+                            
+                            
+                            	
+                            </div>
+                            <div class="value"><?=$data->s_account_name;?> <br /> 
+                            
+                            <!--<?=$data->s_account_no;?>  -->
+                            <?php
+                            $bank_no = explode("-",$data->s_account_no);
+                            $bank_no2 = substr($bank_no[2],-4);
+                            ?>
+                            xxx-x-x<?=$bank_no2;?>-<?=$bank_no[3];?>  
+                            
+                            </div>
                             <br />
-                            <button type="button" class="btn btn-sm btn-primary  btnDetailBank" data-url="<?=base_url('bank/detail/'.$data->id);?>" style="cursor: pointer;">Views</button>
+                            <?php
+                            $i_status_url = ($data->i_status == 1 ? "detailauto":"detail");
+                            ?>
+                           <button type="button" class="btn btn-sm btn-primary  btnDetailBank" data-url="<?=base_url('bank/'.$i_status_url.'/'.$data->id);?>" style="cursor: pointer;" id="btn_tul_<?=$data->id;?>">Views</button>
                             <?php
                       if($level_member == 1){
                       ?>
                             <button type="button" class="btn btn-sm btn-success  btnEditBank"    data-i_bank="<?=$i_bank;?>" data-s_name="<?=$title;?>" data-id="<?=$data->id;?>" data-s_key="<?=$data->s_key;?>"  data-s_account_name="<?=$data->s_account_name;?>"  data-s_account_no="<?=$data->s_account_no;?>"  data-s_account_username="<?=$data->s_account_username;?>"  data-s_account_password="<?=$data->s_account_password;?>"  style="cursor: pointer;" >Edit</button>
+                            
+                             
                             
                             <button type="button" class="btn btn-sm btn-danger  btnDeleteBank"   data-id="<?=$data->id;?>"  style="cursor: pointer;" >Delete</button>
                             <?php } ?>

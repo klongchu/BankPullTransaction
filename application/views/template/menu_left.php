@@ -44,6 +44,20 @@ $admin_title = ($member_profile->i_level == 1 ? "Admin":"Adminuser");
                 </a>
               </li>
               <?php
+              if($this->session->userdata('i_level') == 1){
+								?>
+							<li>
+                <a href="<?=base_url('autopullajax');?>" target="_blank">
+                  <div class="icon-w">
+                    <div class="os-icon os-icon-grid-18" style="font-size: 30px;"></div>
+                  </div>
+                  <span>Synchronize</span>
+                </a>
+              </li>	
+								<?php
+							}
+              ?>
+              <?php
               $ls = $this->input->get('ls');
               if($ls != 1){
               foreach($each_bank as $data){
@@ -74,6 +88,8 @@ $admin_title = ($member_profile->i_level == 1 ? "Admin":"Adminuser");
 								<?php
 							}
               ?>
+              
+               
  
               <li>
                 <a href="#" class="btnEditMember"  data-id="<?=$member_profile->id;?>"  data-i_level="<?=$member_profile->i_level;?>"  data-s_display_name="<?=$member_profile->s_display_name;?>"  data-s_nickname="<?=$member_profile->s_nickname;?>"  data-s_username="<?=$member_profile->s_username;?>"  data-s_password="<?=$member_profile->s_password;?>" data-s_img="<?=($member_profile->s_img != NULL ? $member_profile->s_img : 'no-image.png');?>" >
@@ -144,6 +160,20 @@ $admin_title = ($member_profile->i_level == 1 ? "Admin":"Adminuser");
                   <span>Dashboard</span>
                 </a>
               </li>
+              <?php
+              if($this->session->userdata('i_level') == 1){
+								?>
+							<li>
+                <a href="<?=base_url('autopullajax');?>"  target="_blank">
+                  <div class="icon-w">
+                    <div class="os-icon os-icon-grid-18" style="font-size: 30px;"></div>
+                  </div>
+                  <span>Synchronize <font style="color: #ff0000">(Auto)</font></span>
+                </a>
+              </li>	
+								<?php
+							}
+              ?>
               <?php
               $ls = $this->input->get('ls');
               if($ls != 1){
