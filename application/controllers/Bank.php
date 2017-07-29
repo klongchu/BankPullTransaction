@@ -82,6 +82,77 @@ class Bank extends CI_Controller {
     $this->load->view('template/footer');
   }
   
+  /////////////////// Detail auto
+  public function detailautoall($id) {
+  	
+  	
+ $timestamp = strtotime('-1 minutes');
+$before_1hr = date('Y-m-d H:i:s', $timestamp);
+ 	
+  	$sql = ("
+select 
+t.* 
+from 
+(
+select 'BAY' s_bank , id , i_bank_list, d_datetime,s_info,i_out , i_in ,i_posted, i_read from tbl_autopull_transaction_bay where d_create >='$before_1hr'
+union
+select 'BBL' s_bank , id , i_bank_list, d_datetime,s_info,i_out , i_in ,i_posted, i_read  from tbl_autopull_transaction_bbl where d_create >='$before_1hr'
+union
+select 'KBANK' s_bank , id , i_bank_list, d_datetime,s_info,i_out , i_in ,i_posted, i_read  from tbl_autopull_transaction_kbank where d_create >='$before_1hr'
+union
+select 'KTB' s_bank , id , i_bank_list, d_datetime,s_info,i_out , i_in,i_posted, i_read  from tbl_autopull_transaction_ktb where d_create >='$before_1hr'
+union
+select 'SCB' s_bank , id , i_bank_list, d_datetime,s_info,i_out , i_in,i_posted, i_read  from tbl_autopull_transaction_scb where d_create >='$before_1hr'
+) t
+
+
+order by t.d_datetime desc
+ ");
+  	
+   	$data['transaction'] = $this->db->query($sql)->result();
+ 
+   	$data['bank_name'] = $before_1hr;
+    
+    //$this->load->view('template/header',$data);
+    $this->load->view('bank/detailauto1',$data);
+    //$this->load->view('template/footer');
+  }
+  
+  /////////////////// Detail auto
+  public function detailautoalls($id) {
+  	
+  	
+ $timestamp = strtotime('-1 minutes');
+$before_1hr = date('Y-m-d H:i:s', $timestamp);
+ 	
+  	$sql = ("
+select 
+t.* 
+from 
+(
+select 'BAY' s_bank , id , i_bank_list, d_datetime,s_info,i_out , i_in ,i_posted, i_read from tbl_autopull_transaction_bay 
+union
+select 'BBL' s_bank , id , i_bank_list, d_datetime,s_info,i_out , i_in ,i_posted, i_read  from tbl_autopull_transaction_bbl 
+union
+select 'KBANK' s_bank , id , i_bank_list, d_datetime,s_info,i_out , i_in ,i_posted, i_read  from tbl_autopull_transaction_kbank 
+union
+select 'KTB' s_bank , id , i_bank_list, d_datetime,s_info,i_out , i_in,i_posted, i_read  from tbl_autopull_transaction_ktb 
+union
+select 'SCB' s_bank , id , i_bank_list, d_datetime,s_info,i_out , i_in,i_posted, i_read  from tbl_autopull_transaction_scb 
+) t
+
+
+order by t.d_datetime asc
+ ");
+  	
+   	$data['transaction'] = $this->db->query($sql)->result();
+ 
+   	$data['bank_name'] = $before_1hr;
+    
+    //$this->load->view('template/header',$data);
+    $this->load->view('bank/detailauto1',$data);
+    //$this->load->view('template/footer');
+  }
   /////////////////// Postdata
   public function postdata() {
   	$data['result'] = $this->Bank_model->postdata();

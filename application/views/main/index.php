@@ -68,7 +68,7 @@
                                                         <th width="70" style="text-align: right;">ถอน</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="tbody_trans<?=$bank_list->id;?>">
                                                     <?php
                                                     $i_rows = 1;
 
@@ -96,7 +96,7 @@
                                                             if ($bank_list->id > 0) {
                                                                 $bgcolor = ($i++ & 1) ? "#e4e6ec" : "#d1d8e6";
                                                                 ?>
-                                                                <tr bgcolor="<?= $bgcolor; ?>">
+                                                                <tr bgcolor="<?= $bgcolor; ?>" id="tr_transaction<?=$bank_list->id;?><?=$data->id;?>">
                                                                     <td class="text-center" ><?= $i_rows ?></td>
 
 
@@ -119,7 +119,7 @@
                                                         }
                                                     } else {
                                                         ?>
-                                                        <tr>
+                                                        <tr id="tr_notfound<?=$bank_list->id;?>">
                                                             <td colspan="4" class="text-center">No Transaction</td>
                                                         </tr>                                       
                                                     <?php } ?>
@@ -147,6 +147,20 @@
         </div>
     </div>
 </div>
+<style>
+	.class_tr_new td{
+		background-color: #ffcaca;
+	}
+</style>	
+
+<style>
+	.class_tr_newall td{
+		 
+	}
+	.class_border_bottom{
+		border-bottom : 1px dotted #cccccc;
+	}
+</style>
 <style>
  
     .panel {
@@ -352,4 +366,86 @@
             $('#collapse'+id).fadeIn(100);
         }
     });
+    
+    
+    function load_transaction_new(){
+	var url = main_base_url+"bank/detailautoall";
+	var urls = main_base_url+"bank/detailautoalls";
+	
+	$.ajax({
+        type: 'POST',
+        url: urls,
+       
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+
+                res = JSON.parse(data);
+                var append_msg = "";
+                var i_rows = 1;
+                
+                $.each(res, function (j, item) {
+                    
+                    
+											 var append_msg ="<tr id='tr_transaction"+item.i_bank_list+item.id+"' class='class_tr'><td class=\"text-center class_border_bottom\"  >#</td><td class='class_border_bottom'>"+item.s_info+" <br />"+item.d_datetime+"</td><td class=\"text-right class_border_bottom\">"+item.i_in+"</td><td class=\"text-right class_border_bottom\">"+item.i_out+"</td></tr>";
+										
+
+
+                    i_rows++;
+                    $('#tr_transaction'+item.i_bank_list+item.id).remove();
+                    $('#tbody_trans'+item.i_bank_list).prepend(append_msg);
+										$('#tr_notfound'+item.i_bank_list).remove();
+                    });
+
+
+				 
+        },
+        error: function (data) {
+
+        }
+
+    });
+	
+	$.ajax({
+        type: 'POST',
+        url: url,
+       
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+
+                res = JSON.parse(data);
+                var append_msg = "";
+                var i_rows = 1;
+                
+                $.each(res, function (j, item) {
+                    
+                    
+											 var append_msg ="<tr id='tr_transaction"+item.i_bank_list+item.id+"' class='class_tr_new'><td class=\"text-center class_border_bottom\">N</td><td class='class_border_bottom'>"+item.s_info+" <br />"+item.d_datetime+"</td><td class=\"text-right class_border_bottom\">"+item.i_in+"</td><td class=\"text-right class_border_bottom\">"+item.i_out+"</td></tr>";
+										
+
+
+                    i_rows++;
+                    $('#tr_transaction'+item.i_bank_list+item.id).remove();
+                    $('#tbody_trans'+item.i_bank_list).prepend(append_msg);
+										$('#tr_notfound'+item.i_bank_list).remove();
+                    });
+
+
+				 
+        },
+        error: function (data) {
+
+        }
+
+    });
+    
+    
+}
+load_transaction_new();
+setInterval(function() { load_transaction_new(); },30000);
 </script>
