@@ -72,7 +72,7 @@ if($level_member != 1){
   </div>
 </div>
 <?php
-$cache_version = '1.1.0';
+$cache_version = '1.1.1';
 ?>
 
 <!-- Plugin -->

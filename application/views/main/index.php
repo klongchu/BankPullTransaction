@@ -22,7 +22,7 @@
 
                         $sql = " select i_balance,d_create from tbl_autopull where i_bank_list = '" . $bank_list->id . "' order by id desc  ";
                         $bank_balance = $this->db->query($sql)->row();
-                        $i_balance_ss = ($bank_balance->i_balance < 1 ? 0 : $bank_balance->i_balance);
+                        $i_balance_ss = ($bank_balance->i_balance == '' ? 0 : $bank_balance->i_balance);
                         $bank_no = explode("-", $bank_list->s_account_no);
                         $bank_no2 = substr($bank_no[2], -4);
                         ?>

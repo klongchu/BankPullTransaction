@@ -26,14 +26,31 @@ $this->session->set_userdata($newdata);
 
   $des_view = $data->s_description;
   $title_view = $data->s_title;
+  
+  $class_method = $this->uri->segment(2);
+  $class_method_id = $this->uri->segment(3);
+  if($class_method == 'detailauto' || $class_method == 'detail'){
+  	$this->db->where('id',$class_method_id);
+  	$bank_list = $this->db->get('tbl_bank_list')->row();
+  	
+  	$this->db->where('id',$bank_list->i_bank);
+  	$banks = $this->db->get('tbl_bank')->row();
+
+  	
+		$icon_aa = base_url()."uploads/bank/".$banks->s_icon ."?v=".time();
+		$title_view = $bank_list->s_account_name." ".$bank_list->s_account_no." :: ".$title_view;
+	}else{
+		$icon_aa = base_url()."fav.ico?v=".time();;
+	}
+  
   ?>
   <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="<?php echo $des_view; ?>">
   <meta name="keyword" content="<?php echo $des_view; ?>">
   <meta name="author" content="<?php echo $data->s_dev_by; ?>">
-  <link href="<?php echo base_url(); ?>fav.ico" rel="shortcut icon" type="image/x-icon" />
-  <title><?php echo $title_view; ?></title>
+  <link href="<?php echo $icon_aa;?>" rel="shortcut icon" type="image/x-icon" />
+  <title><?php echo $title_view; ?> </title>
   <meta itemprop="name" content="<?php echo $title_view; ?>">
   <meta itemprop="description" content="<?php echo $des_view; ?>">
   <meta itemprop="image" content="<?=$link_img_top;?>">

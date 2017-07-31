@@ -342,7 +342,8 @@ $('.btnEditBank').click(function(){
 ////////////////// btnDetailBank
 $('.btnDetailBank').click(function(){
 	var url = $(this).attr('data-url');
-	location.replace(url);
+	//location.replace(url);
+	window.open(url, '_blank');
 	
 });
 ///////////// btnSaveBank
