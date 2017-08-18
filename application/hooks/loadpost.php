@@ -10,11 +10,11 @@ class Loadpost {
     ///////////////////////// check_member
     public function check_member() {
         if ($this->CI->session->userdata('member_id') == NULL) {
-        	$class = $this->CI->router->fetch_class();
+        	  $class = $this->CI->router->fetch_class();
 	        if ($class !='login') {
 	            if($class !='cronjob'){
-								redirect('login', 'refresh');
-	            	exit();
+								//redirect('login', 'refresh');
+	            	//exit();
 							} 
 	        }else{
 						

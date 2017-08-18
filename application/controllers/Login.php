@@ -17,6 +17,7 @@ class Login extends CI_Controller {
    /* $data['list_product'] = $this->Main_model->fetch_data("tbl_product",$s_seclect,$s_conditions,$s_order_by);*/
    $data['title'] = "DashBoard";
 
+    $class = $this->router->fetch_class();
     $this->load->view('template/header',$data);
     $this->load->view('login/index');
     $this->load->view('template/footer');
@@ -37,13 +38,28 @@ class Login extends CI_Controller {
 				
 				//////////////// Update Total
 				
-				redirect('?ls=1');
+				//redirect('?ls=1');
+				//@header('Location: '.$_SERVER['HTTP_REFERER'].'?ls=1');
+				?>
+				<script>
+					//location.replace("<?=$_SERVER['SERVER_NAME'].'/?ls=1';?>")
+					//location.replace("?ls=1")
+				</script>
+				<meta http-equiv="refresh" content="0;url=http://<?=$_SERVER['SERVER_NAME'];?>/?ls=1" />
+				<?php
 				
 			}
 			else
 			{
 				$this->session->set_flashdata(array('msgerr'=> '<p class="login-box-msg" style="color:red;">ชื่อผู้ใช้หรือรหัสผ่านผิดพลาด!</p>'));
-				redirect('login', 'refresh');
+				//redirect('login', 'refresh');
+				?>
+				<script>
+					//location.replace("<?=$_SERVER['SERVER_NAME'].'/login';?>")
+					//location.replace("");
+				</script>
+				<meta http-equiv="refresh" content="0;url=http://<?=$_SERVER['SERVER_NAME'];?>/login" />
+				<?php
 			}
 		}
 
@@ -83,7 +99,14 @@ class Login extends CI_Controller {
 	public function logout()
 	{
 		$this->session->unset_userdata(array('member_id','s_username','s_display_name','i_level'));
-		redirect('login', 'refresh');
+		//echo "aaaa";
+		//redirect('login', 'refresh');
+		?>
+				<script>
+					//location.replace("");
+				</script>
+				<meta http-equiv="refresh" content="0;url=http://<?=$_SERVER['SERVER_NAME'];?>/login" />
+				<?php
 	}
   
   

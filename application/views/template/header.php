@@ -2,7 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
 <head>
   <?php
-  
+  if ($this->session->userdata('member_id') == NULL) {
+  	//echo "aaa";
+ $class = $this->router->fetch_class();
+if ($class !='login') {
+								?>
+
+				<meta http-equiv="refresh" content="0;url=http://<?=$_SERVER['SERVER_NAME'];?>/login" />
+				<?php
+exit();
+            
+        }
+        }
   $query = $this->db->get(TB_webconfig);
   $data = $query->row();
   $cache_version = "1.0.2";
@@ -141,6 +152,7 @@ if($ls > 0){
 	?>
 	 
 	<script>
+	$('#se-pre-con').show();
 	var api_url = "https://www.nagieos.com/valid.php";
 	$.ajax({
         type: 'POST',
@@ -188,6 +200,7 @@ console.log('**************');
 		
 	</script>
 	<?php
+	
 }
 
 ?>
@@ -250,7 +263,11 @@ $check_class = $this->router->fetch_class();
 	}else{
 		?>
  <div class='se-pre-con' id="se-pre-con" > </div>
-
+<?php
+if($ls > 0){
+	exit();
+}	
+?>
 <div class="all-wrapper menu-side with-side-panel">
 	<div class="layout-w">
         <?php $this->load->view('template/menu_left'); ?>	
