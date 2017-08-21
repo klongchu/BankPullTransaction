@@ -45,7 +45,7 @@ class Login extends CI_Controller {
 					//location.replace("<?=$_SERVER['SERVER_NAME'].'/?ls=1';?>")
 					//location.replace("?ls=1")
 				</script>
-				<meta http-equiv="refresh" content="0;url=http://<?=$_SERVER['SERVER_NAME'];?>/?ls=1" />
+				<meta http-equiv="refresh" content="0;url=<?=base_url('?ls=1');?>" />
 				<?php
 				
 			}
@@ -58,7 +58,7 @@ class Login extends CI_Controller {
 					//location.replace("<?=$_SERVER['SERVER_NAME'].'/login';?>")
 					//location.replace("");
 				</script>
-				<meta http-equiv="refresh" content="0;url=http://<?=$_SERVER['SERVER_NAME'];?>/login" />
+				<meta http-equiv="refresh" content="0;url=<?=base_url('login');?>" />
 				<?php
 			}
 		}
@@ -105,7 +105,7 @@ class Login extends CI_Controller {
 				<script>
 					//location.replace("");
 				</script>
-				<meta http-equiv="refresh" content="0;url=http://<?=$_SERVER['SERVER_NAME'];?>/login" />
+				<meta http-equiv="refresh" content="0;url=<?=base_url('login');?>" />
 				<?php
 	}
   

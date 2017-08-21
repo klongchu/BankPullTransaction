@@ -125,7 +125,7 @@ function GetCaptcha() {
     $('#imageCode').val('');
     $.ajax({
         type: 'GET',
-        url: 'http://www.nagieos.com/KTB.php?func=GetCaptcha&folder_domain=expweb',
+        url: 'http://www.nagieos.com/KTB.php?func=GetCaptcha&folder_domain='+lisense_bank_js,
         beforeSend: function ()
         {
             $('#se-pre-con').fadeIn(100);

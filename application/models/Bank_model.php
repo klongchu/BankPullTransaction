@@ -24,7 +24,7 @@ class Bank_model extends CI_Model {
     public function postdata($table) {
         $id = $this->input->post('id');
         $this->i_bank = $this->input->post('i_bank');
-        $this->s_key = $this->input->post('s_key');
+        //$this->s_key = $this->input->post('s_key');
         $this->s_account_name = $this->input->post('s_account_name');
         $this->s_account_no = $this->input->post('s_account_no');
         //$this->s_account_username = $this->input->post('s_account_username');

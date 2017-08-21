@@ -8,7 +8,7 @@
 if ($class !='login') {
 								?>
 
-				<meta http-equiv="refresh" content="0;url=http://<?=$_SERVER['SERVER_NAME'];?>/login" />
+				<meta http-equiv="refresh" content="0;url=<?=base_url('login');?>" />
 				<?php
 exit();
             
@@ -27,9 +27,9 @@ exit();
   $newdata[wc_webstats] = $data->s_webstats;
   $newdata[wc_fav] = $data->s_fav;
   $newdata[wc_skins] = $data->s_kins;
-  $newdata[wc_domain] = "www.nagieos.com";
-  $newdata[wc_folder_domain] = "nagieos";
-  $newdata[wc_license] = "nagieos";
+  $newdata[wc_domain] = "www.bank123.com";
+  $newdata[wc_folder_domain] = "bank123";
+  $newdata[wc_license] = "bank123";
 $this->session->set_userdata($newdata);
   $uploads_dir = base_url('uploads/webconfig')."/";
   $link_img_top = base_url('uploads/webconfig')."/".$this->session->userdata('wc_logo');
@@ -55,6 +55,9 @@ $this->session->set_userdata($newdata);
 	}
   
   ?>
+  <script>
+  	var lisense_bank_js = "bank123";
+  </script>
   <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="<?php echo $des_view; ?>">
