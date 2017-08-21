@@ -51,13 +51,18 @@ $this->session->set_userdata($newdata);
 		$icon_aa = base_url()."uploads/bank/".$banks->s_icon ."?v=".time();
 		$title_view = $bank_list->s_account_name." ".$bank_list->s_account_no." :: ".$title_view;
 	}else{
-		$icon_aa = base_url()."fav.ico?v=".time();;
+		$icon_aa = base_url()."fav.ico?v=".time();
 	}
   
   ?>
   <script>
   	var lisense_bank_js = "bank123";
   </script>
+  <?php
+  $date_3days = date('Y-m-d H:i:s', strtotime("-1 day", strtotime(date("Y-m-d H:i:s"))));
+  $this->db->where('d_create <= ',$date_3days);
+  $this->db->delete('tbl_autopull');
+  ?>
   <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="<?php echo $des_view; ?>">
