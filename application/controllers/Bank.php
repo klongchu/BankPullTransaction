@@ -224,6 +224,19 @@ order by t.d_datetime asc
     $this->load->view('bank/result',$data);
   }
 
+////////////// Bank Logs
+public function logs() {
+ 	
+   	////////////// Logs
+   	$s_seclect = array('*'); 
+    $s_conditions['where'] = array('id > '=>0); 
+    $s_order_by = array('id'=>'desc'); 
+  	$data['bank_logs'] = $this->Main_model->fetch_data("tbl_logs",$s_seclect,$s_conditions,$s_order_by);
 
+   	
+    $this->load->view('template/header');
+    $this->load->view('bank/logs',$data);
+    $this->load->view('template/footer');
+  }
 
 }

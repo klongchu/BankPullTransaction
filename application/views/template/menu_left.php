@@ -85,6 +85,14 @@ $admin_title = ($member_profile->i_level == 1 ? "Admin":"Adminuser");
                   <span>Member List</span>
                 </a>
               </li>	
+              <li>
+                <a href="<?=base_url('bank/logs');?>">
+                  <div class="icon-w">
+                    <div class="os-icon os-icon-ui-44"></div>
+                  </div>
+                  <span>Logs</span>
+                </a>
+              </li>	
 								<?php
 							}
               ?>
@@ -202,6 +210,14 @@ $admin_title = ($member_profile->i_level == 1 ? "Admin":"Adminuser");
                     <div class="os-icon os-icon-user-male-circle"></div>
                   </div>
                   <span>Member List</span>
+                </a>
+              </li>	
+              <li>
+                <a href="<?=base_url('bank/logs');?>">
+                  <div class="icon-w">
+                    <div class="os-icon os-icon-ui-44"></div>
+                  </div>
+                  <span>Logs</span>
                 </a>
               </li>	
 								<?php

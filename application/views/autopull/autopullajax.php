@@ -96,8 +96,31 @@ $('#se-pre-con').delay(100).fadeOut();
 
         },
         error: function (data) {
-        	console.log("Error");
+        	console.log(data);
+        	console.log("Error 1");
         	$.notify(" Load data failed , Please try again !!! ");
+        	
+      var url_error = main_base_url+"cronjob/posterror";
+     //var json_error = JSON.parse(data);
+      $.ajax({
+        type: 'POST',
+        url: url_error,
+        data: {
+        	'i_bank_list':id,
+        	's_request':api_data,
+        	's_response':data.statusText,
+        	's_status':data.status,
+        	's_account_name':json_res.s_account_name,
+        	's_type':'Auto'
+        	},
+        success: function (data) {
+
+        },
+        error: function (data) {
+ 
+        }
+
+    });
  
         }
 
@@ -107,7 +130,8 @@ $('#se-pre-con').delay(100).fadeOut();
        	
         },
         error: function (data) {
-					console.log("Error");
+					console.log("Error 2");
+					$.notify(" Load data failed 2 , Please try again !!! ");
  
         }
 

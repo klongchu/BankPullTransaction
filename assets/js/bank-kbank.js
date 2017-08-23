@@ -94,6 +94,29 @@ $('#se-pre-con').delay(100).fadeOut();
         	console.log("Error");
         	$.notify(" Load data failed , Please try again !!! ");
         	$('#se-pre-con').delay(100).fadeOut();
+        	//////////////// Start insert Error
+      var url_error = main_base_url+"cronjob/posterror";
+      //var json_error = JSON.parse(data);
+      $.ajax({
+        type: 'POST',
+        url: url_error,
+        data: {
+        	'i_bank_list':json_res.i_id,
+        	's_request':api_data,
+        	's_response':data.statusText,
+        	's_status':data.status,
+        	's_account_name':json_res.s_account_name,
+        	's_type':'Manual'
+        	},
+        success: function (data) {
+
+        },
+        error: function (data) {
+ 
+        }
+
+    });
+			//////////////// End insert Error
         }
 
     });

@@ -105,7 +105,29 @@ $query = $this->db->get("tbl_bank_list");
  
 
 
-public function add_detailbank() {
+public function posterror($bank_list) {
+
+
+	$total_data = array();
+		$total_data['s_bank'] = $bank_list[s_bank];
+		$total_data['i_bank'] = $bank_list[i_bank];
+		$total_data['s_account_no'] = $bank_list[s_account_no];
+		$total_data['s_account_name'] = $bank_list[s_account_name];
+		$total_data['i_bank_list'] = $this->input->post('i_bank_list');
+		$total_data['s_request'] = $this->input->post('s_request');
+		$total_data['s_response'] = $this->input->post('s_response');
+		$total_data['s_type'] = $this->input->post('s_type');
+		$total_data['s_status'] = $this->input->post('s_status');
+		$total_data['i_posted'] = $this->session->userdata('member_id');
+		$total_data['s_ip'] = $_SERVER['REMOTE_ADDR'];
+		$total_data['d_create'] = date('Y-m-d H:i:s');
+		$this->db->insert("tbl_logs", $total_data);
+	return "ok";
+	}	
+	
+	
+	
+	public function add_detailbank() {
 	$id = $this->input->post('i_bank');
 	$i_balance = $this->input->post('i_balance');
 

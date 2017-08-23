@@ -101,6 +101,8 @@ class Bank_model extends CI_Model {
         $bank_url = $this->db->where('id', $bank_detail->i_bank)->get('tbl_bank')->row();
         $service_url = $bank_url->s_url;
 
+        //$curl_post_data['s_account_name'] = $bank_detail->s_account_name;
+        $curl_post_data['i_id'] = $id;
         $curl_post_data['s_url'] = $service_url;
         $curl_post_data['func'] = "InquiryTransaction";
         $curl_post_data['key'] = $bank_detail->s_key;

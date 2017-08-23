@@ -94,7 +94,30 @@ echo json_encode($data);
   }
   
   
-  /////////////////// Postdata
+  /////////////////// posterror
+  public function posterror() {
+  	$id = $this->input->post('i_bank_list');
+  	$s_seclect = array('*'); 
+    $s_conditions['where'] = array('id'=>$id); 
+    //$s_order_by = array('id'=>'desc'); 
+  	$bank_list = $this->Main_model->row_data("tbl_bank_list",$s_seclect,$s_conditions,$s_order_by);
+  	
+  	$s_seclect = array('*'); 
+    $s_conditions['where'] = array('id'=>$bank_list->i_bank); 
+    //$s_order_by = array('id'=>'desc'); 
+  	$bank = $this->Main_model->row_data("tbl_bank",$s_seclect,$s_conditions,$s_order_by);
+  	
+  	$post_bl[s_account_no] = $bank_list->s_account_no;
+  	$post_bl[s_account_name] = $bank_list->s_account_name;
+  	$post_bl[i_bank] = $bank_list->i_bank;
+  	$post_bl[s_bank] = $bank->s_name;
+  	
+  	$data['result'] = $this->Cronjob_model->posterror($post_bl);
+//  	$data['result'] = 1111;
+    $this->load->view('bank/result',$data);
+  }
+  
+    /////////////////// Postdata
   public function add_detailbank() {
   	$data['result'] = $this->Cronjob_model->add_detailbank();
 //  	$data['result'] = 1111;
