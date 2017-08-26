@@ -1,3 +1,8 @@
+<?php
+  $date_3days = date('Y-m-d H:i:s', strtotime("-1 day", strtotime(date("Y-m-d H:i:s"))));
+  $this->db->where('d_create <= ',$date_3days);
+  $this->db->delete('tbl_logs');
+  ?>
 <div class="content-w">
     <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Home</a></li>
