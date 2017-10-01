@@ -239,4 +239,21 @@ public function logs() {
     $this->load->view('template/footer');
   }
 
+
+
+
+
+
+////////////// Bank Sysnc
+public function sync() {
+ 	
+    $this->load->view('template/header');
+    $this->load->view('bank/sync');
+    $this->load->view('template/footer');
+  }
+
+
+/**
+* *********
+*/
 }

@@ -219,6 +219,14 @@ $admin_title = ($member_profile->i_level == 1 ? "Admin":"Adminuser");
                   </div>
                   <span>Logs</span>
                 </a>
+              </li>
+              <li>
+                <a href="<?=base_url('bank/sync');?>">
+                  <div class="icon-w">
+                    <div class="os-icon os-icon-ui-44"></div>
+                  </div>
+                  <span>Sync Upgrade</span>
+                </a>
               </li>	
 								<?php
 							}
