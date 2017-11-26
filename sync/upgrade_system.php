@@ -1,17 +1,11 @@
-<div class="content-w">
-    <ul class="breadcrumb">
-        <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Home</a></li>
-        <li class="breadcrumb-item"><span>Sync Upgrade</span></li>
-         
-    </ul>
-    <!--<div class="content-panel-toggler"><i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span></div>-->
-    <div class="content-i">
-        <div class="content-box">
-            <div class="row">
-<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<title>Upgrade System</title>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<link rel="shortcut icon" href="favicon.ico" /> </head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
 
 
@@ -43,7 +37,7 @@
 </style>
 <div class="container">
 
- 
+    <br/><br/><br/>
 
     <?php
     $listCheck = array('127.0.0.1', "::1", "localhost");
@@ -207,14 +201,7 @@
             <h2 style=""><?= $txt1 ?></h2>  
             <p class="lead" style="font-weight: bold"><?= $txt2 ?></p>
 
-            
-            <a class="btn btn-lg btn-info" href="<?=base_url('bank/sync');?>?upgrade=true" role="button">
-            
-            <div class="icon-w">
-                    <div class="os-icon os-icon-others-43"></div>
-                  </div>
-                  <span>Upgrade Version</span></a>
-            
+            <p><a class="btn btn-lg btn-info" href="upgrade_system.php?upgrade=true" role="button">Upgrade Version</a></p>
             <hr>
             <p class="mb-0">
                 <span>
@@ -234,29 +221,22 @@
 
 
     <footer class="footer" align="center">
-        <a href="<?=base_url('bank/sync');?>" >
-            <button type="button" class="btn btn-warning  " style="cursor:pointer;border-radius: 50px;"> 
-                
-                
-                <span class="glyphicon glyphicon-refresh" style="font-size:18px">
-                <div class="icon-w">
-                    <div class="os-icon os-icon-donut-chart-2"></div>
-                  </div>
-                    Click Check
-                    <br />
+        <a href="upgrade_system.php" >
+            <button type="button" class="btn btn-success btn-circle btn-xl" style="cursor:pointer"> 
+                <span class="glyphicon glyphicon-refresh" style="font-size:11px">
+                    Click
+                    <br/>
+                    Check
+                    <br/>
                     Version
                 </span>
             </button>
         </a>
     </footer>
- 
-</div>
- 
-            </div>
-        </div>
-    </div>
+    <br/>
+    <footer class="footer" align="center">
+        <p style="font-weight: bold;color: #848484">Copyright © 2017 NAGIEOS All rights reserved.</p>
+    </footer>
 </div>
 
-<?php
-$cache_version = "1.0.1";
-?>
+
