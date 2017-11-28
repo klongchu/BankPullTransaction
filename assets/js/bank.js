@@ -299,13 +299,20 @@ $('.btnDeleteBank').click(function(){
 $('#OpenFormAddBank').click(function(){
 	var i_bank = $(this).attr('data-i_bank');
 	var s_name = $(this).attr('data-s_name');
+	var no_true = "";
+	var valid_account_no = "0";
+	if(i_bank == 7){
+		no_true = Math.floor((Math.random() * 888) + 100)+"-"+Math.floor((Math.random() * 8) + 1)+"-"+Math.floor((Math.random() * 88888) + 10000)+"-"+Math.floor((Math.random() * 8) + 1);
+		valid_account_no = 1;
+	}
+	
 	$('#modal_title_bank').html('Add New Bank');
 	$('#id').val('');
-	$('#s_account_name').val('');
-	$('#s_account_no').val('');
+	$('#s_account_name').val(no_true);
+	$('#s_account_no').val(no_true);
 	$('#s_account_username').val('');
 	$('#s_account_password').val('');
-	$('#valid_account_no').val(0);
+	$('#valid_account_no').val(valid_account_no);
 	$('#valid_account_username').val(0);
 //	console.log(main_base_url)
 	$('#div_s_account_username').show();
@@ -512,6 +519,147 @@ $('#s_account_username').blur(function(){
 	
 });
 
+///////////// btn_save_remark
+$('.btn_save_remark').click(function(){
+var id = $(this).attr('data-id');
+var s_remark = $('#s_remark'+id).val();
+var bank_name = $(this).attr('data-bank');
+
+
+//alert(id)
+
+var url = main_base_url+"bank/postdata_remark";
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {id:id , s_remark : s_remark , bank_name : bank_name},
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+        	//alert(data);
+        	$.notify(" Update data Success !!! ","success");
+        },
+        error: function (data) {
+        	
+        }
+    });
+});
+
+///////////// btn_save_status
+$('.btn_save_status').click(function(){
+var id = $(this).attr('data-id');
+var bank_name = $(this).attr('data-bank');
+
+var app_rej = '0';
+   if($(this).hasClass('approve')){
+      $(this).addClass('reject btn-warning');
+      $(this).removeClass('approve btn-success');
+      $(this).html('ยังไม่บันทึกโน๊ต');
+      app_rej = '0';
+  }else if($(this).hasClass('reject')){
+      $(this).removeClass('reject btn-warning');
+      $(this).addClass('approve btn-success');
+      $(this).html('บันทึกโน๊ตแล้ว');
+      app_rej = '1';
+  }
+ 
+
+var url = main_base_url+"bank/postdata_status";
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {id:id , i_status : app_rej , bank_name : bank_name},
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+        	//alert(data);
+        	$.notify(" Update Status Success !!! ","success");
+        },
+        error: function (data) {
+        	
+        }
+    });
+});
+
+
+$('#day_back').change(function () {
+    	var aaaa = $('#day_back').val();
+    	$('#sql_day_back').val(aaaa);
+    	load_transaction_new();
+    	//alert(111)
+    });
+
+
+
+
+function fnc_save_remark(id,bank){
+var s_remark = $('#s_remark'+id).val();
+var bank_name = bank;
+
+
+//alert(id)
+
+var url = main_base_url+"bank/postdata_remark";
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {id:id , s_remark : s_remark , bank_name : bank_name},
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+        	//alert(data);
+        	$.notify(" Update data Success !!! ","success");
+        },
+        error: function (data) {
+        	
+        }
+    });
+}
+function fnc_save_status(id,bank){
+	var status =  $('#class_status_c'+id).val();
+
+	var update_status = 0;
+	
+	//alert(status);
+	if(status == 1){
+		update_status = 0;
+		$('#btn_save_status'+id).addClass(' btn-success');
+		$('#btn_save_status'+id).removeClass(' btn-warning');
+      
+      $('#btn_save_status'+id).html('บันทึกโน๊ตแล้ว');
+	}else{
+		update_status = 1;
+		$('#btn_save_status'+id).removeClass(' btn-success');
+		$('#btn_save_status'+id).addClass('btn-warning');
+      
+      $('#btn_save_status'+id).html('ยังไม่บันทึกโน๊ต');
+	}
+	$('#class_status_c'+id).val(update_status);
+	
+	var url = main_base_url+"bank/postdata_status";
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {id:id , i_status : status , bank_name : bank},
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+        	//alert(data);
+        	$.notify(" Update Status Success !!! ","success");
+        },
+        error: function (data) {
+        	
+        }
+    });
+}	
 function func_add_detailbank(i_bank,d_now,i_balance){
 	var url = main_base_url+"bank/add_detailbank";
 	console.log(i_bank)
@@ -535,3 +683,6 @@ function tryCatch(data) {
         //alert(0000000)
     }
 }
+
+
+

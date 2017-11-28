@@ -1,0 +1,76 @@
+﻿INSERT INTO `tbl_bank` (`id`, `s_name`, `s_fname_en`, `s_fname_th`, `s_url`, `s_icon`, `i_index`, `i_status`, `s_js`, `i_calendar`) VALUES
+(6, 'TMB', 'TMB', 'TMB', 'https://www.nagieos.com/TMB.php', 'tmb.png', 0, 1, 'tmb.js', 0),
+(7, 'TrueWallet', 'TrueWallet', 'TrueWallet', 'https://www.nagieos.com/TrueWallet.php', 'tw.png', 0, 1, 'tw.js', 0);
+
+
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+CREATE TABLE `tbl_autopull_transaction_tmb` (
+  `id` int(7) NOT NULL,
+  `i_bank_list` int(6) NOT NULL,
+  `d_datetime` datetime NOT NULL,
+  `s_info` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `i_out` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `i_in` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `i_total` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `s_channel` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `i_posted` int(6) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `i_read` tinyint(4) NOT NULL,
+  `s_remark` text COLLATE utf8_unicode_ci NOT NULL,
+  `i_status` tinyint(1) NOT NULL,
+  `s_transactioncode` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ALTER TABLE `tbl_autopull_transaction_tmb`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `tbl_autopull_transaction_tmb`
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT;
+
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+CREATE TABLE `tbl_autopull_transaction_truewallet` (
+  `id` int(7) NOT NULL,
+  `i_bank_list` int(6) NOT NULL,
+  `d_datetime` datetime NOT NULL,
+  `s_info` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `i_out` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `i_in` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `i_total` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `s_channel` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `i_posted` int(6) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `i_read` tinyint(4) NOT NULL,
+  `s_remark` text COLLATE utf8_unicode_ci NOT NULL,
+  `i_status` tinyint(1) NOT NULL,
+  `s_transactioncode` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ALTER TABLE `tbl_autopull_transaction_truewallet`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `tbl_autopull_transaction_truewallet`
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT;
+
+
+ALTER TABLE `tbl_autopull_transaction_bay` ADD `s_remark` TEXT NOT NULL AFTER `i_read`;
+ALTER TABLE `tbl_autopull_transaction_bbl` ADD `s_remark` TEXT NOT NULL AFTER `i_read`;
+ALTER TABLE `tbl_autopull_transaction_kbank` ADD `s_remark` TEXT NOT NULL AFTER `i_read`;
+ALTER TABLE `tbl_autopull_transaction_ktb` ADD `s_remark` TEXT NOT NULL AFTER `i_read`;
+ALTER TABLE `tbl_autopull_transaction_scb` ADD `s_remark` TEXT NOT NULL AFTER `i_read`;
+ALTER TABLE `tbl_autopull_transaction_tmb` ADD `s_remark` TEXT NOT NULL AFTER `i_read`;
+ALTER TABLE `tbl_autopull_transaction_truewallet` ADD `s_remark` TEXT NOT NULL AFTER `i_read`;
+
+ALTER TABLE `tbl_autopull_transaction_bay` ADD `i_status` TINYINT(1) NOT NULL AFTER `s_remark`;
+ALTER TABLE `tbl_autopull_transaction_bbl` ADD `i_status` TINYINT(1) NOT NULL AFTER `s_remark`;
+ALTER TABLE `tbl_autopull_transaction_kbank` ADD `i_status` TINYINT(1) NOT NULL AFTER `s_remark`;
+ALTER TABLE `tbl_autopull_transaction_ktb` ADD `i_status` TINYINT(1) NOT NULL AFTER `s_remark`;
+ALTER TABLE `tbl_autopull_transaction_scb` ADD `i_status` TINYINT(1) NOT NULL AFTER `s_remark`;
+ALTER TABLE `tbl_autopull_transaction_tmb` ADD `i_status` TINYINT(1) NOT NULL AFTER `s_remark`;
+ALTER TABLE `tbl_autopull_transaction_truewallet` ADD `i_status` TINYINT(1) NOT NULL AFTER `s_remark`;

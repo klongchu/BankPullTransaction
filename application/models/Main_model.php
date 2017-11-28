@@ -104,6 +104,168 @@ class Main_model extends CI_Model {
 	  return $this->fetch_data("tbl_bank",$s_seclect,$s_conditions,$s_order_by);
 	}
 	
+	public function fetch_list_bank_find(){
+$count_bank = count($_POST['i_bank_list']);
+if($count_bank > 0){
+$andsqlbank = " and ( ";
+for($i=0;$i<$count_bank;$i++){
+	
+	$i_bank_list = $_POST['i_bank_list'][$i];
+	$andsqlbank .= "t.i_bank_list = '".$i_bank_list."' or ";	
+$last_ibank = $i_bank_list;
+}
+ $andsqlbank .= "t.i_bank_list = '".$last_ibank."' )";			
+}
+
+//$andsqlbank = "";
+		  	$strSql = "";
+$strSql .= "SELECT ";
+$strSql .= "    t.*, ";
+$strSql .= "    b.id as b_id, ";
+$strSql .= "    b.s_name as bank_name ";
+$strSql .= "FROM ";
+$strSql .= "    ( ";
+$strSql .= "    SELECT ";
+$strSql .= "        'BAY' s_bank, ";
+$strSql .= "        id, ";
+$strSql .= "        i_bank_list, ";
+$strSql .= "        d_datetime, ";
+$strSql .= "        s_info, ";
+$strSql .= "        i_out, ";
+$strSql .= "        i_in, ";
+$strSql .= "        i_posted, ";
+$strSql .= "        i_read, ";
+$strSql .= "        s_channel, ";
+$strSql .= "        i_status, ";
+$strSql .= "        s_remark ";
+$strSql .= "    FROM ";
+$strSql .= "        tbl_autopull_transaction_bay ";
+$strSql .= "    UNION ";
+$strSql .= "SELECT ";
+$strSql .= "    'BBL' s_bank, ";
+$strSql .= "    id, ";
+$strSql .= "    i_bank_list, ";
+$strSql .= "    d_datetime, ";
+$strSql .= "    s_info, ";
+$strSql .= "    i_out, ";
+$strSql .= "    i_in, ";
+$strSql .= "    i_posted, ";
+$strSql .= "    i_read, ";
+$strSql .= "    s_channel, ";
+$strSql .= "    i_status, ";
+$strSql .= "    s_remark ";
+$strSql .= "FROM ";
+$strSql .= "    tbl_autopull_transaction_bbl ";
+$strSql .= "UNION ";
+$strSql .= "SELECT ";
+$strSql .= "    'KBANK' s_bank, ";
+$strSql .= "    id, ";
+$strSql .= "    i_bank_list, ";
+$strSql .= "    d_datetime, ";
+$strSql .= "    s_info, ";
+$strSql .= "    i_out, ";
+$strSql .= "    i_in, ";
+$strSql .= "    i_posted, ";
+$strSql .= "    i_read, ";
+$strSql .= "    s_channel, ";
+$strSql .= "    i_status, ";
+$strSql .= "    s_remark ";
+$strSql .= "FROM ";
+$strSql .= "    tbl_autopull_transaction_kbank ";
+$strSql .= "UNION ";
+$strSql .= "SELECT ";
+$strSql .= "    'KTB' s_bank, ";
+$strSql .= "    id, ";
+$strSql .= "    i_bank_list, ";
+$strSql .= "    d_datetime, ";
+$strSql .= "    s_info, ";
+$strSql .= "    i_out, ";
+$strSql .= "    i_in, ";
+$strSql .= "    i_posted, ";
+$strSql .= "    i_read, ";
+$strSql .= "    s_channel, ";
+$strSql .= "    i_status, ";
+$strSql .= "    s_remark ";
+$strSql .= "FROM ";
+$strSql .= "    tbl_autopull_transaction_ktb ";
+$strSql .= "UNION ";
+$strSql .= "SELECT ";
+$strSql .= "    'SCB' s_bank, ";
+$strSql .= "    id, ";
+$strSql .= "    i_bank_list, ";
+$strSql .= "    d_datetime, ";
+$strSql .= "    s_info, ";
+$strSql .= "    i_out, ";
+$strSql .= "    i_in, ";
+$strSql .= "    i_posted, ";
+$strSql .= "    i_read, ";
+$strSql .= "    s_channel, ";
+$strSql .= "    i_status, ";
+$strSql .= "    s_remark ";
+$strSql .= "FROM ";
+$strSql .= "    tbl_autopull_transaction_scb ";
+$strSql .= "UNION ";
+$strSql .= "SELECT ";
+$strSql .= "    'TMB' s_bank, ";
+$strSql .= "    id, ";
+$strSql .= "    i_bank_list, ";
+$strSql .= "    d_datetime, ";
+$strSql .= "    s_info, ";
+$strSql .= "    i_out, ";
+$strSql .= "    i_in, ";
+$strSql .= "    i_posted, ";
+$strSql .= "    i_read, ";
+$strSql .= "    s_channel, ";
+$strSql .= "    i_status, ";
+$strSql .= "    s_remark ";
+$strSql .= "FROM ";
+$strSql .= "    tbl_autopull_transaction_tmb ";
+$strSql .= "UNION ";
+$strSql .= "SELECT ";
+$strSql .= "    'TrueWallet' s_bank, ";
+$strSql .= "    id, ";
+$strSql .= "    i_bank_list, ";
+$strSql .= "    d_datetime, ";
+$strSql .= "    s_info, ";
+$strSql .= "    i_out, ";
+$strSql .= "    i_in, ";
+$strSql .= "    i_posted, ";
+$strSql .= "    i_read, ";
+$strSql .= "    s_channel, ";
+$strSql .= "    i_status, ";
+$strSql .= "    s_remark ";
+$strSql .= "FROM ";
+$strSql .= "    tbl_autopull_transaction_truewallet ";
+$strSql .= ") t, ";
+$strSql .= "( ";
+$strSql .= "SELECT ";
+$strSql .= "    bl.id, ";
+$strSql .= "    bl.s_account_no, ";
+$strSql .= "    bl.s_account_name, ";
+$strSql .= "    b.s_name, ";
+$strSql .= "    b.s_fname_th, ";
+$strSql .= "    b.s_fname_en, ";
+$strSql .= "    b.s_icon, ";
+$strSql .= "    b.s_url, ";
+$strSql .= "    b.s_js ";
+$strSql .= "FROM ";
+$strSql .= "    tbl_bank_list bl, ";
+$strSql .= "    tbl_bank b ";
+$strSql .= "WHERE ";
+$strSql .= "    bl.i_bank = b.id ";
+$strSql .= ") b ";
+$strSql .= "WHERE ";
+$strSql .= "    t.i_bank_list = b.id ";
+$strSql .= $andsqlbank;
+$strSql .= "ORDER BY ";
+$strSql .= "    t.d_datetime DESC ";
+
+return $this->db->query($strSql)->result();
+
+
+
+	}
+	
 	public function online(){
 		
 $i_member = $this->session->userdata('member_id');

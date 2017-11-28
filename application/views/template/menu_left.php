@@ -43,6 +43,14 @@ $admin_title = ($member_profile->i_level == 1 ? "Admin":"Adminuser");
                   <span>Dashboard</span>
                 </a>
               </li>
+              <li>
+                <a href="<?=base_url('main/multiple');?>" target="_blank">
+                  <div class="icon-w">
+                    <div class="os-icon os-icon-grid-squares-2"></div>
+                  </div>
+                  <span>Multiple Bank</span>
+                </a>
+              </li>
               <?php
               if($this->session->userdata('i_level') == 1){
 								?>
@@ -166,6 +174,14 @@ $admin_title = ($member_profile->i_level == 1 ? "Admin":"Adminuser");
                     <div class="os-icon os-icon-window-content"></div>
                   </div>
                   <span>Dashboard</span>
+                </a>
+              </li>
+              <li>
+                <a href="<?=base_url('main/multiple');?>" target="_blank">
+                  <div class="icon-w">
+                    <div class="os-icon os-icon-grid-squares-2"></div>
+                  </div>
+                  <span>Multiple Bank</span>
                 </a>
               </li>
               <?php

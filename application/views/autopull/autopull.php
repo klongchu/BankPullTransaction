@@ -154,7 +154,9 @@ $bank_main = $this->Main_model->row_data("tbl_bank",$s_seclect,$s_conditions,$s_
 									      </div>
 									      <div class="user-name">
 									         <h6 class="user-title"><?=$bank_list->s_account_name;?></h6>
+									         <?php if($bank_list->id != 7){ ?>
 									         <div class="user-role"><?=$bank_list->s_account_no;?></div>
+									         <?php } ?>
 									      </div>
 									      <div class="user-action">
 									         <div class="os-icon os-icon-coins4"></div>

@@ -4,6 +4,8 @@
         <li class="breadcrumb-item"><span><?= $title; ?></span></li>
     </ul>
     <!--<div class="content-panel-toggler"><i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span></div>-->
+    
+ 
     <div class="content-i">
         <div class="content-box">
             <div >
@@ -528,6 +530,7 @@ else{$text_status = "ยังไม่บันทึกโน๊ต";$btn_stat
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script>
+    
     $('.btn-show-views').click(function () {
         var id = $(this).attr('data-id');
         if ($(this).hasClass('hide')) {
@@ -543,10 +546,11 @@ else{$text_status = "ยังไม่บันทึกโน๊ต";$btn_stat
     
     
     function load_transaction_new(){
-	var url = main_base_url+"bank/detailautoall_new";
-	var urls = main_base_url+"bank/detailautoalls_new";
+	var url = main_base_url+"main/detailautoall_new_find";
+	var urls = main_base_url+"main/detailautoalls_new_find";
 	var andsqlbank = $('#form_find').serialize();
 	//alert(andsqlbank)
+	
 	$.ajax({
         type: 'POST',
         url: urls,

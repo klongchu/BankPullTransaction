@@ -102,11 +102,15 @@ $level_member = $this->session->userdata('i_level');
                             <?php
                             $bank_no = explode("-",$data->s_account_no);
                             $bank_no2 = substr($bank_no[2],-4);
+                            if($data->i_bank != 7){
+															
+														 
                             ?>
                             xxx-x-x<?=$bank_no2;?>-<?=$bank_no[3];?>  
-                            
+                            <?php } ?>
                             </div>
                             <br />
+                            
                             <?php
                             $i_status_url = ($data->i_status == 1 ? "detailauto":"detail");
                             ?>
@@ -156,6 +160,14 @@ $level_member = $this->session->userdata('i_level');
         	<input type="hidden" name="i_bank" id="i_bank" value="<?=$i_bank;?>"/>
         	<input type="hidden" name="id" id="id" value=""/>
  
+          <?php
+          if($i_bank == 7){
+						$hide_bank = " style='display:none;'";
+						$name_true = rand(0,999999);
+						$no_true = rand(100,999)."-".rand(0,9)."-".rand(10000,99999)."-".rand(0,9);
+					}
+          ?>
+          
           <div class="form-group" style="display: none;">
           	<?php
           	$random_key = random_string(12);
@@ -163,13 +175,13 @@ $level_member = $this->session->userdata('i_level');
 	          <label for=""> Key : System Random</label>
 	          <input class="form-control" placeholder="Key" type="text" name="s_key" id="s_key" value="<?=$random_key;?>" readonly="readonly">
           </div>
-          <div class="form-group">
+          <div class="form-group" <?=$hide_banks;?>>
 	          <label for=""> Account Name</label>
-	          <input class="form-control" placeholder="Account Name" type="text" name="s_account_name" id="s_account_name">
+	          <input class="form-control" placeholder="Account Name" type="text" name="s_account_name" id="s_account_name" value="<?=$name_true;?>">
           </div>
-          <div class="form-group">
+          <div class="form-group" <?=$hide_bank;?>>
 	          <label for=""> Account No. Ex : 123-4-56789-0 <span style="color: #ff0000;" id="error_account_no"></span></label>
-	          <input class="form-control" placeholder="Account No." type="text" name="s_account_no" id="s_account_no">
+	          <input class="form-control" placeholder="Account No." type="text" name="s_account_no" id="s_account_no"  value="<?=$no_true;?>">
           </div>
           <div class="form-group" id="div_s_account_username">
 	          <label for=""> Username <span style="color: #ff0000;" id="error_account_username"></span></label>

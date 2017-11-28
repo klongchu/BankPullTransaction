@@ -58,6 +58,26 @@ class Bank_model extends CI_Model {
         }
         return $id;
     }
+///////////////////
+    public function postdata_remark($table) {
+        $id = $this->input->post('id');
+        $this->s_remark = $this->input->post('s_remark');
+        $bank_name = $this->input->post('bank_name');
+        $this->d_update = date('Y-m-d H:i:s');
+        $table = "tbl_autopull_transaction_".strtolower($bank_name);
+        $this->db->update($table, $this, array('id' => $id));
+        return $id;
+    }
+    
+    public function postdata_status($table) {
+        $id = $this->input->post('id');
+        $this->i_status = $this->input->post('i_status');
+        $bank_name = $this->input->post('bank_name');
+        $this->d_update = date('Y-m-d H:i:s');
+        $table = "tbl_autopull_transaction_".strtolower($bank_name);
+        $this->db->update($table, $this, array('id' => $id));
+        return $id;
+    }
 
     public function delete() {
         $id = $this->input->post('id');

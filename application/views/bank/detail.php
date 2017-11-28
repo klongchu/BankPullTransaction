@@ -19,7 +19,9 @@
                                             <div class="user-avatar"><?= img('uploads/bank/' . $bank->s_icon . '', '50'); ?></div>
                                         </div>
                                         <div class="user-name">
-                                            <h6 class="user-title"><?= $bank_list->s_account_name; ?> [
+                                            <h6 class="user-title"><?= $bank_list->s_account_name; ?> 
+                                            <?php if($bank->id != 7){ ?>
+                                            [
                                                 <!--<?= $bank_list->s_account_no; ?>-->
                                                 <?php
                                                 $bank_no = explode("-", $bank_list->s_account_no);
@@ -27,7 +29,9 @@
                                                 ?>
                                                 xxx-x-x<?= $bank_no2; ?>-<?= $bank_no[3]; ?>
 
-                                                ]</h6>
+                                                ]
+                                              <?php } ?>
+                                              </h6>
                                             <div class="user-role"><?= $bank->s_name; ?> : <?= $bank->s_fname_en; ?></div>
                                         </div>
                                         <div class="user-action">
