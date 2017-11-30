@@ -82,6 +82,8 @@ if($_POST[data]){
 $strSql .= "SELECT ";
 $strSql .= "    t.*, ";
 $strSql .= "    b.id as b_id, ";
+$strSql .= "    b.s_account_no as bl_s_account_no, ";
+$strSql .= "    b.s_icon as b_s_icon, ";
 $strSql .= "    b.s_name as bank_name ";
 $strSql .= "FROM ";
 $strSql .= "    ( ";
@@ -236,6 +238,9 @@ $strSql .= "    t.d_datetime DESC ";
   /////////////////// Detail auto
   public function detailautoalls_new_find($id) {
   	
+if($_POST[sql_i_bank_list] > 0){
+	$andsqlbank = " and t.i_bank_list = '".$_POST[sql_i_bank_list]."' ";
+}
 if($_POST[andsqlbank] != ''){
 	$andsqlbank = $_POST[andsqlbank];
 } 
@@ -247,6 +252,8 @@ $daynow = date('Y-m-d H:i:s');
   	$strSql = "";
 $strSql .= "SELECT ";
 $strSql .= "    t.*, ";
+$strSql .= "    b.s_account_no as bl_s_account_no, ";
+$strSql .= "    b.s_icon as b_s_icon, ";
 $strSql .= "    b.id as b_id, ";
 $strSql .= "    b.s_name as bank_name ";
 $strSql .= "FROM ";
@@ -394,6 +401,7 @@ $strSql .= "    t.d_datetime DESC ";
    	$data['transaction'] = $this->db->query($strSql)->result();
  
    	$data['bank_name'] = $before_1hr;
+   	$data['andsqlbank'] = $andsqlbank;
     
     //$this->load->view('template/header',$data);
     $this->load->view('bank/detailauto1',$data);

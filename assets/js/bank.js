@@ -308,7 +308,7 @@ $('#OpenFormAddBank').click(function(){
 	
 	$('#modal_title_bank').html('Add New Bank');
 	$('#id').val('');
-	$('#s_account_name').val(no_true);
+	$('#s_account_name').val('');
 	$('#s_account_no').val(no_true);
 	$('#s_account_username').val('');
 	$('#s_account_password').val('');

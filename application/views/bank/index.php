@@ -177,7 +177,7 @@ $level_member = $this->session->userdata('i_level');
           </div>
           <div class="form-group" <?=$hide_banks;?>>
 	          <label for=""> Account Name</label>
-	          <input class="form-control" placeholder="Account Name" type="text" name="s_account_name" id="s_account_name" value="<?=$name_true;?>">
+	          <input class="form-control" placeholder="Account Name" type="text" name="s_account_name" id="s_account_name" value="">
           </div>
           <div class="form-group" <?=$hide_bank;?>>
 	          <label for=""> Account No. Ex : 123-4-56789-0 <span style="color: #ff0000;" id="error_account_no"></span></label>

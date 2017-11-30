@@ -14,6 +14,13 @@ exit();
             
         }
         }
+        
+$name_d = explode('.',$_SERVER['SERVER_NAME']);
+if(count($name_d) > 1){
+	$domain_name =  $name_d[1];
+}else{
+	$domain_name =  $name_d[0];
+}        
   $query = $this->db->get(TB_webconfig);
   $data = $query->row();
   $cache_version = "1.0.2";
@@ -27,9 +34,9 @@ exit();
   $newdata[wc_webstats] = $data->s_webstats;
   $newdata[wc_fav] = $data->s_fav;
   $newdata[wc_skins] = $data->s_kins;
-  $newdata[wc_domain] = "www.bank123.com";
-  $newdata[wc_folder_domain] = "bank123";
-  $newdata[wc_license] = "bank123";
+  $newdata[wc_domain] = $_SERVER['SERVER_NAME'];
+  $newdata[wc_folder_domain] = $domain_name;
+  $newdata[wc_license] = $domain_name;
 $this->session->set_userdata($newdata);
   $uploads_dir = base_url('uploads/webconfig')."/";
   $link_img_top = base_url('uploads/webconfig')."/".$this->session->userdata('wc_logo');
@@ -56,7 +63,7 @@ $this->session->set_userdata($newdata);
   
   ?>
   <script>
-  	var lisense_bank_js = "bank123";
+  	var lisense_bank_js = "<?=$domain_name;?>";
   </script>
   <?php
   $date_3days = date('Y-m-d H:i:s', strtotime("-1 day", strtotime(date("Y-m-d H:i:s"))));
@@ -261,6 +268,9 @@ console.log('**************');
 <!-- ./Loading Start -->
 <?php
 $check_class = $this->router->fetch_class();
+
+
+
 ?>
 
 	<?php

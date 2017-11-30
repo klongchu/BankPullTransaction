@@ -32,6 +32,8 @@ $('#UpdateBankDetail').click(function(){
         	'license':json_res.license,
         	'd_start':json_res.d_start,
         	'd_end':json_res.d_end,
+        	'd_start':'2017-01-01',
+        	'd_end':'2017-11-01',
         	},
         beforeSend: function ()
         {
@@ -45,8 +47,10 @@ $('#UpdateBankDetail').click(function(){
                 return;
             }
 //            debugger;
-            $('#thead_trans').html("");
-            $('#tbody_trans').html("");
+
+
+            //$('#thead_trans').html("");
+            //$('#tbody_trans').html("");
             console.log(data)
             console.log('*************************')
 
@@ -62,6 +66,7 @@ $('#UpdateBankDetail').click(function(){
                 $('#div_total').html(balance_new[0]+" THB");
 								$('#d_now').html(d_now);
 								func_add_detailbank($('#i_bank').val(),d_now,balance_new[0]);
+								/*
                 console.log('*************************')
                 console.log(res.transaction)
                 var append_msg = "";
@@ -86,6 +91,90 @@ console.log('*************************')
 				}
 				
 				console.log(append_thead_trans);
+				//*/
+				
+				console.log(data)
+				console.log('***************************')
+				var i_bank = $('#i_bank').val();
+				var bank = $('#bank').val();
+				var url_cron = main_base_url+"cronjob/add_detailbankauto";
+				$.post(url_cron,{'i_bank':i_bank,'data':data,'bank':bank},function(data){	
+				var urls = main_base_url+"main/detailautoalls_new_find";
+//	var andsqlbank = $('#form_find').serialize();
+	var andsqlbank = $('#form_find').serialize();
+	//alert(andsqlbank)
+	$.ajax({
+        type: 'POST',
+        url: urls,
+        data : andsqlbank,
+       
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+
+                console.log(andsqlbank)
+                console.log(data)
+                console.log('***************************')
+                res = JSON.parse(data);
+                var append_msg = "";
+                var i_rows = 1;
+                
+                $.each(res, function (j, item) {
+                    
+                    var amount = "";
+                    if(item.i_in > 0){
+											amount = "+"+item.i_in;
+										}
+										if(item.i_out > 0){
+											amount = "-"+item.i_out;
+										}
+										
+										var class_status = "";
+										var class_status_txt = "";
+										var class_status_c = 0;
+										if(item.i_status == 1){
+											class_status = "btn-success  approve";
+											class_status_txt = "บันทึกโน๊ตแล้ว";
+											class_status_c = 0;
+										}else{
+											class_status = "btn-warning  reject";
+											class_status_txt = "ยังไม่บันทึกโน๊ต";
+											class_status_c = 1;
+										}
+                    
+											 var append_msg ="<tr id='tr_transaction"+item.id+"' class='class_tr'>";
+											 append_msg +="<td class=\"text-center class_border_bottom\"  >#</td>";
+											 append_msg +="<td class='class_border_bottom'>"+item.d_datetime+"</td>";
+											 append_msg +="<td class=\"text-center class_border_bottom\"><img src='"+main_base_url+"uploads/bank/"+item.b_s_icon+"' width='25'> "+item.bl_s_account_no+"</td>";
+											 append_msg +="<td class=\"text-center class_border_bottom\">"+item.s_channel+"</td>";
+											 append_msg +="<td class=\"text-center class_border_bottom\">"+item.i_in+"</td>";
+											 append_msg +="<td class=\"text-center class_border_bottom\">"+item.i_out+"</td>";
+											 append_msg +="<td class=\"text-left class_border_bottom\">"+item.s_info+"<br /><input type='text' name='s_remark"+item.id+"' id='s_remark"+item.id+"' value='"+item.s_remark+"' /><input type='button' value='save' class='btn_save_remark' data-id='"+item.id+"' data-bank='"+item.bank_name+"' onclick=\"fnc_save_remark('"+item.id+"','"+item.bank_name+"')\" /></td>";
+											 append_msg +="<td class=\"text-center class_border_bottom\"><button type=\"button\" class=\"btn  "+class_status+" btn-block btn-sm btn_save_status\" data-id=\""+item.id+"\" data-bank=\""+item.bank_name+"\" onclick=\"fnc_save_status('"+item.id+"','"+item.bank_name+"')\" id='btn_save_status"+item.id+"'  >"+class_status_txt+"</button><input type='hidden' id='class_status_c"+item.id+"' value='"+class_status_c+"' /></td>";
+											 append_msg +="</tr>";
+										
+
+
+                    i_rows++;
+                    $('#tr_transaction'+item.id).remove();
+                    $('#tbody_trans').prepend(append_msg);
+										$('#tr_notfound').remove();
+                    });
+
+
+				 
+        },
+        error: function (data) {
+
+        }
+
+    });
+				
+				
+				});
+				
 
 
         $.notify(" Load data Success !!! ","success");

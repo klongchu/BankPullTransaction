@@ -320,6 +320,89 @@ class Autopull_model extends CI_Model {
         $list_va .= $row->s_account_name . " Total : " . $value . "";
         return $value;
     }
+/////////////// TMB
+    public function updatebankdetailauto_tmb($id, $data) {
+        $row = $this->db->where("id", $id)->get("tbl_bank_list")->row();
+        $api_array = json_decode($data);
+        $i = 0;
+        foreach ($api_array->total as $data) {
+            if ($i == 2) {
+                $value = $data->value;
+            }
+            $i++;
+        }
+//////////////////////  Totoal Job
+        $total_data = array();
+        $total_data['i_bank_list'] = $row->id;
+        $total_data['i_balance'] = $value;
+        $total_data['s_ip'] = $_SERVER['REMOTE_ADDR'];
+        $total_data['d_create'] = date('Y-m-d H:i:s');
+        $this->db->insert("tbl_autopull", $total_data);
+        
+//////////////////////  Transaction
+        foreach ($api_array->transaction as $transaction) {
+            $this->db->where("i_bank_list", $row->id);
+            $this->db->where("d_datetime", $transaction->datetime);
+            $query = $this->db->get("tbl_autopull_transaction_tmb");
+            if ($query->num_rows() < 1) {
+                $trans_data = array();
+                $trans_data['i_bank_list'] = $row->id;
+                $trans_data['d_datetime'] = $transaction->datetime;
+                $trans_data['s_info'] = $transaction->info;
+                $trans_data['i_out'] = $transaction->out;
+                $trans_data['i_in'] = $transaction->in;
+                //$trans_data['s_type'] = $transaction->type;
+                //$trans_data['s_bankno'] = $transaction->bankno;
+                $trans_data['s_channel'] = $transaction->type;
+                $trans_data['d_create'] = date('Y-m-d H:i:s');
+                $trans_data['d_update'] = date('Y-m-d H:i:s');
+                $this->db->insert('tbl_autopull_transaction_tmb', $trans_data);
+            }
+        }
+        $list_va .= $row->s_account_name . " Total : " . $value . "";
+        return $value;
+    }
+/////////////// TrueWallet
+    public function updatebankdetailauto_truewallet($id, $data) {
+        $row = $this->db->where("id", $id)->get("tbl_bank_list")->row();
+        $api_array = json_decode($data);
+        $i = 0;
+        foreach ($api_array->total as $data) {
+            if ($i == 6) {
+                $value = $data->value;
+            }
+            $i++;
+        }
+//////////////////////  Totoal Job
+        $total_data = array();
+        $total_data['i_bank_list'] = $row->id;
+        $total_data['i_balance'] = $value;
+        $total_data['s_ip'] = $_SERVER['REMOTE_ADDR'];
+        $total_data['d_create'] = date('Y-m-d H:i:s');
+        $this->db->insert("tbl_autopull", $total_data);
+//////////////////////  Transaction
+        foreach ($api_array->transaction as $transaction) {
+            $this->db->where("i_bank_list", $row->id);
+            $this->db->where("d_datetime", $transaction->datetime);
+            $query = $this->db->get("tbl_autopull_transaction_truewallet");
+            if ($query->num_rows() < 1) {
+                $trans_data = array();
+                $trans_data['i_bank_list'] = $row->id;
+                $trans_data['d_datetime'] = $transaction->datetime;
+                $trans_data['s_info'] = $transaction->info;
+                $trans_data['i_out'] = $transaction->out;
+                $trans_data['i_in'] = $transaction->in;
+                //$trans_data['s_type'] = $transaction->type;
+                //$trans_data['s_bankno'] = $transaction->bankno;
+                $trans_data['s_channel'] = $transaction->channel;
+                $trans_data['d_create'] = date('Y-m-d H:i:s');
+                $trans_data['d_update'] = date('Y-m-d H:i:s');
+                $this->db->insert('tbl_autopull_transaction_truewallet', $trans_data);
+            }
+        }
+        $list_va .= $row->s_account_name . " Total : " . $value . "";
+        return $value;
+    }
 
     /**
      * @End Update Bank 

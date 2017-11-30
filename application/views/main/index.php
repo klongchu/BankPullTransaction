@@ -19,6 +19,8 @@ $daynow = date('Y-m-d H:i:s');
 $strSql .= "SELECT ";
 $strSql .= "    t.*, ";
 $strSql .= "    b.id as b_id, ";
+$strSql .= "    b.s_icon as b_s_icon, ";
+$strSql .= "    b.s_account_no as bl_s_account_no, ";
 $strSql .= "    b.s_name as bank_name ";
 $strSql .= "FROM ";
 $strSql .= "    ( ";
@@ -176,11 +178,17 @@ $strSql .= "    t.d_datetime DESC ";
                                             <h6 class="user-title">จำนวนวันย้อนหลัง</h6>
                                             <select name="day_back" id="day_back">
                                             	<?php
-                                            	for($i=1;$i<=300;$i++){
+                                            	//for($i=1;$i<=300;$i++){
 																								?>
-																									<option value="<?=$i;?>"><?=$i;?></option>
+																									<option value="1">1</option>
+																									<option value="2">2</option>
+																									<option value="5">5</option>
+																									<option value="15">15</option>
+																									<option value="30">30</option>
+																									<option value="45">45</option>
+																									
 																								<?php
-																							}
+																							//}
                                             	?>
                                             </select>
                                         </div>
@@ -207,10 +215,11 @@ $strSql .= "    t.d_datetime DESC ";
                                                         <th width="30" style="text-align: center;">#</th>
                                                         <th width="130" align="left">วันที่</th>
                                                         <th width="160" class="text-center">ธนาคาร</th>
-                                                        <th width="100" class="text-center">ช่องทาง</th>
+                                                        <th width="100" class="text-center">ฝาก</th>
+                                                        <th width="100" class="text-center">ถอน</th>
                                                         <th width="100" class="text-center">จำนวนเงิน</th>
                                                         <th>รายละเอียด</th>
-                                                        <th class="text-center">สถานะ</th>
+                                                        <th width="80" class="text-center">สถานะ</th>
 
                                                          
                                                     </tr>
@@ -262,7 +271,7 @@ $strSql .= "    t.d_datetime DESC ";
                                                                     </td>
 
                                                                     <td class="text-center">
-                                                                        <?= $data->bank_name; ?>
+                                                                        <?= $data->bl_s_account_no; ?> <br /><img src='<?=base_url();?>uploads/bank/<?= $data->b_s_icon; ?>' width='25'> <?= $data->bank_name; ?>
                                                                     </td>
                                                                     <td class="text-center">
                                                                         <?= $data->s_channel; ?>
@@ -290,7 +299,7 @@ else{$text_status = "ยังไม่บันทึกโน๊ต";$btn_stat
                                                     } else {
                                                         ?>
                                                         <tr id="tr_notfound">
-                                                            <td colspan="4" class="text-center">No Transaction</td>
+                                                            <td colspan="7" class="text-center">No Transaction</td>
                                                         </tr>                                       
                                                     <?php } ?>
 
@@ -589,9 +598,10 @@ else{$text_status = "ยังไม่บันทึกโน๊ต";$btn_stat
 											 var append_msg ="<tr id='tr_transaction"+item.id+"' class='class_tr'>";
 											 append_msg +="<td class=\"text-center class_border_bottom\"  >#</td>";
 											 append_msg +="<td class='class_border_bottom'>"+item.d_datetime+"</td>";
-											 append_msg +="<td class=\"text-center class_border_bottom\">"+item.bank_name+"</td>";
+											 append_msg +="<td class=\"text-center class_border_bottom\"><img src='<?=base_url();?>uploads/bank/"+item.b_s_icon+"' width='25'> "+item.bl_s_account_no+"</td>";
 											 append_msg +="<td class=\"text-center class_border_bottom\">"+item.s_channel+"</td>";
-											 append_msg +="<td class=\"text-center class_border_bottom\">"+amount+"</td>";
+											 append_msg +="<td class=\"text-center class_border_bottom\">"+item.i_in+"</td>";
+											 append_msg +="<td class=\"text-center class_border_bottom\">"+item.i_out+"</td>";
 											 append_msg +="<td class=\"text-left class_border_bottom\">"+item.s_info+"<br /><input type='text' name='s_remark"+item.id+"' id='s_remark"+item.id+"' value='"+item.s_remark+"' /><input type='button' value='save' class='btn_save_remark' data-id='"+item.id+"' data-bank='"+item.bank_name+"' onclick=\"fnc_save_remark('"+item.id+"','"+item.bank_name+"')\" /></td>";
 											 append_msg +="<td class=\"text-center class_border_bottom\"><button type=\"button\" class=\"btn  "+class_status+" btn-block btn-sm btn_save_status\" data-id=\""+item.id+"\" data-bank=\""+item.bank_name+"\" onclick=\"fnc_save_status('"+item.id+"','"+item.bank_name+"')\" id='btn_save_status"+item.id+"'  >"+class_status_txt+"</button><input type='hidden' id='class_status_c"+item.id+"' value='"+class_status_c+"' /></td>";
 											 append_msg +="</tr>";
@@ -634,9 +644,10 @@ else{$text_status = "ยังไม่บันทึกโน๊ต";$btn_stat
 											 var append_msg ="<tr id='tr_transaction"+item.id+"' class='class_tr'>";
 											 append_msg +="<td class=\"text-center class_border_bottom\"  >N</td>";
 											 append_msg +="<td class='class_border_bottom'>"+item.d_datetime+"</td>";
-											 append_msg +="<td class=\"text-center class_border_bottom\">"+item.bank_name+"</td>";
+											 append_msg +="<td class=\"text-center class_border_bottom\"><img src='<?=base_url();?>uploads/bank/"+item.b_s_icon+"' width='25'> "+item.bl_s_account_no+"</td>";
 											 append_msg +="<td class=\"text-center class_border_bottom\">"+item.s_channel+"</td>";
-											 append_msg +="<td class=\"text-center class_border_bottom\">"+amount+"</td>";
+											 append_msg +="<td class=\"text-center class_border_bottom\">"+item+"</td>";
+											 append_msg +="<td class=\"text-center class_border_bottom\">"+item+"</td>";
 											 append_msg +="<td class=\"text-left class_border_bottom\">"+item.s_info+"<br /><input type='text' name='s_remark"+item.id+"' id='s_remark"+item.id+"' value='"+item.s_remark+"' /><input type='button' value='save' class='btn_save_remark' data-id='"+item.id+"' data-bank='"+item.bank_name+"' onclick=\"fnc_save_remark('"+item.id+"','"+item.bank_name+"')\" /></td>";
 											 append_msg +="<td class=\"text-center class_border_bottom\"><button type=\"button\" class=\"btn  "+class_status+" btn-block btn-sm btn_save_status\" data-id=\""+item.id+"\" data-bank=\""+item.bank_name+"\" onclick=\"fnc_save_status('"+item.id+"','"+item.bank_name+"')\" id='btn_save_status"+item.id+"'  >"+class_status_txt+"</button><input type='hidden' id='class_status_c"+item.id+"' value='"+class_status_c+"' /></td>";
 											 append_msg +="</tr>";

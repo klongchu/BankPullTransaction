@@ -45,11 +45,25 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <form method="post" id="form-bank">
-                                        <span style="display: none;">
-                                            <input type="date" name="d_start" id="d_start" value="<?= date("Y-m-d"); ?>" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"/> To 
-                                            <input type="date" name="d_end" id="d_end" value="<?= date("Y-m-d"); ?>" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"/>
+                                        <span style="display: nones;">
+                                            
+                                            <?php
+                                            if($bank_list->i_bank == 0){
+																							?>
+																							<input type="text" name="d_start" id="d_start" value="01/11/2017" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"/> To 
+                                            <input type="text" name="d_end" id="d_end" value="30/11/2017" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"/>
+																							<?php
+																						}else{
+																							?>
+																							<input type="text" name="d_start" id="d_start" value="<?= date("d/m/Y"); ?>" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}"/> To 
+                                            <input type="text" name="d_end" id="d_end" value="<?= date("d/m/Y"); ?>" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}"/>
+																							<?php
+																						}
+                                            ?>
+                                            
                                         </span>
                                         <input type="hidden" name="id" id="i_bank" value="<?= $bank_list->id; ?>"/>
+                                        <input type="hidden" name="bank" id="bank" value="<?=strtolower($bank->s_name);?>"/>
 
                                         <?php
                                         if ($bank_list->i_bank == 3) {
@@ -81,7 +95,7 @@
                 <div class="col-sm-4">
                     <div class="element-box el-tablo">
                         <div class="label">Balance : Lasted <span id="d_now"><?= $bank_list->d_lastpull; ?></span></div>
-                        <div class="value" id="div_total">0<!--<?= $bank_list->i_balance; ?>--> THB</div>
+                        <div class="value" id="div_total"><?=$bank_list->i_balance; ?><!--<?= $bank_list->i_balance; ?>--> THB</div>
                         <!--<div class="trending trending-up"><span>12%</span><i class="os-icon os-icon-arrow-up2"></i></div>-->
                     </div>
                 </div>
@@ -108,29 +122,259 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-lg table-v2 table-striped">
-                                    <thead  id="thead_trans">
+                                <table width="100%" cellpadding="10" >
+                                                <thead style="background-color: rgba(0, 0, 0, 0.05);line-height: 40px;">
+                                                    <tr>
+                                                        <th width="30" style="text-align: center;">#</th>
+                                                        <th width="130" align="left">วันที่</th>
+                                                        <th width="160" class="text-center">ธนาคาร</th>
+                                                        <th width="100" class="text-center">ช่องทาง</th>
+                                                        <th width="100" class="text-center">ฝาก</th>
+                                                        <th width="100" class="text-center">ถอน</th>
+                                                        <th>รายละเอียด</th>
+                                                        <th  width="80" class="text-center">สถานะ</th>
 
-                                    </thead>
-                                    <tbody id="tbody_trans">
-                                        <?php
-                                        $i_rows = 1;
-                                        foreach ($transaction as $data) {
-                                            ?>
-                                            <tr style="display: none">
-                                                <td class="text-center"><?= $i_rows ?></td>
-                                                <td><?= $data->d_datetime; ?></td>
-                                                <td><?= $data->s_info; ?></td>
-                                                <td class="text-right"><?= $data->i_out; ?></td>
-                                                <td class="text-right"><?= $data->i_in; ?></td>
-                                                <td class="text-right"><?= $data->i_total; ?></td>
-                                                <td><?= $data->s_channel; ?></td>
-                                            </tr>
-                                            <?php $i_rows++;
-                                        } ?>
+                                                         
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbody_trans">
+                                                    <?php
+                                                    $i_rows = 1;
 
-                                    </tbody>
-                                </table>
+                                                    $level_member = $this->session->userdata('i_level');
+
+                                                     
+$i_dayback = "-1000";  	
+$timestamp = strtotime($i_dayback.' days');
+$dayback = date('Y-m-d 00:00:01', $timestamp);
+$daynow = date('Y-m-d H:i:s');
+ 	
+  	$strSql = "";
+$strSql .= "SELECT ";
+$strSql .= "    t.*, ";
+$strSql .= "    b.id as b_id, ";
+$strSql .= "    b.s_icon as b_s_icon, ";
+$strSql .= "    b.s_account_no as bl_s_account_no, ";
+$strSql .= "    b.s_name as bank_name ";
+$strSql .= "FROM ";
+$strSql .= "    ( ";
+$strSql .= "    SELECT ";
+$strSql .= "        'BAY' s_bank, ";
+$strSql .= "        id, ";
+$strSql .= "        i_bank_list, ";
+$strSql .= "        d_datetime, ";
+$strSql .= "        s_info, ";
+$strSql .= "        i_out, ";
+$strSql .= "        i_in, ";
+$strSql .= "        i_posted, ";
+$strSql .= "        i_read, ";
+$strSql .= "        s_channel, ";
+$strSql .= "        i_status, ";
+$strSql .= "        s_remark ";
+$strSql .= "    FROM ";
+$strSql .= "        tbl_autopull_transaction_bay ";
+$strSql .= "    UNION ";
+$strSql .= "SELECT ";
+$strSql .= "    'BBL' s_bank, ";
+$strSql .= "    id, ";
+$strSql .= "    i_bank_list, ";
+$strSql .= "    d_datetime, ";
+$strSql .= "    s_info, ";
+$strSql .= "    i_out, ";
+$strSql .= "    i_in, ";
+$strSql .= "    i_posted, ";
+$strSql .= "    i_read, ";
+$strSql .= "    s_channel, ";
+$strSql .= "    i_status, ";
+$strSql .= "    s_remark ";
+$strSql .= "FROM ";
+$strSql .= "    tbl_autopull_transaction_bbl ";
+$strSql .= "UNION ";
+$strSql .= "SELECT ";
+$strSql .= "    'KBANK' s_bank, ";
+$strSql .= "    id, ";
+$strSql .= "    i_bank_list, ";
+$strSql .= "    d_datetime, ";
+$strSql .= "    s_info, ";
+$strSql .= "    i_out, ";
+$strSql .= "    i_in, ";
+$strSql .= "    i_posted, ";
+$strSql .= "    i_read, ";
+$strSql .= "    s_channel, ";
+$strSql .= "    i_status, ";
+$strSql .= "    s_remark ";
+$strSql .= "FROM ";
+$strSql .= "    tbl_autopull_transaction_kbank ";
+$strSql .= "UNION ";
+$strSql .= "SELECT ";
+$strSql .= "    'KTB' s_bank, ";
+$strSql .= "    id, ";
+$strSql .= "    i_bank_list, ";
+$strSql .= "    d_datetime, ";
+$strSql .= "    s_info, ";
+$strSql .= "    i_out, ";
+$strSql .= "    i_in, ";
+$strSql .= "    i_posted, ";
+$strSql .= "    i_read, ";
+$strSql .= "    s_channel, ";
+$strSql .= "    i_status, ";
+$strSql .= "    s_remark ";
+$strSql .= "FROM ";
+$strSql .= "    tbl_autopull_transaction_ktb ";
+$strSql .= "UNION ";
+$strSql .= "SELECT ";
+$strSql .= "    'SCB' s_bank, ";
+$strSql .= "    id, ";
+$strSql .= "    i_bank_list, ";
+$strSql .= "    d_datetime, ";
+$strSql .= "    s_info, ";
+$strSql .= "    i_out, ";
+$strSql .= "    i_in, ";
+$strSql .= "    i_posted, ";
+$strSql .= "    i_read, ";
+$strSql .= "    s_channel, ";
+$strSql .= "    i_status, ";
+$strSql .= "    s_remark ";
+$strSql .= "FROM ";
+$strSql .= "    tbl_autopull_transaction_scb ";
+$strSql .= "UNION ";
+$strSql .= "SELECT ";
+$strSql .= "    'TMB' s_bank, ";
+$strSql .= "    id, ";
+$strSql .= "    i_bank_list, ";
+$strSql .= "    d_datetime, ";
+$strSql .= "    s_info, ";
+$strSql .= "    i_out, ";
+$strSql .= "    i_in, ";
+$strSql .= "    i_posted, ";
+$strSql .= "    i_read, ";
+$strSql .= "    s_channel, ";
+$strSql .= "    i_status, ";
+$strSql .= "    s_remark ";
+$strSql .= "FROM ";
+$strSql .= "    tbl_autopull_transaction_tmb ";
+$strSql .= "UNION ";
+$strSql .= "SELECT ";
+$strSql .= "    'TrueWallet' s_bank, ";
+$strSql .= "    id, ";
+$strSql .= "    i_bank_list, ";
+$strSql .= "    d_datetime, ";
+$strSql .= "    s_info, ";
+$strSql .= "    i_out, ";
+$strSql .= "    i_in, ";
+$strSql .= "    i_posted, ";
+$strSql .= "    i_read, ";
+$strSql .= "    s_channel, ";
+$strSql .= "    i_status, ";
+$strSql .= "    s_remark ";
+$strSql .= "FROM ";
+$strSql .= "    tbl_autopull_transaction_truewallet ";
+$strSql .= ") t, ";
+$strSql .= "( ";
+$strSql .= "SELECT ";
+$strSql .= "    bl.id, ";
+$strSql .= "    bl.s_account_no, ";
+$strSql .= "    bl.s_account_name, ";
+$strSql .= "    b.s_name, ";
+$strSql .= "    b.s_fname_th, ";
+$strSql .= "    b.s_fname_en, ";
+$strSql .= "    b.s_icon, ";
+$strSql .= "    b.s_url, ";
+$strSql .= "    b.s_js ";
+$strSql .= "FROM ";
+$strSql .= "    tbl_bank_list bl, ";
+$strSql .= "    tbl_bank b ";
+$strSql .= "WHERE ";
+$strSql .= "    bl.i_bank = b.id ";
+$strSql .= ") b ";
+$strSql .= "WHERE ";
+$strSql .= "    t.i_bank_list = b.id ";
+$strSql .= "   and t.d_datetime >=  '".$dayback."' ";
+//$strSql .= "   and (t.d_datetime BETWEEN  '".$dayback."' AND '".$daynow."') ";
+$strSql .= " and t.i_bank_list = '".$bank_list->id."'";
+$strSql .= "ORDER BY ";
+$strSql .= "    t.d_datetime DESC ";
+                                                    
+                                                    $query = $this->db->query($strSql)->result();
+//if ($bank_list_q) {
+                                                    if ($query) {
+                                                        /*echo $query->num_rows();*/
+                                                        ?>
+                                                        <?php
+                                                        foreach ($query as $data) {
+                                                            //foreach ($bank_list_q as $data) {
+
+                                                            $s_seclect = array('*');
+                                                            $s_conditions['where'] = array("id" => $data->i_bank_list);
+                                                            //$s_order_by = array('id' => 'desc');
+                                                            $bank_list = $this->Main_model->row_data("tbl_bank_list", $s_seclect, $s_conditions, $s_order_by);
+                                                            
+
+                                                            
+                                                             
+                                                            if ($bank_list->id > 0) {
+                                                                $bgcolor = ($i++ & 1) ? "#e4e6ec" : "#d1d8e6";
+                                                                
+                                                                if($data->i_in > 0){
+																																	$amount = "+".$data->i_in;
+																																}
+																																
+																																if($data->i_out > 0){
+																																	$amount = "-".$data->i_out;
+																																}
+                                                                
+                                                                ?>
+                                                                <tr bgcolor="<?= $bgcolor; ?>" id="tr_transaction<?=$data->id;?>">
+                                                                    <td class="text-center" ><?= $i_rows ?></td>
+
+
+
+                                                                    <td>
+                                                                  
+                                                                        <?= $data->d_datetime; ?>
+                                                                    </td>
+
+                                                                    <td class="text-center">
+                                                                        <img src='<?=base_url();?>uploads/bank/<?= $data->b_s_icon; ?>' width='25'> <?= $data->bl_s_account_no; ?> 
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <?= $data->s_channel; ?>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <?= $data->i_in; ?>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <?= $data->i_out; ?>
+                                                                    </td>
+                                                                    <td class="text-left">
+                                                                        <?= $data->s_info; ?>
+                                                                        <br />
+                                                                        <input type="text" name="s_remark<?= $data->id; ?>" id="s_remark<?= $data->id; ?>" value="<?= $data->s_remark; ?>" /><input type="button" value="save" class="btn_save_remark" data-id="<?= $data->id; ?>" data-bank="<?= $data->bank_name; ?>" />
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <? 
+if($data->i_status == 1){ $text_status = "บันทึกโน๊ตแล้ว";$btn_status = "success  btn-block btn-sm approve";}
+else{$text_status = "ยังไม่บันทึกโน๊ต";$btn_status = "warning  btn-block btn-sm reject";} 
+?>
+<button type="button" class="btn btn-<?=$btn_status;?> btn_save_status" data-id="<?=$data->id;?>" data-bank="<?=$data->bank_name;?>"><?=$text_status;?></button>
+                                                                    </td>
+                                                                </tr>
+                                                                <?php
+                                                                $i_rows++;
+                                                            }
+                                                        }
+                                                    } else {
+                                                        ?>
+                                                        <tr id="tr_notfound">
+                                                            <td colspan="7" class="text-center">No Transaction</td>
+                                                        </tr>                                       
+                                                    <?php } ?>
+
+                                                </tbody>
+
+
+
+                                            </table>
                             </div>
                             <div class="controls-below-table" style="display: none">
                                 <div class="table-records-info">Showing records 1 - 10</div>
@@ -149,7 +393,11 @@
                     </div>
                 </div>
             </div>
-
+<form method="post" id="form_find">
+<input type="hidden" id="andsqlbank" name="andsqlbank" value=""/>
+<input type="hidden" id="sql_i_bank_list" name="sql_i_bank_list" value="<?=$bank_list->id;?>"/>
+<input type="hidden" id="sql_day_back" name="sql_day_back" value="20"/>
+</form>
         </div>
     </div>
 </div>
@@ -157,3 +405,5 @@
 <?php
 $cache_version = "1.0.1";
 ?>
+
+
