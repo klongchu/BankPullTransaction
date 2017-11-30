@@ -45,7 +45,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <form method="post" id="form-bank">
-                                        <span style="display: nones;">
+                                        <span style="display: none;">
                                             
                                             <?php
                                             if($bank_list->i_bank == 0){
