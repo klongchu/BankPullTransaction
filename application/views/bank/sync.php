@@ -14,7 +14,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>-->
 
 
-
+ 
 <style>
     .btn-circle {
         width: 30px;
@@ -51,7 +51,7 @@
     $_config['folderMain'] = (in_array($_SERVER['REMOTE_ADDR'], $listCheck) ? "sync-upgrade/" : "");
     $_config['path'] = $_SERVER["DOCUMENT_ROOT"];
     $_config['rootPath'] = $_config['path'] . "/" . $_config['folderMain'];
-    $_config['url'] = 'https://www.nagdodo.com/version/';
+    $_config['url'] = 'https://www.nagieos.com/version/';
     $_config['project'] = 'BankPullTransaction';
 
     $vServer = file_get_contents($_config['url'] . 'version.txt') or die('ERROR');
@@ -258,5 +258,5 @@
 </div>
 
 <?php
-$cache_version = "1.0.1";
+$cache_version = "1.0.0";
 ?>

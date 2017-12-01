@@ -396,7 +396,7 @@ else{$text_status = "ยังไม่บันทึกโน๊ต";$btn_stat
 <form method="post" id="form_find">
 <input type="hidden" id="andsqlbank" name="andsqlbank" value=""/>
 <input type="hidden" id="sql_i_bank_list" name="sql_i_bank_list" value="<?=$bank_list->id;?>"/>
-<input type="hidden" id="sql_day_back" name="sql_day_back" value="20"/>
+<input type="hidden" id="sql_day_back" name="sql_day_back" value="1"/>
 </form>
         </div>
     </div>

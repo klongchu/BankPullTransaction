@@ -123,6 +123,14 @@ echo json_encode($data);
 //  	$data['result'] = 1111;
     $this->load->view('bank/result',$data);
   }
+  /////////////////// get_date_time
+  public function get_date_time() {
+  	$timestamp = strtotime('-1 minutes');
+$before_1hr = date('Y-m-d H:i:s', $timestamp);
+  	$data['result'] = $before_1hr;
+//  	$data['result'] = 1111;
+    $this->load->view('bank/result',$data);
+  }
   
   /**
 	* ********** Update Bank Follow Ban

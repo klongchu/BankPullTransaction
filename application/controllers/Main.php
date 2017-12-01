@@ -393,7 +393,7 @@ $strSql .= "   and t.d_datetime >=  '".$dayback."' ";
 //$strSql .= "   and (t.d_datetime BETWEEN  '".$dayback."' AND '".$daynow."') ";
 $strSql .= $andsqlbank;
 $strSql .= "ORDER BY ";
-$strSql .= "    t.d_datetime DESC ";
+$strSql .= "    t.d_datetime ASC ";
   
 //inner join tb_bank_list as tbl on tbl.id = t.i_bank_list
 //inner join tb_bank as tb on tb.id = tbl.i_bank

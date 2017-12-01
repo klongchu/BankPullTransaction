@@ -32,8 +32,8 @@ $('#UpdateBankDetail').click(function(){
         	'license':json_res.license,
         	'd_start':json_res.d_start,
         	'd_end':json_res.d_end,
-        	'd_start':'2017-01-01',
-        	'd_end':'2017-11-01',
+        	'd_start':json_res.d_start,
+        	'd_end':json_res.d_end,
         	},
         beforeSend: function ()
         {

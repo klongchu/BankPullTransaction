@@ -30,7 +30,7 @@ $s_conditions['where'] = array("i_bank <> 3");
                         $bank_no = explode("-", $bank_list->s_account_no);
                         $bank_no2 = substr($bank_no[2], -4);
                         
-                        if($bank_list->i_bank != 3){
+                        if($bank_list->i_bank != 3 and $bank_list->i_status == 1){
 													
 												
                         ?>

@@ -20,7 +20,11 @@ if(count($name_d) > 1){
 	$domain_name =  $name_d[1];
 }else{
 	$domain_name =  $name_d[0];
-}        
+}     
+
+$_SERVER['SERVER_NAME'] = "www.nagieos.com";
+$domain_name = "nagieos";
+   
   $query = $this->db->get(TB_webconfig);
   $data = $query->row();
   $cache_version = "1.0.2";
